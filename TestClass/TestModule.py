@@ -67,10 +67,10 @@ class TestClass:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&Test')
+        self.menu = self.tr('&Test')
         # TODO: We are going to let the user set this up in a future iteration
-        self.toolbar = self.iface.addToolBar(u'TestClass')
-        self.toolbar.setObjectName(u'TestClass')
+        self.toolbar = self.iface.addToolBar('TestClass')
+        self.toolbar.setObjectName('TestClass')
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -167,7 +167,7 @@ class TestClass:
         icon_path = ':/plugins/TestClass/icon.png'
         self.add_action(
             icon_path,
-            text=self.tr(u'Menu Test'),
+            text=self.tr('Menu Test'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
@@ -176,7 +176,7 @@ class TestClass:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.tr(u'&Test'),
+                self.tr('&Test'),
                 action)
             self.iface.removeToolBarIcon(action)
 
