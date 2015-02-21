@@ -5,7 +5,7 @@ __author__ = 'Fundor333'
 from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
     QgsMapLayerRegistry
 from PyQt4.QtCore import QVariant
-
+from osgeo import gdal, ogr
 
 def add_element(pr, vl, i, j):
     fet = QgsFeature()
@@ -15,40 +15,64 @@ def add_element(pr, vl, i, j):
 
 
 def run(dlg):
-    alt = dlg.widthInput.value()
-    larg = dlg.highInput.value()
-    if larg == 0 | alt == 0:
-        pass
+    ncols = dlg.widthInput.value()
+    nrows = dlg.highInput.value()
+    if ncols == 0 | nrows == 0:
+        print("La matrice non può essere costruita correttamente")
     else:
+        cellsize = 25
+        nodata_value = -9999
+        xllcorner = 0
+        yllcorner = 0
 
-        vl = QgsVectorLayer("Point", "temporary_points", "memory")
-        pr = vl.dataProvider()
 
-        pr.addAttributes([QgsField("value", QVariant.Int)])
+        # Create the destination data source
+        target_ds = gdal.GetDriverByName('GTiff').Create("test.tif", nrows, ncols, 1, gdal.GDT_Byte)
+        target_ds.SetGeoTransform((0, cellsize, 0, nrows * cellsize, 0, -cellsize))
+        band = target_ds.GetRasterBand(1)
+        band.SetNoDataValue(nodata_value)
 
-        for i in range(0, larg):
-            for j in range(0, alt):
-                add_element(pr, vl, i, j)
-        vl.updateExtents()
+        source_layer = []
+        for i in range(0, ncols):
+            for j in range(0, nrows):
+                source_layer[i][j] = randint(0, 100)
+
+
+        # Rasterize
+        gdal.RasterizeLayer(target_ds, [1], source_layer, burn_values=[0])
+
+
+def las(alt, larg):
+    vl = QgsVectorLayer("Point", "temporary_points", "memory")
+    pr = vl.dataProvider()
+
+    pr.addAttributes([QgsField("value", QVariant.Int)])
+
+    for i in range(0, larg):
+        for j in range(0, alt):
+            add_element(pr, vl, i, j)
+    vl.updateExtents()
 
     # show some stats
-        print("fields: ", len(pr.fields()))
-        print("features: ", pr.featureCount())
-        e = vl.extent()
-        print(e.__class__.__name__)
-        print("extent:", "0", "0" , alt, larg)
-        # iterate over features
-        renderer = vl.rendererV2()
-        for f in vl.getFeatures():
-            print("F:", f.id(), f.attributes(), f.geometry().asPoint())
+    print("fields: ", len(pr.fields()))
+    print("features: ", pr.featureCount())
+    e = vl.extent()
+    print(e.__class__.__name__)
+    print("extent:", "0", "0", alt, larg)
+    # iterate over features
+    renderer = vl.rendererV2()
+    for f in vl.getFeatures():
+        print("F:", f.id(), f.attributes(), f.geometry().asPoint())
 
-#            print(f.__class__.__name__)
-#            print("%f - %f: %s %s" % (
-#                f.lowerValue(),
-#                f.upperValue(),
-#                f.label(),
-#                str(f.symbol())
-#            ))
+    # print(f.__class__.__name__)
+    # print("%f - %f: %s %s" % (
+    #                f.lowerValue(),
+    #                f.upperValue(),
+    #                f.label(),
+    #                str(f.symbol())
+    #            ))
 
-        # TODO Bisogna sistemare la visualizzazione grafica del plugin
-        QgsMapLayerRegistry.instance().addMapLayer(vl)
+    # TODO Bisogna sistemare la visualizzazione grafica del plugin
+    QgsMapLayerRegistry.instance().addMapLayer(vl)
+
+
