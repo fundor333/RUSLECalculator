@@ -18,25 +18,22 @@ def run(dlg):
     ncols = dlg.widthInput.value()
     nrows = dlg.highInput.value()
     if ncols == 0 | nrows == 0:
-        print("La matrice non può essere costruita correttamente")
+        print("La matrice non puo' essere costruita correttamente")
     else:
         cellsize = 25
         nodata_value = -9999
         xllcorner = 0
-        yllcorner = 0
-
-
-        # Create the destination data source
-        target_ds = gdal.GetDriverByName('GTiff').Create("test.tif", nrows, ncols, 1, gdal.GDT_Byte)
-        target_ds.SetGeoTransform((0, cellsize, 0, nrows * cellsize, 0, -cellsize))
-        band = target_ds.GetRasterBand(1)
-        band.SetNoDataValue(nodata_value)
 
         source_layer = []
         for i in range(0, ncols):
             for j in range(0, nrows):
                 source_layer[i][j] = randint(0, 100)
 
+        # Create the destination data source
+        target_ds = gdal.GetDriverByName('GTiff').Create("test.tif", nrows, ncols, 1, gdal.GDT_Byte)
+        target_ds.SetGeoTransform((xllcorner, cellsize, 0, nrows * cellsize, 0, -cellsize))
+        band = target_ds.GetRasterBand(1)
+        band.SetNoDataValue(nodata_value)
 
         # Rasterize
         gdal.RasterizeLayer(target_ds, [1], source_layer, burn_values=[0])
