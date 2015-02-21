@@ -6,6 +6,7 @@ from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometr
     QgsMapLayerRegistry
 from PyQt4.QtCore import QVariant
 from osgeo import gdal, ogr
+import numpy
 
 def add_element(pr, vl, i, j):
     fet = QgsFeature()
@@ -24,7 +25,7 @@ def run(dlg):
         nodata_value = -9999
         xllcorner = 0
 
-        source_layer = []
+        source_layer = numpy.zeros((ncols, nrows))
         for i in range(0, ncols):
             for j in range(0, nrows):
                 source_layer[i][j] = randint(0, 100)

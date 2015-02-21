@@ -69,7 +69,7 @@ class QgisInterface(QObject):
             it is added here as a helper to facilitate testing.
         """
         # LOGGER.debug('addLayers called on qgis_interface')
-        #LOGGER.debug('Number of layers being added: %s' % len(layers))
+        # LOGGER.debug('Number of layers being added: %s' % len(layers))
         #LOGGER.debug('Layer Count Before: %s' % len(self.canvas.layers()))
         current_layers = self.canvas.layers()
         final_layers = []
