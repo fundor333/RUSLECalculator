@@ -14,11 +14,18 @@ except:
     import ogr
     import osr
 
-FILEPATH = "/var/tmp/test.tif"
+FILEPATH = "/var/tmp/"
+FILETYPE = ".tif"
 # TODO Far scegliere il nome del file all'utente sotto forma di campo?
 #TODO Sistemare il codice in modo che usi sempre la cartella temp, indipendentemente dal OS usato
 TYPEOFRASTER = "GTiff"
 #TODO Variazione del tipo di raster generato?
+NODATA = -9999
+PROJ = 4326
+ORG = (0.0, 0.0)
+PIXSIZE = (10.0, 10.0)
+NUM_BAND = 1
+
 
 def run(dlg):
     ncols = dlg.widthInput.value()
@@ -30,19 +37,18 @@ def run(dlg):
         for i in range(0, nrows):
             for j in range(0, ncols):
                 matrix[i][j] = randint(0, 100)
-        create_raster(FILEPATH, 0.0, 0.0, 10.0, 10.0, matrix)
+        create_raster(FILEPATH + "temp" + FILETYPE, ORG[0], ORG[1], PIXSIZE[0], PIXSIZE[1], matrix, PROJ, NODATA,
+                      NUM_BAND)
         open_raster(FILEPATH)
         print("Ended")
 
 
-def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, nodata=-9999):
+def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj, nodata, num_band):
     assert (len(array.shape) == 2)
-    num_bands = 1
     rot_x = rot_y = 0
-    rows = array.shape[0]
-    cols = array.shape[1]
+    rows, cols = array.shape
     driver = gdal.GetDriverByName(TYPEOFRASTER)
-    raster = driver.Create(filepath, cols, rows, num_bands, gdal.GDT_Float32)
+    raster = driver.Create(filepath, cols, rows, num_band, gdal.GDT_Float32)
     raster.SetGeoTransform((orgX, pixWidth, rot_x, orgY, rot_y, pixHeight))
     band = raster.GetRasterBand(1)
     band.SetNoDataValue(nodata)
@@ -51,7 +57,6 @@ def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, n
     raster_srs.ImportFromEPSG(proj)
     raster.SetProjection(raster_srs.ExportToWkt())
     band.FlushCache()
-    # TODO Ripulire il codice da roba doppia, inutile o poco comprensibile
     print("Raster generated")
 
 
