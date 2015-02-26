@@ -1,11 +1,10 @@
 from random import randint
+from QGisLib import create_raster, open_raster
 import numpy
 
-__author__ = 'Fundor333'
-
 from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
-    QgsMapLayerRegistry
-from PyQt4.QtCore import QVariant
+    QgsMapLayerRegistry, QgsRasterLayer
+from PyQt4.QtCore import QVariant, QFileInfo
 
 try:
     from osgeo import *
@@ -14,60 +13,32 @@ except:
     import ogr
     import osr
 
-def add_element(pr, vl, i, j):
-    fet = QgsFeature()
-    fet.setGeometry(QgsGeometry.fromPoint(QgsPoint(i, j)))
-    fet.setAttributes([randint(0, 100)])
-    pr.addFeatures([fet])
+FILEPATH = "/var/tmp/"
+FILETYPE = ".tif"
+FILENAME = FILEPATH + "temp" + FILETYPE
+# TODO Far scegliere il nome del file all'utente sotto forma di campo?
+#TODO Sistemare il codice in modo che usi sempre la cartella temp, indipendentemente dal OS usato
+TYPEOFRASTER = "GTiff"
+#TODO Variazione del tipo di raster generato?
+NODATA = -9999
+PROJ = 4326
+ORG = (0.0, 0.0)
+PIXSIZE = (10.0, 10.0)
+NUM_BAND = 1
 
 
 def run(dlg):
     ncols = dlg.widthInput.value()
     nrows = dlg.highInput.value()
     if ncols == 0 | nrows == 0:
-        print("La matrice non puo' essere costruita correttamente")
+        print("Problem with the matrix's size")
     else:
         matrix = numpy.zeros((ncols, nrows))
         for i in range(0, ncols):
             for j in range(0, nrows):
                 matrix[i][j] = randint(0, 100)
-        create_raster("test.tif", 0.0, 0.0, ncols + 0.0, nrows + 0.0, matrix)
 
-
-def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, gdal_type=gdal.GDT_Float32,
-                  nodata=-9999):
-    """
-    Creates an arbitrary raster
-    Args:
-    filepath (string): where to save file
-    orgX (float): x dimension origin coordinate (bottom left untransformed)
-    orgY (float): y dimension origin coordinate (bottom left untransformed)
-    pixWidth (float): size of each pixel's width (units depend on
-    projection)
-    pixHeight (float): size of each pixel's height (units depend on
-    projection)
-    array (np.array): raster values
-    Keyword Args:
-    proj (int): EPSG code
-    gdal_type (GDAL Datatype): a GDAL datatype
-    nodata (same as gdal_type): the NODATA value
-    Returns:
-    None
-    """
-    assert (len(array.shape) == 2)
-    num_bands = 1
-    rotX = 0
-    rotY = 0
-    rows = array.shape[0]
-    cols = array.shape[1]
-    driver = gdal.GetDriverByName('GTiff')
-    raster = driver.Create(filepath, cols, rows, num_bands, gdal_type)
-    print(driver.Create(filepath, cols, rows, num_bands, gdal_type))
-    raster.SetGeoTransform((orgX, pixWidth, rotX, orgY, rotY, pixHeight))
-    band = raster.GetRasterBand(1)  # Get only raster band
-    band.SetNoDataValue(nodata)
-    band.WriteArray(array)
-    raster_srs = osr.SpatialReference()
-    raster_srs.ImportFromEPSG(proj)
-    raster.SetProjection(raster_srs.ExportToWkt())
-    band.FlushCache()
+        create_raster(FILENAME, ORG[0], ORG[1], PIXSIZE[0], PIXSIZE[1], matrix, PROJ, NODATA,
+                      NUM_BAND, TYPEOFRASTER)
+        open_raster(FILENAME)
+        print("Ended")

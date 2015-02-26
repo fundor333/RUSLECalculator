@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>337</width>
-    <height>174</height>
+    <width>344</width>
+    <height>162</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>110</y>
+     <y>100</y>
      <width>181</width>
      <height>32</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QLabel" name="HighLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>30</y>
+     <x>30</x>
+     <y>70</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -45,7 +45,7 @@
   <widget class="QLabel" name="WidthLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>170</x>
      <y>70</y>
      <width>111</width>
      <height>16</height>
@@ -58,8 +58,8 @@
   <widget class="QSpinBox" name="highInput">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>20</y>
+     <x>100</x>
+     <y>60</y>
      <width>53</width>
      <height>25</height>
     </rect>
@@ -68,9 +68,42 @@
   <widget class="QSpinBox" name="widthInput">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>250</x>
      <y>60</y>
      <width>53</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>56</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PixSize</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="pixsizex">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>20</y>
+     <width>62</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="pixsizey">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>20</y>
+     <width>62</width>
      <height>25</height>
     </rect>
    </property>
