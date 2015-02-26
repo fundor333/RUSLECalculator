@@ -1,7 +1,7 @@
-__author__ = 'Fundor333'
-
 from random import randint
-import numpy as np
+import numpy
+
+__author__ = 'Fundor333'
 
 from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
     QgsMapLayerRegistry
@@ -27,14 +27,15 @@ def run(dlg):
     if ncols == 0 | nrows == 0:
         print("La matrice non puo' essere costruita correttamente")
     else:
-        matrix = np.zeros((nrows, ncols))
-        for i in range(0, nrows):
-            for j in range(0, ncols):
+        matrix = numpy.zeros((ncols, nrows))
+        for i in range(0, ncols):
+            for j in range(0, nrows):
                 matrix[i][j] = randint(0, 100)
-        create_raster("/Users/f333/Desktop/test.tif", 0.0, 0.0, 10.0, 10.0, matrix)
+        create_raster("test.tif", 0.0, 0.0, ncols + 0.0, nrows + 0.0, matrix)
 
 
-def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, nodata=-9999):
+def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, gdal_type=gdal.GDT_Float32,
+                  nodata=-9999):
     """
     Creates an arbitrary raster
     Args:
@@ -59,9 +60,9 @@ def create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj=4326, n
     rotY = 0
     rows = array.shape[0]
     cols = array.shape[1]
-    driver = gdal.GetDriverByName("GTiff")
-    raster = driver.Create(filepath, cols, rows, num_bands, gdal.GDT_Float32)
-    print(driver.Create(filepath, cols, rows, num_bands, gdal.GDT_Float32))
+    driver = gdal.GetDriverByName('GTiff')
+    raster = driver.Create(filepath, cols, rows, num_bands, gdal_type)
+    print(driver.Create(filepath, cols, rows, num_bands, gdal_type))
     raster.SetGeoTransform((orgX, pixWidth, rotX, orgY, rotY, pixHeight))
     band = raster.GetRasterBand(1)  # Get only raster band
     band.SetNoDataValue(nodata)
