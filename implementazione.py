@@ -25,7 +25,6 @@ TYPEOFRASTER = "GTiff"
 NODATA = -9999
 PROJ = 4326
 ORG = (0.0, 0.0)
-PIXSIZE = (10.0, 10.0)
 NUM_BAND = 1
 
 
@@ -36,10 +35,11 @@ def run(dlg):
         print("Problem with the matrix's size")
     else:
         matrix = np.zeros((nrows, ncols))
+        pixsize = dlg.pixsizex.value(), dlg.pixsizey.value()
         for i in range(0, nrows):
             for j in range(0, ncols):
                 matrix[i][j] = randint(0, 100)
-        create_raster(FILENAME, ORG[0], ORG[1], PIXSIZE[0], PIXSIZE[1], matrix, PROJ, NODATA,
+        create_raster(FILENAME, ORG[0], ORG[1], pixsize[0], pixsize[1], matrix, PROJ, NODATA,
                       NUM_BAND, TYPEOFRASTER)
         open_raster(FILENAME)
         print("Ended")
