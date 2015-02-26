@@ -1,8 +1,6 @@
-__author__ = 'Fundor333'
-
 from random import randint
 from QGisLib import create_raster, open_raster
-import numpy as np
+import numpy
 
 from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
     QgsMapLayerRegistry, QgsRasterLayer
@@ -25,6 +23,7 @@ TYPEOFRASTER = "GTiff"
 NODATA = -9999
 PROJ = 4326
 ORG = (0.0, 0.0)
+PIXSIZE = (10.0, 10.0)
 NUM_BAND = 1
 
 
@@ -34,12 +33,12 @@ def run(dlg):
     if ncols == 0 | nrows == 0:
         print("Problem with the matrix's size")
     else:
-        matrix = np.zeros((nrows, ncols))
-        pixsize = dlg.pixsizex.value(), dlg.pixsizey.value()
-        for i in range(0, nrows):
-            for j in range(0, ncols):
+        matrix = numpy.zeros((ncols, nrows))
+        for i in range(0, ncols):
+            for j in range(0, nrows):
                 matrix[i][j] = randint(0, 100)
-        create_raster(FILENAME, ORG[0], ORG[1], pixsize[0], pixsize[1], matrix, PROJ, NODATA,
+
+        create_raster(FILENAME, ORG[0], ORG[1], PIXSIZE[0], PIXSIZE[1], matrix, PROJ, NODATA,
                       NUM_BAND, TYPEOFRASTER)
         open_raster(FILENAME)
         print("Ended")
