@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'TestModule_dialog_base.ui'
 #
 # Created: Thu Feb 26 12:02:50 2015
-#      by: PyQt4 UI code generator 4.10.4
+# by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,11 +17,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_SilvestriClassDialogBase(object):
     def setupUi(self, SilvestriClassDialogBase):
@@ -30,7 +32,7 @@ class Ui_SilvestriClassDialogBase(object):
         self.button_box = QtGui.QDialogButtonBox(SilvestriClassDialogBase)
         self.button_box.setGeometry(QtCore.QRect(60, 100, 181, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.HighLabel = QtGui.QLabel(SilvestriClassDialogBase)
         self.HighLabel.setGeometry(QtCore.QRect(30, 70, 111, 16))

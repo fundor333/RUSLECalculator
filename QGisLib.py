@@ -5,6 +5,8 @@ import numpy as np
 
 from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
     QgsMapLayerRegistry, QgsRasterLayer
+from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
+
 from PyQt4.QtCore import QVariant, QFileInfo
 
 import gdal
@@ -38,3 +40,26 @@ def open_raster(filename):
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         print("Layer loaded")
+    return r_layer
+
+
+def generate_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj, nodata, num_band, typeofraster):
+    create_raster(filepath, orgX, orgY, pixWidth, pixHeight, array, proj, nodata, num_band, typeofraster)
+    return open_raster(filepath)
+
+
+def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
+    inp = rl1, rl2, rl3, rl4, rl5, rl6
+    entries = []
+
+    for i in range(0, 6):
+        a = QgsRasterCalculatorEntry()
+        a.ref = inp[i].name() + '@1'
+        a.raster = inp[i]
+        a.bandNumber = 1
+        entries.append(a)
+
+    formula_string = "temp1@1 + temp2@1 + temp3@1 + temp4@1 + temp5@1 + temp6@1"
+    calc = QgsRasterCalculator(formula_string, path_file, raster_type, rl1.extent(), rl1.width(), rl1.height(), entries)
+    calc.processCalculation()
+    open_raster(path_file)

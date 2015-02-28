@@ -1,10 +1,6 @@
-from random import randint
-from QGisLib import create_raster, open_raster
 import numpy
-
-from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
-    QgsMapLayerRegistry, QgsRasterLayer
-from PyQt4.QtCore import QVariant, QFileInfo
+from random import randint
+from QGisLib import generate_raster, sumsixraster
 
 try:
     from osgeo import *
@@ -14,31 +10,36 @@ except:
     import osr
 
 FILEPATH = "/var/tmp/"
-FILETYPE = ".tif"
+FILETYPE = ".asc"
 FILENAME = FILEPATH + "temp" + FILETYPE
 # TODO Far scegliere il nome del file all'utente sotto forma di campo?
-#TODO Sistemare il codice in modo che usi sempre la cartella temp, indipendentemente dal OS usato
+# TODO Sistemare il codice in modo che usi sempre la cartella temp, indipendentemente dal OS usato
 TYPEOFRASTER = "GTiff"
 #TODO Variazione del tipo di raster generato?
 NODATA = -9999
 PROJ = 4326
 ORG = (0.0, 0.0)
-PIXSIZE = (10.0, 10.0)
 NUM_BAND = 1
 
 
 def run(dlg):
     ncols = dlg.widthInput.value()
     nrows = dlg.highInput.value()
+    pixsize = dlg.pixsizex.value(), dlg.pixsizey.value()
     if ncols == 0 | nrows == 0:
         print("Problem with the matrix's size")
     else:
-        matrix = numpy.zeros((ncols, nrows))
-        for i in range(0, ncols):
-            for j in range(0, nrows):
-                matrix[i][j] = randint(0, 100)
 
-        create_raster(FILENAME, ORG[0], ORG[1], PIXSIZE[0], PIXSIZE[1], matrix, PROJ, NODATA,
-                      NUM_BAND, TYPEOFRASTER)
-        open_raster(FILENAME)
+        array = []
+        for i in range(1, 7):
+            matrix = numpy.zeros((ncols, nrows))
+            for z in range(0, ncols):
+                for j in range(0, nrows):
+                    matrix[z][j] = randint(0, 100)
+            a = generate_raster(FILEPATH + "temp" + str(i) + FILETYPE, ORG[0], ORG[1], pixsize[0], pixsize[1], matrix,
+                                PROJ, NODATA, NUM_BAND, TYPEOFRASTER)
+            array.append(a)
+
+        sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
+
         print("Ended")
