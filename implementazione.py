@@ -12,10 +12,9 @@ except:
 FILEPATH = "/var/tmp/"
 FILETYPE = ".asc"
 FILENAME = FILEPATH + "temp" + FILETYPE
-# TODO Far scegliere il nome del file all'utente sotto forma di campo?
-# TODO Sistemare il codice in modo che usi sempre la cartella temp, indipendentemente dal OS usato
+# TODO User decide the file's name?
 TYPEOFRASTER = "GTiff"
-#TODO Variazione del tipo di raster generato?
+# TODO Other type of raster implementation
 NODATA = -9999
 PROJ = 4326
 ORG = (0.0, 0.0)
