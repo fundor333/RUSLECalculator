@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>351</width>
-    <height>193</height>
+    <width>364</width>
+    <height>405</height>
    </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Silvestri</string>
@@ -16,8 +19,8 @@
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>150</y>
+     <x>90</x>
+     <y>360</y>
      <width>181</width>
      <height>32</height>
     </rect>
@@ -29,97 +32,240 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QGroupBox" name="RasterInfo">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>0</y>
-     <width>311</width>
-     <height>131</height>
+     <y>10</y>
+     <width>321</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="title">
-    <string>Raster Info</string>
+    <string>Raster 1</string>
    </property>
-   <widget class="QSpinBox" name="widthInput">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>90</y>
-      <width>53</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="WidthLabel">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>100</y>
-      <width>111</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Larghezza</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="HighLabel">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>100</y>
-      <width>111</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Altezza</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="highInput">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>90</y>
-      <width>53</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="pixsizey">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>40</y>
-      <width>62</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="pixsizex">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>40</y>
-      <width>62</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
+      <x>20</x>
+      <y>30</y>
       <width>56</width>
       <height>13</height>
      </rect>
     </property>
     <property name="text">
-     <string>PixSize</string>
+     <string>Raster</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="selectr1">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Raster 2</string>
+   </property>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>56</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raster</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectr2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Raster 3</string>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>56</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raster</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectr3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Raster 4</string>
+   </property>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>56</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raster</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectr4">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>210</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Raster 5</string>
+   </property>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>56</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raster</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectr5">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_6">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>321</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Raster 6</string>
+   </property>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>56</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raster</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="selectr6">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>241</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="checker">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>320</y>
+     <width>110</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check if rasters are corret&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string>Check</string>
+   </property>
   </widget>
  </widget>
  <resources/>

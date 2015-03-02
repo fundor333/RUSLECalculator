@@ -15,30 +15,15 @@ FILENAME = FILEPATH + "temp" + FILETYPE
 # TODO User decide the file's name?
 TYPEOFRASTER = "GTiff"
 # TODO Other type of raster implementation
-NODATA = -9999
-PROJ = 4326
-ORG = (0.0, 0.0)
-NUM_BAND = 1
 
 
 def run(dlg):
-    ncols = dlg.widthInput.value()
-    nrows = dlg.highInput.value()
-    pixsize = dlg.pixsizex.value(), dlg.pixsizey.value()
-    if ncols == 0 | nrows == 0:
-        print("Problem with the matrix's size")
+    array = []
+    if array.__sizeof__() != 6:
+        print("The program need 6 raster to work correctly")
     else:
 
         array = []
-        for i in range(1, 7):
-            matrix = numpy.zeros((ncols, nrows))
-            for z in range(0, ncols):
-                for j in range(0, nrows):
-                    matrix[z][j] = randint(0, 100)
-            a = generate_raster(FILEPATH + "temp" + str(i) + FILETYPE, ORG[0], ORG[1], pixsize[0], pixsize[1], matrix,
-                                PROJ, NODATA, NUM_BAND, TYPEOFRASTER)
-            array.append(a)
-
         sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
 
-        print("Ended")
+    print("Ended")

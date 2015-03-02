@@ -24,6 +24,7 @@
 import os
 
 from PyQt4 import QtGui, uic
+from PyQt4.QtCore import QObject, SIGNAL
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'TestModule_dialog_base.ui'))
@@ -39,3 +40,11 @@ class TestClassDialog(QtGui.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        QObject.connect(self.ui.checker, SIGNAL("clicked()"), self.chooseLayer)
+
+    def chooseLayer(self):
+        layerlist = []     # crea una lista vuota
+        self.ui.layerComboBox.clear()     # svuota la lista del combo box
+        layerlist = self.getLayerNames()     # a layerlist assegna il risultato della procedura getLayerNames()
+        self.ui.layerComboBox.addItems(layerlist)     # aggiunge layerlist al combo box
+        return
