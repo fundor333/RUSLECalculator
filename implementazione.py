@@ -1,6 +1,6 @@
 import numpy
 from random import randint
-from QGisLib import generate_raster, sumsixraster
+from QGisLib import sumsixraster
 
 try:
     from osgeo import *

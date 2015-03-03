@@ -40,8 +40,8 @@ class TestClassDialog(QtGui.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        QObject.connect(self.ui.checker, SIGNAL("clicked()"), self.chooseLayer)
 
+    # TODO Inserire esecuzione bottone
     def chooseLayer(self):
         layerlist = []     # crea una lista vuota
         self.ui.layerComboBox.clear()     # svuota la lista del combo box
