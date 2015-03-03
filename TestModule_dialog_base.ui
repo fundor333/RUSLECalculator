@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SilvestriClassDialogBase</class>
- <widget class="QDialog" name="SilvestriClassDialogBase">
+ <class>TestModule_dialog_base</class>
+ <widget class="QDialog" name="TestModule">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Silvestri</string>
+   <string>TestModule</string>
   </property>
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
@@ -273,7 +273,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>SilvestriClassDialogBase</receiver>
+   <receiver>TestModule_dialog_base</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -289,7 +289,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>SilvestriClassDialogBase</receiver>
+   <receiver>TestModule_dialog_base</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
