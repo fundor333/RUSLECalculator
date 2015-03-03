@@ -3,8 +3,7 @@ __author__ = 'Fundor333'
 from random import randint
 import numpy as np
 
-from qgis.core import QgsVectorLayer, QgsField, QgsFeature, QgsPoint, QgsGeometry, QgsVectorFileWriter, \
-    QgsMapLayerRegistry, QgsRasterLayer
+from qgis.core import *
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
 from PyQt4.QtCore import QVariant, QFileInfo
