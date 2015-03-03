@@ -25,6 +25,8 @@ import os
 
 from PyQt4 import QtGui, uic
 from PyQt4.QtCore import QObject, SIGNAL
+from PyQt4.uic.properties import QtCore
+from TestModule_dialog_base import _fromUtf8
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'TestModule_dialog_base.ui'))
@@ -39,6 +41,7 @@ class TestClassDialog(QtGui.QDialog, FORM_CLASS):
         # self.<objectname>, and you can use autoconnect slots - see
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
+        QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), SilvestriClassDialogBase.accept)
         self.setupUi(self)
 
     # TODO Inserire esecuzione bottone
