@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TestModule_dialog_base</class>
+ <class>TestModule</class>
  <widget class="QDialog" name="TestModule">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>364</width>
-    <height>405</height>
+    <width>361</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="cursor">
@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>360</y>
+     <y>320</y>
      <width>181</width>
      <height>32</height>
     </rect>
@@ -248,59 +248,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="checker">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>320</y>
-     <width>110</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check if rasters are corret&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Check</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>button_box</sender>
-   <signal>accepted()</signal>
-   <receiver>TestModule_dialog_base</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_box</sender>
-   <signal>rejected()</signal>
-   <receiver>TestModule_dialog_base</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

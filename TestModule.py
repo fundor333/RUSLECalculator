@@ -21,8 +21,9 @@
  ***************************************************************************/
 """
 import random
+from PyQt4 import uic
 
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
 
 # Initialize Qt resources from file resources.py
@@ -45,6 +46,8 @@ class TestClass:
         :type iface: QgsInterface
         """
         # Save reference to the QGIS interface
+        path = os.path.dirname(os.path.abspath(__file__))
+        self.dock = uic.loadUi(os.path.join(path, "TestModule_dialog_base.ui"))
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
@@ -171,6 +174,20 @@ class TestClass:
             callback=self.run,
             parent=self.iface.mainWindow())
 
+        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr1))
+        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr2))
+        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr3))
+        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr4))
+        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr5))
+        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr6))
+
+        self.setupUi(self)
+
+    def setLayer(self, element):
+        layerlist = [layer.name() for layer in
+                     QgsMapLayerRegistry.instance().mapLayers().values()]  # crea una lista vuota
+        element.clear()  # svuota la lista del combo box
+        element.addItems(layerlist)  # aggiunge layerlist al combo box
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
