@@ -25,7 +25,6 @@ import os
 
 from PyQt4 import QtGui, uic
 from PyQt4.QtCore import QObject, SIGNAL
-from qgis.core import QgsMapLayerRegistry
 from PyQt4.uic.properties import QtCore
 from TestModule_dialog_base import _fromUtf8, Ui_TestModule_dialog_base
 

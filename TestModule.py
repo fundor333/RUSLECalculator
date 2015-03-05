@@ -25,6 +25,7 @@ from PyQt4 import uic
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
+from qgis.core import QgsMapLayerRegistry
 
 # Initialize Qt resources from file resources.py
 import resources_rc
@@ -184,8 +185,8 @@ class TestClass:
         self.setupUi(self)
 
     def setLayer(self, element):
-        layerlist = [layer.name() for layer in
-                     QgsMapLayerRegistry.instance().mapLayers().values()]  # crea una lista vuota
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
         element.clear()  # svuota la lista del combo box
         element.addItems(layerlist)  # aggiunge layerlist al combo box
 
