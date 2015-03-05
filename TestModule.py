@@ -175,20 +175,48 @@ class TestClass:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr1))
-        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr2))
-        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr3))
-        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr4))
-        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr5))
-        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer(self.dock.selectr6))
+        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer1)
+        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer2)
+        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer3)
+        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer4)
+        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer5)
+        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer6)
 
-        self.setupUi(self)
-
-    def setLayer(self, element):
+    def setLayer1(self):
         # crea una lista vuota
         layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        element.clear()  # svuota la lista del combo box
-        element.addItems(layerlist)  # aggiunge layerlist al combo box
+        self.dock.selectr1.clear()  # svuota la lista del combo box
+        self.dock.selectr1.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer2(self):
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
+        self.dock.selectr2.clear()  # svuota la lista del combo box
+        self.dock.selectr2.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer3(self):
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
+        self.dock.selectr3.clear()  # svuota la lista del combo box
+        self.dock.selectr3.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer4(self):
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
+        self.dock.selectr4.clear()  # svuota la lista del combo box
+        self.dock.selectr4.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer5(self):
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
+        self.dock.selectr5.clear()  # svuota la lista del combo box
+        self.dock.selectr5.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer6(self):
+        # crea una lista vuota
+        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
+        self.dock.selectr6.clear()  # svuota la lista del combo box
+        self.dock.selectr6.addItems(layerlist)  # aggiunge layerlist al combo box
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
