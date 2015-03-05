@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'TestModule_dialog_base.ui'
 #
-# Created: Tue Mar  3 16:40:18 2015
+# Created: Thu Mar  5 09:22:53 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,13 +23,13 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_TestModule_dialog_base(object):
+class Ui_TestModule(object):
     def setupUi(self, TestModule):
         TestModule.setObjectName(_fromUtf8("TestModule"))
-        TestModule.setGeometry(QtCore.QRect(0, 0, 364, 405))
+        TestModule.resize(361, 360)
         TestModule.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.button_box = QtGui.QDialogButtonBox(TestModule)
-        self.button_box.setGeometry(QtCore.QRect(90, 360, 181, 32))
+        self.button_box.setGeometry(QtCore.QRect(90, 320, 181, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
         self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
@@ -87,30 +87,22 @@ class Ui_TestModule_dialog_base(object):
         self.selectr6 = QtGui.QComboBox(self.groupBox_6)
         self.selectr6.setGeometry(QtCore.QRect(70, 20, 241, 26))
         self.selectr6.setObjectName(_fromUtf8("selectr6"))
-        self.checker = QtGui.QPushButton(TestModule)
-        self.checker.setGeometry(QtCore.QRect(130, 320, 110, 32))
-        self.checker.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.checker.setObjectName(_fromUtf8("checker"))
 
         self.retranslateUi(TestModule)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), TestModule.accept)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")), TestModule.reject)
         QtCore.QMetaObject.connectSlotsByName(TestModule)
 
     def retranslateUi(self, TestModule):
-        TestModule.setWindowTitle(_translate("TestModule_dialog_base", "TestModule", None))
-        self.groupBox.setTitle(_translate("TestModule_dialog_base", "Raster 1", None))
-        self.label.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.groupBox_2.setTitle(_translate("TestModule_dialog_base", "Raster 2", None))
-        self.label_2.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.groupBox_3.setTitle(_translate("TestModule_dialog_base", "Raster 3", None))
-        self.label_3.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.groupBox_4.setTitle(_translate("TestModule_dialog_base", "Raster 4", None))
-        self.label_4.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.groupBox_5.setTitle(_translate("TestModule_dialog_base", "Raster 5", None))
-        self.label_5.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.groupBox_6.setTitle(_translate("TestModule_dialog_base", "Raster 6", None))
-        self.label_6.setText(_translate("TestModule_dialog_base", "Raster", None))
-        self.checker.setToolTip(_translate("TestModule_dialog_base", "<html><head/><body><p>Check if rasters are corret</p></body></html>", None))
-        self.checker.setText(_translate("TestModule_dialog_base", "Check", None))
+        TestModule.setWindowTitle(_translate("TestModule", "TestModule", None))
+        self.groupBox.setTitle(_translate("TestModule", "Raster 1", None))
+        self.label.setText(_translate("TestModule", "Raster", None))
+        self.groupBox_2.setTitle(_translate("TestModule", "Raster 2", None))
+        self.label_2.setText(_translate("TestModule", "Raster", None))
+        self.groupBox_3.setTitle(_translate("TestModule", "Raster 3", None))
+        self.label_3.setText(_translate("TestModule", "Raster", None))
+        self.groupBox_4.setTitle(_translate("TestModule", "Raster 4", None))
+        self.label_4.setText(_translate("TestModule", "Raster", None))
+        self.groupBox_5.setTitle(_translate("TestModule", "Raster 5", None))
+        self.label_5.setText(_translate("TestModule", "Raster", None))
+        self.groupBox_6.setTitle(_translate("TestModule", "Raster 6", None))
+        self.label_6.setText(_translate("TestModule", "Raster", None))
 
