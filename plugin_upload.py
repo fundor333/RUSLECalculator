@@ -55,12 +55,9 @@ def main(parameters, arguments):
         print(
             "Error message: %s" % err.errmsg)
     except xmlrpclib.Fault as err:
-        print
-        "A fault occurred"
-        print
-        "Fault code: %d" % err.faultCode
-        print
-        "Fault string: %s" % err.faultString
+        print("A fault occurred")
+        print("Fault code: %d" % err.faultCode)
+        print("Fault string: %s" % err.faultString)
 
 
 def hide_password(url, start=6):

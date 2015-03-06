@@ -45,6 +45,7 @@ import os.path
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'TestModule_dialog.ui'))
 
+
 class TestClass:
     """QGIS Plugin Implementation."""
 
