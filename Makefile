@@ -40,6 +40,7 @@ SOURCES = \
 	__init__.py \
 	TestModule.py \
 	TestModule_dialog.py
+	TestModule_implementation.py
 
 PLUGINNAME = TestClass
 
@@ -48,7 +49,7 @@ PY_FILES = \
 	TestModule_dialog.py \
 	__init__.py
 
-UI_FILES = TestModule_dialog_base.ui
+UI_FILES = TestModule_dialog.ui
 
 EXTRAS = icon.png metadata.txt
 

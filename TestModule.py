@@ -23,17 +23,27 @@
 import random
 from PyQt4 import uic
 
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
-from PyQt4.QtGui import QAction, QIcon
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL, Qt
+from PyQt4.QtGui import QAction, QIcon, QMainWindow
+from qgis.gui import QgsMapCanvas
 from qgis.core import QgsMapLayerRegistry
 
+import os
+
+from PyQt4 import QtGui, uic
+from PyQt4.QtCore import QObject, SIGNAL
+from PyQt4.uic.properties import QtCore
+from TestModule_dialog import _fromUtf8
+
+
 # Initialize Qt resources from file resources.py
+from TestModule_implementation import run
 import resources_rc
 # Import the code for the dialog
-from TestModule_dialog import TestClassDialog
 import os.path
-from TestClass.implementazione import run
 
+FORM_CLASS, _ = uic.loadUiType(os.path.join(
+    os.path.dirname(__file__), 'TestModule_dialog.ui'))
 
 class TestClass:
     """QGIS Plugin Implementation."""
@@ -47,8 +57,6 @@ class TestClass:
         :type iface: QgsInterface
         """
         # Save reference to the QGIS interface
-        path = os.path.dirname(os.path.abspath(__file__))
-        self.dock = uic.loadUi(os.path.join(path, "TestModule_dialog_base.ui"))
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
@@ -66,6 +74,7 @@ class TestClass:
             if qVersion() > '4.3.3':
                 QCoreApplication.installTranslator(self.translator)
 
+
         # Create the dialog (after translation) and keep reference
         self.dlg = TestClassDialog()
 
@@ -75,6 +84,7 @@ class TestClass:
         # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar('TestClass')
         self.toolbar.setObjectName('TestClass')
+
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -175,49 +185,6 @@ class TestClass:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer1)
-        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer2)
-        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer3)
-        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer4)
-        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer5)
-        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer6)
-
-    def setLayer1(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr1.clear()  # svuota la lista del combo box
-        self.dock.selectr1.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer2(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr2.clear()  # svuota la lista del combo box
-        self.dock.selectr2.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer3(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr3.clear()  # svuota la lista del combo box
-        self.dock.selectr3.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer4(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr4.clear()  # svuota la lista del combo box
-        self.dock.selectr4.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer5(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr5.clear()  # svuota la lista del combo box
-        self.dock.selectr5.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer6(self):
-        # crea una lista vuota
-        layerlist = [layer.name() for layer in QgsMapLayerRegistry.instance().mapLayers().values()]
-        self.dock.selectr6.clear()  # svuota la lista del combo box
-        self.dock.selectr6.addItems(layerlist)  # aggiunge layerlist al combo box
-
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
@@ -238,3 +205,49 @@ class TestClass:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             run(self.dlg)
+
+
+class TestClassDialog(QtGui.QDialog, FORM_CLASS):
+    def __init__(self, parent=None):
+        """Constructor."""
+        super(TestClassDialog, self).__init__(parent)
+        path = os.path.dirname(os.path.abspath(__file__))
+
+        self.dock = uic.loadUi(os.path.join(path, "TestModule_dialog.ui"))
+        # Set up the user interface from Designer.
+        # After setupUI you can access any designer object by doing
+        # self.<objectname>, and you can use autoconnect slots - see
+        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
+        # #widgets-and-dialogs-with-auto-connect
+
+        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer1)
+        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer2)
+        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer3)
+        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer4)
+        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer5)
+        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer6)
+
+        self.setupUi(self)
+
+    def setLayer(self, element):
+        layerlist = [layer.name() for name, layer in QgsMapLayerRegistry.instance().mapLayers().iteritems()]
+        self.dock.selectr1.clear()  # svuota la lista del combo box
+        self.dock.selectr1.addItems(layerlist)  # aggiunge layerlist al combo box
+
+    def setLayer1(self):
+        return self.setLayer(self.dock.selectr1)
+
+    def setLayer2(self):
+        return self.setLayer(self.dock.selectr2)
+
+    def setLayer3(self):
+        return self.setLayer(self.dock.selectr3)
+
+    def setLayer4(self):
+        return self.setLayer(self.dock.selectr4)
+
+    def setLayer5(self):
+        return self.setLayer(self.dock.selectr5)
+
+    def setLayer6(self):
+        return self.setLayer(self.dock.selectr6)

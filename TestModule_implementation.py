@@ -1,16 +1,36 @@
-__author__ = 'Fundor333'
+import numpy
+from random import randint
+
+try:
+    from osgeo import *
+except:
+    import gdal
+    import ogr
+    import osr
 
 from random import randint
 import numpy as np
 
-from qgis.core import *
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
 from PyQt4.QtCore import QVariant, QFileInfo
 
-import gdal
-import ogr
-import osr
+FILEPATH = "/var/tmp/"
+FILETYPE = ".asc"
+FILENAME = FILEPATH + "temp" + FILETYPE
+TYPEOFRASTER = "GTiff"
+
+
+def run(dlg):
+    array = []
+    if array.__sizeof__() != 6:
+        print("The program need 6 raster to work correctly")
+    else:
+
+        array = []
+        sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
+
+    print("Ended")
 
 
 def open_raster(filename):
