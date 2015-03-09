@@ -9,7 +9,6 @@ except:
     import osr
 
 from random import randint
-import numpy as np
 
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
@@ -26,10 +25,8 @@ def run(dlg):
     if array.__sizeof__() != 6:
         print("The program need 6 raster to work correctly")
     else:
-
         array = []
         sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
-
     print("Ended")
 
 
