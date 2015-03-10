@@ -57,13 +57,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr1">
+   <widget class="QLineEdit" name="inputL1">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -93,13 +93,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr2">
+   <widget class="QLineEdit" name="inputL2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>82</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -129,13 +129,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr3">
+   <widget class="QLineEdit" name="inputL3">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -165,13 +165,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr4">
+   <widget class="QLineEdit" name="inputL4">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>82</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -201,13 +201,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr5">
+   <widget class="QLineEdit" name="inputL5">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
@@ -237,13 +237,13 @@
      <string>Raster</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="selectr6">
+   <widget class="QLineEdit" name="inputL6">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>20</y>
-      <width>241</width>
-      <height>26</height>
+      <width>231</width>
+      <height>21</height>
      </rect>
     </property>
    </widget>
