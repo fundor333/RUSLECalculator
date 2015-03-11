@@ -200,7 +200,6 @@ class TestClass:
         # show the dialog
         self.dlg.show()
         print("Prova")
-
         # Run the dialog event loop
         result = self.dlg.exec_()
         print("prova2")

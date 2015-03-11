@@ -17,6 +17,10 @@ TYPEOFRASTER = "GTiff"
 
 
 def run(dlg):
+    print("Ciao")
+
+
+def run2(dlg):
     array = []
     layerMap = QgsMapLayerRegistry.instance().mapLayers()
 
