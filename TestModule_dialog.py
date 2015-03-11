@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'TestModule_dialog.ui'
 #
 # Created: Wed Mar 11 10:40:58 2015
-#      by: PyQt4 UI code generator 4.10.4
+# by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,6 +17,7 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
@@ -39,7 +40,7 @@ class Ui_TestModule(object):
         self.button_box = QtGui.QDialogButtonBox(TestModule)
         self.button_box.setGeometry(QtCore.QRect(90, 320, 181, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox = QtGui.QGroupBox(TestModule)
         self.groupBox.setGeometry(QtCore.QRect(20, 10, 321, 51))
