@@ -42,6 +42,7 @@ import resources_rc
 
 from TestModule_dialog import TestClassDialog
 
+
 class TestClass:
     """QGIS Plugin Implementation."""
 
