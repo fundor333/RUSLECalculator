@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'TestModule_dialog.ui'
 #
-# Created: Thu Mar  5 09:22:53 2015
-# by: PyQt4 UI code generator 4.10.4
+# Created: Wed Mar 11 08:20:03 2015
+#      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,13 +17,11 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
-
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
 
 class Ui_TestModule(object):
     def setupUi(self, TestModule):
@@ -33,7 +31,7 @@ class Ui_TestModule(object):
         self.button_box = QtGui.QDialogButtonBox(TestModule)
         self.button_box.setGeometry(QtCore.QRect(90, 320, 181, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox = QtGui.QGroupBox(TestModule)
         self.groupBox.setGeometry(QtCore.QRect(20, 10, 321, 51))
@@ -41,54 +39,54 @@ class Ui_TestModule(object):
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label.setObjectName(_fromUtf8("label"))
-        self.selectr1 = QtGui.QComboBox(self.groupBox)
-        self.selectr1.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr1.setObjectName(_fromUtf8("selectr1"))
+        self.inputL1 = QtGui.QLineEdit(self.groupBox)
+        self.inputL1.setGeometry(QtCore.QRect(80, 20, 231, 21))
+        self.inputL1.setObjectName(_fromUtf8("inputL1"))
         self.groupBox_2 = QtGui.QGroupBox(TestModule)
         self.groupBox_2.setGeometry(QtCore.QRect(20, 60, 321, 51))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
         self.label_2 = QtGui.QLabel(self.groupBox_2)
         self.label_2.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.selectr2 = QtGui.QComboBox(self.groupBox_2)
-        self.selectr2.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr2.setObjectName(_fromUtf8("selectr2"))
+        self.inputL2 = QtGui.QLineEdit(self.groupBox_2)
+        self.inputL2.setGeometry(QtCore.QRect(82, 20, 231, 21))
+        self.inputL2.setObjectName(_fromUtf8("inputL2"))
         self.groupBox_3 = QtGui.QGroupBox(TestModule)
         self.groupBox_3.setGeometry(QtCore.QRect(20, 110, 321, 51))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.label_3 = QtGui.QLabel(self.groupBox_3)
         self.label_3.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.selectr3 = QtGui.QComboBox(self.groupBox_3)
-        self.selectr3.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr3.setObjectName(_fromUtf8("selectr3"))
+        self.inputL3 = QtGui.QLineEdit(self.groupBox_3)
+        self.inputL3.setGeometry(QtCore.QRect(80, 20, 231, 21))
+        self.inputL3.setObjectName(_fromUtf8("inputL3"))
         self.groupBox_4 = QtGui.QGroupBox(TestModule)
         self.groupBox_4.setGeometry(QtCore.QRect(20, 160, 321, 51))
         self.groupBox_4.setObjectName(_fromUtf8("groupBox_4"))
         self.label_4 = QtGui.QLabel(self.groupBox_4)
         self.label_4.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label_4.setObjectName(_fromUtf8("label_4"))
-        self.selectr4 = QtGui.QComboBox(self.groupBox_4)
-        self.selectr4.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr4.setObjectName(_fromUtf8("selectr4"))
+        self.inputL4 = QtGui.QLineEdit(self.groupBox_4)
+        self.inputL4.setGeometry(QtCore.QRect(82, 20, 231, 21))
+        self.inputL4.setObjectName(_fromUtf8("inputL4"))
         self.groupBox_5 = QtGui.QGroupBox(TestModule)
         self.groupBox_5.setGeometry(QtCore.QRect(20, 210, 321, 51))
         self.groupBox_5.setObjectName(_fromUtf8("groupBox_5"))
         self.label_5 = QtGui.QLabel(self.groupBox_5)
         self.label_5.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.selectr5 = QtGui.QComboBox(self.groupBox_5)
-        self.selectr5.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr5.setObjectName(_fromUtf8("selectr5"))
+        self.inputL5 = QtGui.QLineEdit(self.groupBox_5)
+        self.inputL5.setGeometry(QtCore.QRect(80, 20, 231, 21))
+        self.inputL5.setObjectName(_fromUtf8("inputL5"))
         self.groupBox_6 = QtGui.QGroupBox(TestModule)
         self.groupBox_6.setGeometry(QtCore.QRect(20, 260, 321, 51))
         self.groupBox_6.setObjectName(_fromUtf8("groupBox_6"))
         self.label_6 = QtGui.QLabel(self.groupBox_6)
         self.label_6.setGeometry(QtCore.QRect(20, 30, 56, 13))
         self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.selectr6 = QtGui.QComboBox(self.groupBox_6)
-        self.selectr6.setGeometry(QtCore.QRect(70, 20, 241, 26))
-        self.selectr6.setObjectName(_fromUtf8("selectr6"))
+        self.inputL6 = QtGui.QLineEdit(self.groupBox_6)
+        self.inputL6.setGeometry(QtCore.QRect(80, 20, 231, 21))
+        self.inputL6.setObjectName(_fromUtf8("inputL6"))
 
         self.retranslateUi(TestModule)
         QtCore.QMetaObject.connectSlotsByName(TestModule)
