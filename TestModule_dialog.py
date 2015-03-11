@@ -23,6 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
+# Import the code for the dialog
+import os.path
+from PyQt4 import QtGui, uic
+
+FORM_CLASS, _ = uic.loadUiType(os.path.join(
+    os.path.dirname(__file__), 'TestModule_dialog.ui'))
+
+
 class Ui_TestModule(object):
     def setupUi(self, TestModule):
         TestModule.setObjectName(_fromUtf8("TestModule"))
@@ -106,3 +114,14 @@ class Ui_TestModule(object):
         self.groupBox_6.setTitle(_translate("TestModule", "Raster 6", None))
         self.label_6.setText(_translate("TestModule", "Raster", None))
 
+
+class TestClassDialog(QtGui.QDialog, FORM_CLASS):
+    def __init__(self, parent=None):
+        """Constructor."""
+        super(TestClassDialog, self).__init__(parent)
+        # Set up the user interface from Designer.
+        # After setupUI you can access any designer object by doing
+        # self.<objectname>, and you can use autoconnect slots - see
+        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
+        # #widgets-and-dialogs-with-auto-connect
+        self.setupUi(self)

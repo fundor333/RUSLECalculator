@@ -7,7 +7,6 @@ except:
 
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsMapLayerRegistry
-
 from PyQt4.QtCore import QVariant, QFileInfo
 
 FILEPATH = "/var/tmp/"
@@ -17,10 +16,6 @@ TYPEOFRASTER = "GTiff"
 
 
 def run(dlg):
-    print("Ciao")
-
-
-def run2(dlg):
     array = []
     layerMap = QgsMapLayerRegistry.instance().mapLayers()
 
