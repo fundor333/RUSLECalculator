@@ -1,6 +1,3 @@
-import numpy
-from random import randint
-
 try:
     from osgeo import *
 except:
@@ -8,9 +5,8 @@ except:
     import ogr
     import osr
 
-from random import randint
-
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
+from qgis.core import QgsMapLayerRegistry
 
 from PyQt4.QtCore import QVariant, QFileInfo
 
@@ -22,6 +18,15 @@ TYPEOFRASTER = "GTiff"
 
 def run(dlg):
     array = []
+    layerMap = QgsMapLayerRegistry.instance().mapLayers()
+
+    array[0] = layerMap(dlg.inputL1.getValue())
+    array[1] = layerMap(dlg.inputL2.getValue())
+    array[2] = layerMap(dlg.inputL3.getValue())
+    array[3] = layerMap(dlg.inputL4.getValue())
+    array[4] = layerMap(dlg.inputL5.getValue())
+    array[5] = layerMap(dlg.inputL6.getValue())
+    # codice di popolamento dell'array
     if array.__sizeof__() != 6:
         print("The program need 6 raster to work correctly")
     else:
