@@ -199,8 +199,10 @@ class TestClass:
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
+        print("Prova")
         # Run the dialog event loop
         result = self.dlg.exec_()
+        print("prova2")
         # See if OK was pressed
         if result:
             # Do something useful here - delete the line containing pass and
@@ -212,36 +214,9 @@ class TestClassDialog(QtGui.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(TestClassDialog, self).__init__(parent)
-        path = os.path.dirname(os.path.abspath(__file__))
-
-        self.dock = uic.loadUi(os.path.join(path, "TestModule_dialog.ui"))
         # Set up the user interface from Designer.
         # After setupUI you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
-
         self.setupUi(self)
-
-    def setLayer(self, element):
-        layerlist = [layer.name() for name, layer in QgsMapLayerRegistry.instance().mapLayers().iteritems()]
-        self.dock.selectr1.clear()  # svuota la lista del combo box
-        self.dock.selectr1.addItems(layerlist)  # aggiunge layerlist al combo box
-
-    def setLayer1(self):
-        return self.setLayer(self.dock.selectr1)
-
-    def setLayer2(self):
-        return self.setLayer(self.dock.selectr2)
-
-    def setLayer3(self):
-        return self.setLayer(self.dock.selectr3)
-
-    def setLayer4(self):
-        return self.setLayer(self.dock.selectr4)
-
-    def setLayer5(self):
-        return self.setLayer(self.dock.selectr5)
-
-    def setLayer6(self):
-        return self.setLayer(self.dock.selectr6)
