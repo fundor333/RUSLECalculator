@@ -221,13 +221,6 @@ class TestClassDialog(QtGui.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
 
-        QObject.connect(self.dock.selectr1, SIGNAL("currentIndexChanged(QString)"), self.setLayer1)
-        QObject.connect(self.dock.selectr2, SIGNAL("currentIndexChanged(QString)"), self.setLayer2)
-        QObject.connect(self.dock.selectr3, SIGNAL("currentIndexChanged(QString)"), self.setLayer3)
-        QObject.connect(self.dock.selectr4, SIGNAL("currentIndexChanged(QString)"), self.setLayer4)
-        QObject.connect(self.dock.selectr5, SIGNAL("currentIndexChanged(QString)"), self.setLayer5)
-        QObject.connect(self.dock.selectr6, SIGNAL("currentIndexChanged(QString)"), self.setLayer6)
-
         self.setupUi(self)
 
     def setLayer(self, element):
