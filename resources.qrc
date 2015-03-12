@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/plugins/TestClass">
+    <qresource prefix="/plugins/MatrixElaborator">
         <file>icon.png</file>
     </qresource>
 </RCC>

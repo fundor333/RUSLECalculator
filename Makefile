@@ -1,9 +1,9 @@
 #/***************************************************************************
-# TestClass
+# MatrixElaborator
 #
-# Descrizione generica
+# Plugin
 #							 -------------------
-#		begin				: 2015-02-17
+#		begin				: 2015-03-12
 #		git sha				: $Format:%H$
 #		copyright			: (C) 2015 by Matteo Scarpa
 #		email				: matteoscarpa92@gmail.com
@@ -38,18 +38,17 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	TestModule.py \
-	TestModule_dialog.py
-	TestModule_implementation.py
+	Matrix Module.py \
+	Matrix Module_dialog.py
 
-PLUGINNAME = TestClass
+PLUGINNAME = MatrixElaborator
 
 PY_FILES = \
-	TestModule.py \
-	TestModule_dialog.py \
+	Matrix Module.py \
+	Matrix Module_dialog.py \
 	__init__.py
 
-UI_FILES = TestModule_dialog.ui
+UI_FILES = Matrix Module_dialog_base.ui
 
 EXTRAS = icon.png metadata.txt
 
@@ -66,7 +65,7 @@ HELP = help/build/html
 
 PLUGIN_UPLOAD = $(c)/plugin_upload.py
 
-RESOURCE_SRC=$(shell grep '^ *<file' resources_rc.qrc | sed 's@</file>@@g;s/.*>//g' | tr '\n' ' ')
+RESOURCE_SRC=$(shell grep '^ *<file' resources.qrc | sed 's@</file>@@g;s/.*>//g' | tr '\n' ' ')
 
 QGISDIR=.qgis2
 
