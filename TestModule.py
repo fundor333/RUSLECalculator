@@ -199,9 +199,10 @@ class TestClass:
         print("Prova")
         # Run the dialog event loop
         result = self.dlg.exec_()
-        print("prova2")
         # See if OK was pressed
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             run(self.dlg)
+        else:
+            print("Cancellato")
