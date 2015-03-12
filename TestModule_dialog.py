@@ -3,13 +3,14 @@
 # Form implementation generated from reading ui file 'TestModule_gui.ui'
 #
 # Created: Thu Mar 12 10:06:36 2015
-#      by: PyQt4 UI code generator 4.10.4
+# by: PyQt4 UI code generator 4.10.4
 # Import the code for the dialog
 import os.path
 from PyQt4 import QtGui, uic
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'TestModule_dialog.ui'))
+    os.path.dirname(__file__), 'TestModule_gui.ui'))
+from TestModule_gui import _fromUtf8
 
 
 class TestClassDialog(QtGui.QDialog, FORM_CLASS):

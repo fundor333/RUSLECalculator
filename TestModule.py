@@ -33,7 +33,6 @@ import os
 from PyQt4 import QtGui, uic
 from PyQt4.QtCore import QObject, SIGNAL
 from PyQt4.uic.properties import QtCore
-from TestModule_dialog import _fromUtf8
 
 
 # Initialize Qt resources from file resources.py
