@@ -25,10 +25,10 @@ from PyQt4.QtGui import QAction, QIcon
 # Initialize Qt resources from file resources.py
 import resources_rc
 # Import the code for the dialog
-from Matrix Module_dialog
-import MatrixElaboratorDialog
+import MatrixModule_dialog
 import os.path
 from MatrixModule_implementation import run
+from MatrixModule_dialog import MatrixElaboratorDialog 
 
 
 class MatrixElaborator:

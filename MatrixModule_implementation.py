@@ -1,6 +1,4 @@
 from PyQt4 import QtGui
-from TestModule_dialog import FORM_CLASS
-
 try:
     from osgeo import *
 except:
