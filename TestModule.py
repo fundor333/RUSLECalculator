@@ -37,7 +37,7 @@ from TestModule_dialog import _fromUtf8
 
 
 # Initialize Qt resources from file resources.py
-from TestModule_implementation import run
+import TestModule_implementation
 import resources_rc
 
 from TestModule_dialog import TestClassDialog
@@ -203,6 +203,6 @@ class TestClass:
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            run(self.dlg)
+            TestModule_implementation.run(self.dlg)
         else:
             print("Cancellato")
