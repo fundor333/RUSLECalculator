@@ -7,7 +7,7 @@ except:
     import osr
 
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
-from qgis.core import QgsMapLayerRegistry
+from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 from PyQt4.QtCore import QFileInfo
 
 FILEPATH = "/var/tmp/"
@@ -16,22 +16,25 @@ FILENAME = FILEPATH + "temp" + FILETYPE
 TYPEOFRASTER = "GTiff"
 
 
-def run(dlg):
-    array = []
+def init(dlg):
     layerMap = QgsMapLayerRegistry.instance().mapLayers()
 
-    array[0] = layerMap(dlg.inputL1.getValue())
-    array[1] = layerMap(dlg.inputL2.getValue())
-    array[2] = layerMap(dlg.inputL3.getValue())
-    array[3] = layerMap(dlg.inputL4.getValue())
-    array[4] = layerMap(dlg.inputL5.getValue())
-    array[5] = layerMap(dlg.inputL6.getValue())
+    for a in layerMap:
+        print(str(a))
+    print("")
+
+def run(dlg):
+    layerMap = QgsMapLayerRegistry.instance().mapLayers()
+    array = range(0, 6)
+
+    array[0] = layerMap[dlg.inputL1.text().encode("utf-8")]
+    array[1] = layerMap[dlg.inputL2.text().encode("utf-8")]
+    array[2] = layerMap[dlg.inputL3.text().encode("utf-8")]
+    array[3] = layerMap[dlg.inputL4.text().encode("utf-8")]
+    array[4] = layerMap[dlg.inputL5.text().encode("utf-8")]
+    array[5] = layerMap[dlg.inputL6.text().encode("utf-8")]
     # codice di popolamento dell'array
-    if array.__sizeof__() != 6:
-        print("The program need 6 raster to work correctly")
-    else:
-        array = []
-        sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
+    sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
     print("Ended")
 
 
