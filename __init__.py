@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- TestClass
+ MatrixElaborator
                                  A QGIS plugin
- Descrizione generica
+ Plugin
                              -------------------
-        begin                : 2015-02-17
+        begin                : 2015-03-12
         copyright            : (C) 2015 by Matteo Scarpa
         email                : matteoscarpa92@gmail.com
         git sha              : $Format:%H$
@@ -25,12 +25,12 @@
 
 # noinspection PyPep8Naming
 def classFactory(iface):  # pylint: disable=invalid-name
-    """Load TestClass class from file TestClass.
+    """Load MatrixElaborator class from file MatrixElaborator.
 
     :param iface: A QGIS interface instance.
     :type iface: QgsInterface
     """
     #
-    from .TestModule import TestClass
+    from .MatrixModule import MatrixElaborator
 
-    return TestClass(iface)
+    return MatrixElaborator(iface)

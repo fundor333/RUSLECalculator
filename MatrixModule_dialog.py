@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- TestClassDialog
+ MatrixElaboratorDialog
                                  A QGIS plugin
- Descrizione generica
+ Plugin
                              -------------------
-        begin                : 2015-02-17
+        begin                : 2015-03-12
         git sha              : $Format:%H$
         copyright            : (C) 2015 by Matteo Scarpa
         email                : matteoscarpa92@gmail.com
@@ -26,13 +26,13 @@ import os
 from PyQt4 import QtGui, uic
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'TestModule_dialog_base.ui'))
+    os.path.dirname(__file__), 'MatrixModule_dialog_base.ui'))
 
 
-class TestClassDialog(QtGui.QDialog, FORM_CLASS):
+class MatrixElaboratorDialog(QtGui.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
-        super(TestClassDialog, self).__init__(parent)
+        super(MatrixElaboratorDialog, self).__init__(parent)
         # Set up the user interface from Designer.
         # After setupUI you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see
