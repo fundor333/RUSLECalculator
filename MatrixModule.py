@@ -27,8 +27,8 @@ import resources_rc
 # Import the code for the dialog
 import MatrixModule_dialog
 import os.path
-from MatrixModule_implementation import run
-from MatrixModule_dialog import MatrixElaboratorDialog 
+from MatrixModule_implementation import run, init
+from MatrixModule_dialog import MatrixElaboratorDialog
 
 
 class MatrixElaborator:
@@ -181,6 +181,7 @@ class MatrixElaborator:
 
     def run(self):
         """Run method that performs all the real work"""
+        init(self.dlg)
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop

@@ -147,3 +147,4 @@ local.properties
 
 
 .pydevproject
+DatiDev/*.asc.aux.xml
