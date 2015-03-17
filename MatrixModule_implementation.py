@@ -29,8 +29,6 @@ def init(dlg):
     for a in layerMap:
         array[i] = a.name()
         i = +1
-        print(str(a.name()))
-
 
 def run(dlg):
     layerMap = iface.mapCanvas().layers()
