@@ -54,7 +54,7 @@
      <string>Raste 1</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL1">
+   <widget class="QScrollArea" name="inputL1">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -63,6 +63,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -87,10 +100,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Raster 2</string>
+     <string>Raste 2</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL2">
+   <widget class="QScrollArea" name="inputL2">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -99,6 +112,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_3">
@@ -123,10 +149,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Raster 3</string>
+     <string>Raste 3</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL3">
+   <widget class="QScrollArea" name="inputL3">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -135,6 +161,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
@@ -159,10 +198,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Raster 4</string>
+     <string>Raste 4</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL4">
+   <widget class="QScrollArea" name="inputL4">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -171,6 +210,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_5">
@@ -195,10 +247,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Raster 5</string>
+     <string>Raste 5</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL5">
+   <widget class="QScrollArea" name="inputL5">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -207,6 +259,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_6">
@@ -231,10 +296,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Raster 6</string>
+     <string>Raste 6</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="inputL6">
+   <widget class="QScrollArea" name="inputL6">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -243,6 +308,19 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>29</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
