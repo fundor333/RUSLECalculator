@@ -27,7 +27,7 @@ import resources_rc
 # Import the code for the dialog
 import MatrixModule_dialog
 import os.path
-from MatrixModule_implementation import run, init
+from MatrixModule_implementation import run,init
 from MatrixModule_dialog import MatrixElaboratorDialog
 
 
@@ -67,6 +67,9 @@ class MatrixElaborator:
         self.actions = []
         self.menu = self.tr(u'&Earh Matrix Elaborator')
         # TODO: We are going to let the user set this up in a future iteration
+
+        init(self.dlg)
+
         self.toolbar = self.iface.addToolBar(u'MatrixElaborator')
         self.toolbar.setObjectName(u'MatrixElaborator')
 
@@ -181,7 +184,6 @@ class MatrixElaborator:
 
     def run(self):
         """Run method that performs all the real work"""
-        init(self.dlg)
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop

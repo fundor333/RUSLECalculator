@@ -11,40 +11,34 @@ from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 from qgis.utils import iface
 from PyQt4.QtCore import QFileInfo
+from PyQt4.QtGui import QFileDialog
 
 FILEPATH = "/var/tmp/"
 FILETYPE = ".asc"
 FILENAME = FILEPATH + "temp" + FILETYPE
 TYPEOFRASTER = "GTiff"
 
+def selectFile(lineEdit):
+    lineEdit.setText(QFileDialog.getOpenFileName())
 
 def init(dlg):
-    canvas = iface.mapCanvas()
-    layerMap = canvas.layers()
+    dlg.b1.clicked.connect(selectFile(dlg.inputL1))
+    dlg.b2.clicked.connect(selectFile(dlg.inputL2))
+    dlg.b3.clicked.connect(selectFile(dlg.inputL3))
+    dlg.b4.clicked.connect(selectFile(dlg.inputL4))
+    dlg.b5.clicked.connect(selectFile(dlg.inputL5))
+    dlg.b6.clicked.connect(selectFile(dlg.inputL6))
 
-    print(layerMap)
-    print("")
-    array = range(0, 6)
-    i = 0
-    for a in layerMap:
-        array[i] = a.name()
-        i = +1
 
 def run(dlg):
-    layerMap = iface.mapCanvas().layers()
-    layerarray = []
-    namearray = []
-    for element in layerMap:
-        namearray.append(element.name())
-        layerarray.append(element)
     array = range(0, 6)
 
-    array[0] = layerarray[namearray.index(dlg.inputL1.text().encode("utf-8"))]
-    array[1] = layerarray[namearray.index(dlg.inputL2.text().encode("utf-8"))]
-    array[2] = layerarray[namearray.index(dlg.inputL3.text().encode("utf-8"))]
-    array[3] = layerarray[namearray.index(dlg.inputL4.text().encode("utf-8"))]
-    array[4] = layerarray[namearray.index(dlg.inputL5.text().encode("utf-8"))]
-    array[5] = layerarray[namearray.index(dlg.inputL6.text().encode("utf-8"))]
+    array[0] = dlg.inputL1.text().encode("utf-8")
+    array[1] = dlg.inputL2.text().encode("utf-8")
+    array[2] = dlg.inputL3.text().encode("utf-8")
+    array[3] = dlg.inputL4.text().encode("utf-8")
+    array[4] = dlg.inputL5.text().encode("utf-8")
+    array[5] = dlg.inputL6.text().encode("utf-8")
     # codice di popolamento dell'array
     sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
     print("Ended")
@@ -66,6 +60,9 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
     inp = rl1, rl2, rl3, rl4, rl5, rl6
     entries = []
     listname = []
+
+    for element in inp:
+        open_raster(element)
 
     for i in range(0, 6):
         a = QgsRasterCalculatorEntry()
