@@ -20,18 +20,17 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtGui import QAction, QIcon
-# Initialize Qt resources from file resources.py
 import resources_rc
-# Import the code for the dialog
 import MatrixModule_dialog
 import os.path
-from MatrixModule_implementation import run,init
+
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL, Qt
+from PyQt4.QtGui import QAction, QIcon
+from MatrixModule_implementation import run, init, ButtonSignal
 from MatrixModule_dialog import MatrixElaboratorDialog
 
 
-class MatrixElaborator:
+class MatrixElaborator():
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -65,13 +64,12 @@ class MatrixElaborator:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&Earh Matrix Elaborator')
+        self.menu = self.tr('&Earh Matrix Elaborator')
+
         # TODO: We are going to let the user set this up in a future iteration
 
-        init(self.dlg)
-
-        self.toolbar = self.iface.addToolBar(u'MatrixElaborator')
-        self.toolbar.setObjectName(u'MatrixElaborator')
+        self.toolbar = self.iface.addToolBar('MatrixElaborator')
+        self.toolbar.setObjectName('MatrixElaborator')
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -164,21 +162,14 @@ class MatrixElaborator:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-
         icon_path = ':/plugins/MatrixElaborator/icon.png'
-        self.add_action(
-            icon_path,
-            text=self.tr(u'Elaborate'),
-            callback=self.run,
-            parent=self.iface.mainWindow())
+        self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&Earh Matrix Elaborator'),
-                action)
+            self.iface.removePluginMenu(self.tr('&Earh Matrix Elaborator'), action)
             self.iface.removeToolBarIcon(action)
 
 
@@ -186,10 +177,17 @@ class MatrixElaborator:
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
+        QObject.connect(self.dlg.b1, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme1)
+        QObject.connect(self.dlg.b2, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme2)
+        QObject.connect(self.dlg.b3, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme3)
+        QObject.connect(self.dlg.b4, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme4)
+        QObject.connect(self.dlg.b5, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme5)
+        QObject.connect(self.dlg.b6, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme6)
+
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            run(self.dlg)
+            run()

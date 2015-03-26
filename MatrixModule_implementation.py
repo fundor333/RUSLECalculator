@@ -1,5 +1,3 @@
-from PyQt4 import QtGui
-
 try:
     from osgeo import *
 except:
@@ -10,7 +8,8 @@ except:
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 from qgis.utils import iface
-from PyQt4.QtCore import QFileInfo
+from PyQt4 import QtGui
+from PyQt4.QtCore import QFileInfo, QObject
 from PyQt4.QtGui import QFileDialog
 
 FILEPATH = "/var/tmp/"
@@ -32,7 +31,6 @@ def init(dlg):
 
 def run(dlg):
     array = range(0, 6)
-
     array[0] = dlg.inputL1.text().encode("utf-8")
     array[1] = dlg.inputL2.text().encode("utf-8")
     array[2] = dlg.inputL3.text().encode("utf-8")
@@ -55,7 +53,6 @@ def open_raster(filename):
         print("Layer loaded")
     return r_layer
 
-
 def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
     inp = rl1, rl2, rl3, rl4, rl5, rl6
     entries = []
@@ -77,3 +74,28 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
     calc = QgsRasterCalculator(formula_string, path_file, raster_type, rl1.extent(), rl1.width(), rl1.height(), entries)
     calc.processCalculation()
     open_raster(path_file)
+
+
+class ButtonSignal(QObject):
+    def __init__(self, iface):
+        QObject.__init__(self)
+        # Save reference to the QGIS interface
+        self.iface = iface
+
+    def clickedme1(self):
+        selectFile(self.dlg.inputL1)
+
+    def clickedme2(self):
+        selectFile(self.dlg.inputL1)
+
+    def clickedme3(self):
+        selectFile(self.dlg.inputL1)
+
+    def clickedme4(self):
+        selectFile(self.dlg.inputL1)
+
+    def clickedme5(self):
+        selectFile(self.dlg.inputL1)
+
+    def clickedme6(self):
+        selectFile(self.dlg.inputL1)
