@@ -77,25 +77,25 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
 
 
 class ButtonSignal(QObject):
-    def __init__(self, iface):
+    def __init__(self, dlg):
         QObject.__init__(self)
         # Save reference to the QGIS interface
-        self.iface = iface
+        self.dlg = dlg
 
     def clickedme1(self):
         selectFile(self.dlg.inputL1)
 
     def clickedme2(self):
-        selectFile(self.dlg.inputL1)
+        selectFile(self.dlg.inputL2)
 
     def clickedme3(self):
-        selectFile(self.dlg.inputL1)
+        selectFile(self.dlg.inputL3)
 
     def clickedme4(self):
-        selectFile(self.dlg.inputL1)
+        selectFile(self.dlg.inputL4)
 
     def clickedme5(self):
-        selectFile(self.dlg.inputL1)
+        selectFile(self.dlg.inputL5)
 
     def clickedme6(self):
-        selectFile(self.dlg.inputL1)
+        selectFile(self.dlg.inputL6)

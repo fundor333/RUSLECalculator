@@ -24,7 +24,7 @@ import resources_rc
 import MatrixModule_dialog
 import os.path
 
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL, Qt
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
 from MatrixModule_implementation import run, init, ButtonSignal
 from MatrixModule_dialog import MatrixElaboratorDialog
@@ -177,12 +177,16 @@ class MatrixElaborator():
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
-        QObject.connect(self.dlg.b1, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme1)
-        QObject.connect(self.dlg.b2, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme2)
-        QObject.connect(self.dlg.b3, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme3)
-        QObject.connect(self.dlg.b4, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme4)
-        QObject.connect(self.dlg.b5, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme5)
-        QObject.connect(self.dlg.b6, Qt.SIGNAL("clicked()"), ButtonSignal.clickedme6)
+
+        bott = ButtonSignal(self.dlg)
+
+        self.dlg.b1.clicked.connect(bott.clickedme1)
+        self.dlg.b2.clicked.connect(bott.clickedme2)
+        self.dlg.b3.clicked.connect(bott.clickedme3)
+        self.dlg.b4.clicked.connect(bott.clickedme4)
+        self.dlg.b5.clicked.connect(bott.clickedme5)
+        self.dlg.b6.clicked.connect(bott.clickedme6)
+
 
         # Run the dialog event loop
         result = self.dlg.exec_()
@@ -190,4 +194,4 @@ class MatrixElaborator():
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            run()
+            run(self.dlg)
