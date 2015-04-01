@@ -47,10 +47,7 @@ class MatrixElaborator():
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'MatrixElaborator_{}.qm'.format(locale))
+        locale_path = os.path.join(self.plugin_dir, 'i18n', 'MatrixElaborator_{}.qm'.format(locale))
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -65,8 +62,6 @@ class MatrixElaborator():
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr('&Earh Matrix Elaborator')
-
-        # TODO: We are going to let the user set this up in a future iteration
 
         self.toolbar = self.iface.addToolBar('MatrixElaborator')
         self.toolbar.setObjectName('MatrixElaborator')
@@ -85,7 +80,6 @@ class MatrixElaborator():
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('MatrixElaborator', message)
-
 
     def add_action(
             self,

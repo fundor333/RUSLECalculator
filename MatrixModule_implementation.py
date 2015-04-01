@@ -7,8 +7,6 @@ except:
 
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
-from qgis.utils import iface
-from PyQt4 import QtGui
 from PyQt4.QtCore import QFileInfo, QObject
 from PyQt4.QtGui import QFileDialog
 
@@ -17,8 +15,10 @@ FILETYPE = ".asc"
 FILENAME = FILEPATH + "temp" + FILETYPE
 TYPEOFRASTER = "GTiff"
 
+
 def selectFile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
+
 
 def init(dlg):
     dlg.b1.clicked.connect(selectFile(dlg.inputL1))
@@ -31,13 +31,12 @@ def init(dlg):
 
 def run(dlg):
     array = range(0, 6)
-    array[0] = dlg.inputL1.text().encode("utf-8")
-    array[1] = dlg.inputL2.text().encode("utf-8")
-    array[2] = dlg.inputL3.text().encode("utf-8")
-    array[3] = dlg.inputL4.text().encode("utf-8")
-    array[4] = dlg.inputL5.text().encode("utf-8")
-    array[5] = dlg.inputL6.text().encode("utf-8")
-    # codice di popolamento dell'array
+    array[0] = dlg.inputL1.toPlainText()
+    array[1] = dlg.inputL2.toPlainText()
+    array[2] = dlg.inputL3.toPlainText()
+    array[3] = dlg.inputL4.toPlainText()
+    array[4] = dlg.inputL5.toPlainText()
+    array[5] = dlg.inputL6.toPlainText()
     sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
     print("Ended")
 
@@ -53,33 +52,36 @@ def open_raster(filename):
         print("Layer loaded")
     return r_layer
 
-def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_file, raster_type="GTiff"):
+
+def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
     inp = rl1, rl2, rl3, rl4, rl5, rl6
-    entries = []
-    listname = []
+    elements = []
+    list_name = []
+    rast_ent = []
 
     for element in inp:
-        open_raster(element)
+        rast_ent.append((element, open_raster(element)))
 
     for i in range(0, 6):
         a = QgsRasterCalculatorEntry()
-        a.ref = inp[i].name()
-        a.raster = inp[i]
+        a.ref = rast_ent[i][0]
+        a.raster = rast_ent[i][1]
         a.bandNumber = 1
-        listname.append(str(inp[i].name()))
-        entries.append(a)
+        list_name.append(a.raster.name())
+        elements.append(a)
 
-    formula_string = listname[0] + " + " + listname[1] + " + " + listname[1] + " + " + listname[2] + " + " + listname[
-        4] + " + " + listname[5]
-    calc = QgsRasterCalculator(formula_string, path_file, raster_type, rl1.extent(), rl1.width(), rl1.height(), entries)
+    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[
+        4] + " + " + list_name[5]
+    print(formula)
+    calc = QgsRasterCalculator(formula, path_out, ras_type, elements[0].raster.extent(), elements[0].raster.width(),
+                               elements[0].raster.height(), elements)
     calc.processCalculation()
-    open_raster(path_file)
+    open_raster(path_out)
 
 
 class ButtonSignal(QObject):
     def __init__(self, dlg):
         QObject.__init__(self)
-        # Save reference to the QGIS interface
         self.dlg = dlg
 
     def clickedme1(self):
