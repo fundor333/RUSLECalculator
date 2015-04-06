@@ -70,8 +70,7 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
         list_name.append(a.raster.name())
         elements.append(a)
 
-    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[
-        4] + " + " + list_name[5]
+    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[4] + " + " + list_name[5]
     print(formula)
     calc = QgsRasterCalculator(formula, path_out, ras_type, elements[0].raster.extent(), elements[0].raster.width(),
                                elements[0].raster.height(), elements)
