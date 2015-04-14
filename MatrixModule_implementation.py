@@ -1,3 +1,6 @@
+import os
+from os.path import expanduser
+
 try:
     from osgeo import *
 except:
@@ -10,7 +13,8 @@ from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 from PyQt4.QtCore import QFileInfo, QObject
 from PyQt4.QtGui import QFileDialog
 
-FILEPATH = "/var/tmp/"
+PROGRAMNAME="MatrixElaborator"
+FILEPATH = expanduser("~")+'/'+PROGRAMNAME
 FILETYPE = ".asc"
 FILENAME = FILEPATH + "temp" + FILETYPE
 TYPEOFRASTER = "GTiff"
