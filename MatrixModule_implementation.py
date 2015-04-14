@@ -1,5 +1,6 @@
 import os
 from os.path import expanduser
+from MatrixModule_resurce import FILEPATH, OUTPUT_FORMAT
 
 try:
     from osgeo import *
@@ -12,12 +13,6 @@ from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 from PyQt4.QtCore import QFileInfo, QObject
 from PyQt4.QtGui import QFileDialog
-
-PROGRAMNAME="MatrixElaborator"
-FILEPATH = expanduser("~")+'/'+PROGRAMNAME
-FILETYPE = ".asc"
-FILENAME = FILEPATH + "temp" + FILETYPE
-TYPEOFRASTER = "GTiff"
 
 
 def selectFile(lineEdit):
@@ -41,7 +36,7 @@ def run(dlg):
     array[3] = dlg.inputL4.toPlainText()
     array[4] = dlg.inputL5.toPlainText()
     array[5] = dlg.inputL6.toPlainText()
-    sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + FILETYPE)
+    sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + OUTPUT_FORMAT)
     print("Ended")
 
 
@@ -74,7 +69,8 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
         list_name.append(a.raster.name())
         elements.append(a)
 
-    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[4] + " + " + list_name[5]
+    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[
+        4] + " + " + list_name[5]
     print(formula)
     calc = QgsRasterCalculator(formula, path_out, ras_type, elements[0].raster.extent(), elements[0].raster.width(),
                                elements[0].raster.height(), elements)
