@@ -1,6 +1,7 @@
 import configparser
 import os
-from MatrixModule_resurce import *
+from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
+    CONFIG_PATH, CONFIG_NAME
 
 __author__ = 'Fundor333'
 
@@ -10,12 +11,14 @@ class Configuration():
         try:
             self.config = configparser.ConfigParser()
             self.config.sections()
-            self.config.read(CONTROL_CONFIG)
+            print(self.config[CONTROL_CONFIG])
         except Exception:
             self.config = configparser.ConfigParser()
             self.init_config()
 
     def init_config(self):
+        self.config = configparser.ConfigParser()
+        self.config.sections()
         self.config[CONTROL_CONFIG] = {'Slope_threhold': '0',
                                        'Maximum_slope_lenght': '0',
                                        'Maximum_slope_unit': 'metric',
@@ -27,14 +30,17 @@ class Configuration():
         self.config[OUTPUT_CONFIG] = {'Output_directory': FILEPATH,
                                       'Output_file_name': OUTPUT_NAME,
                                       'Output_file_type': OUTPUT_FORMAT}
-        self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_PATH}
+        self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_PATH,
+                                      'Config_file_name': CONFIG_NAME}
+        print(self.config)
 
     def save(self):
+        if not os.path.exists(self.config[OUTPUT_CONFIG]['Output_directory']):
+            os.makedirs(self.config[OUTPUT_CONFIG]['Output_directory'])
         if not os.path.exists(self.config[CONFIG_CONFIG]['Config_path']):
             os.makedirs(self.config[CONFIG_CONFIG]['Config_path'])
-        if not os.path.exists(self.config[OUTPUT_CONFIG]['Output_directory']):
-            os.makedirs(self.config[CONTROL_CONFIG]['Output_directory'])
-        with open(self.config[CONTROL_CONFIG]['Config_path'] + PLUGINNAME, 'w') as configfile:
+        with open(self.config[CONFIG_CONFIG]['Config_path'] + self.config[CONFIG_CONFIG]['Config_file_name'],
+                  'w') as configfile:
             self.config.write(configfile)
 
     def read_config(self, section, config):
@@ -49,13 +55,15 @@ class Configuration():
         try:
             data = configparser.ConfigParser()
             data.sections()
-            data.read(self.config[CONTROL_CONFIG]['Config folder'] + PLUGINNAME)
+            data.read(self.config['DEFAULT']['Config folder'] + '/' + CONFIG_NAME)
             data.set(section, config, data)
+            self.save()
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
+            self.save()
 
 # TODO: Non genera le cartelle richieste
 if __name__ == '__main__':
-    print(CONFIG_PATH)
-    m = Configuration().init_config()
+    m = Configuration()
+    m.save()

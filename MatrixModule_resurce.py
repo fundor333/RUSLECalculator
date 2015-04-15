@@ -13,5 +13,5 @@ CONTROL_CONFIG = "Control_specifications"
 OUTPUT_CONFIG = "Output_file"
 CONFIG_CONFIG = "Config_configuration"
 
-CONFIG_NAME = 'config'
-CONFIG_PATH = FILEPATH + CONFIG_NAME
+CONFIG_NAME = 'config.ini'
+CONFIG_PATH = FILEPATH + 'config/'
