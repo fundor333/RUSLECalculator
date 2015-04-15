@@ -1,6 +1,8 @@
 from PyQt4.uic.properties import QtGui
-from MatrixModule_lib import open_raster
+from MatrixModule_Math import sumsixraster
+
 from MatrixModule_resurce import FILEPATH, OUTPUT_FORMAT, CONFIG_CONFIG
+
 
 try:
     from osgeo import *
@@ -9,7 +11,6 @@ except:
     import ogr
     import osr
 
-from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog
 
@@ -35,41 +36,15 @@ def init(dlg):
 
 
 def run(dlg):
-    array = range(0, 6)
-    array[0] = dlg.inputDEM.toPlainText()
-    array[1] = dlg.inputSoilImage.toPlainText()
-    array[2] = dlg.inputFieldImage.toPlainText()
-    array[3] = dlg.inputPrecipitationImage.toPlainText()
-    array[4] = dlg.inputManagementImage.toPlainText()
-    array[5] = dlg.inputLandCover.toPlainText()
+    array = []
+    array.append(dlg.inputDEM.toPlainText())
+    array.append(dlg.inputSoilImage.toPlainText())
+    array.append(dlg.inputFieldImage.toPlainText())
+    array.append(dlg.inputPrecipitationImage.toPlainText())
+    array.append(dlg.inputManagementImage.toPlainText())
+    array.append(dlg.inputLandCover.toPlainText())
     sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + OUTPUT_FORMAT)
     print("Ended")
-
-
-def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
-    inp = rl1, rl2, rl3, rl4, rl5, rl6
-    elements = []
-    list_name = []
-    rast_ent = []
-
-    for element in inp:
-        rast_ent.append((element, open_raster(element)))
-
-    for i in range(0, 6):
-        a = QgsRasterCalculatorEntry()
-        a.ref = rast_ent[i][0]
-        a.raster = rast_ent[i][1]
-        a.bandNumber = 1
-        list_name.append(a.raster.name())
-        elements.append(a)
-
-    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[
-        4] + " + " + list_name[5]
-    print(formula)
-    calc = QgsRasterCalculator(formula, path_out, ras_type, elements[0].raster.extent(), elements[0].raster.width(),
-                               elements[0].raster.height(), elements)
-    print(calc.processCalculation())
-    open_raster(path_out)
 
 
 class ButtonSignal(QObject):
