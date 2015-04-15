@@ -32,7 +32,6 @@ class Configuration():
                                       'Output_file_type': OUTPUT_FORMAT}
         self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_PATH,
                                       'Config_file_name': CONFIG_NAME}
-        print(self.config)
 
     def save(self):
         if not os.path.exists(self.config[OUTPUT_CONFIG]['Output_directory']):
@@ -57,13 +56,6 @@ class Configuration():
             data.sections()
             data.read(self.config['DEFAULT']['Config folder'] + '/' + CONFIG_NAME)
             data.set(section, config, data)
-            self.save()
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
-            self.save()
-
-# TODO: Non genera le cartelle richieste
-if __name__ == '__main__':
-    m = Configuration()
-    m.save()
