@@ -1,7 +1,5 @@
 from os.path import expanduser
 
-__author__ = 'Fundor333'
-
 PLUGINNAME = 'MatrixElaborator'
 
 FILEPATH = expanduser("~") + '/QGis/' + PLUGINNAME + "/"
@@ -14,4 +12,4 @@ OUTPUT_CONFIG = "Output_file"
 CONFIG_CONFIG = "Config_configuration"
 
 CONFIG_NAME = 'config.ini'
-CONFIG_PATH = FILEPATH + 'config/'
+CONFIG_PATH = FILEPATH + 'config/' + CONFIG_NAME

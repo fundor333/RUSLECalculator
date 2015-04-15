@@ -26,7 +26,7 @@ import os.path
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
-from MatrixModule_implementation import run, init, ButtonSignal
+from MatrixModule_Gui_Implementation import run, init, ButtonSignal
 from MatrixModule_dialog import MatrixElaboratorDialog
 
 
@@ -174,12 +174,12 @@ class MatrixElaborator():
 
         bott = ButtonSignal(self.dlg)
 
-        self.dlg.b1.clicked.connect(bott.clickedme1)
-        self.dlg.b2.clicked.connect(bott.clickedme2)
-        self.dlg.b3.clicked.connect(bott.clickedme3)
-        self.dlg.b4.clicked.connect(bott.clickedme4)
-        self.dlg.b5.clicked.connect(bott.clickedme5)
-        self.dlg.b6.clicked.connect(bott.clickedme6)
+        self.dlg.DEM.clicked.connect(bott.clickedme1)
+        self.dlg.SoilImage.clicked.connect(bott.clickedme2)
+        self.dlg.FieldImage.clicked.connect(bott.clickedme3)
+        self.dlg.PrecipitationImage.clicked.connect(bott.clickedme4)
+        self.dlg.ManagementImage.clicked.connect(bott.clickedme5)
+        self.dlg.LandCover.clicked.connect(bott.clickedme6)
 
 
         # Run the dialog event loop

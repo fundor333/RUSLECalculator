@@ -1,10 +1,13 @@
-import configparser
+# import configparser
 import os
+
+from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
+
+from PyQt4.QtCore import QFileInfo
+
+'''
 from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
     CONFIG_PATH, CONFIG_NAME
-
-__author__ = 'Fundor333'
-
 
 class Configuration():
     def __init__(self):
@@ -38,7 +41,7 @@ class Configuration():
             os.makedirs(self.config[OUTPUT_CONFIG]['Output_directory'])
         if not os.path.exists(self.config[CONFIG_CONFIG]['Config_path']):
             os.makedirs(self.config[CONFIG_CONFIG]['Config_path'])
-        with open(self.config[CONFIG_CONFIG]['Config_path'] + self.config[CONFIG_CONFIG]['Config_file_name'],
+        with open(self.config[CONFIG_CONFIG]['Config_path'],
                   'w') as configfile:
             self.config.write(configfile)
 
@@ -59,3 +62,17 @@ class Configuration():
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
+'''
+
+
+def open_raster(filename):
+    basename = QFileInfo(filename).baseName()
+    print(filename)
+    r_layer = QgsRasterLayer(filename, basename)
+    if not r_layer.isValid():
+        print("Layer failed to load!")
+    else:
+        QgsMapLayerRegistry.instance().addMapLayer(r_layer)
+        print("Layer loaded")
+    return r_layer
+

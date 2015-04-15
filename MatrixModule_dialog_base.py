@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'MatrixModule_dialog_base.ui'
 #
 # Created: Wed Apr 15 16:13:36 2015
-#      by: PyQt4 UI code generator 4.10.4
+# by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,11 +17,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
@@ -30,7 +32,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
         self.button_box.setGeometry(QtCore.QRect(480, 330, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox_7 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(20, 0, 381, 271))
@@ -179,12 +181,15 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), MatrixElaboratorDialogBase.accept)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")), MatrixElaboratorDialogBase.reject)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
+                               MatrixElaboratorDialogBase.accept)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")),
+                               MatrixElaboratorDialogBase.reject)
         QtCore.QMetaObject.connectSlotsByName(MatrixElaboratorDialogBase)
 
     def retranslateUi(self, MatrixElaboratorDialogBase):
-        MatrixElaboratorDialogBase.setWindowTitle(_translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
+        MatrixElaboratorDialogBase.setWindowTitle(
+            _translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
         self.groupBox_7.setTitle(_translate("MatrixElaboratorDialogBase", "Input Raster", None))
         self.label.setText(_translate("MatrixElaboratorDialogBase", "DEM Image", None))
         self.DEM.setText(_translate("MatrixElaboratorDialogBase", "...", None))
