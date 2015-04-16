@@ -67,12 +67,12 @@ class Configuration():
 
 def open_raster(filename):
     basename = QFileInfo(filename).baseName()
-    print(filename)
     r_layer = QgsRasterLayer(filename, basename)
     if not r_layer.isValid():
         print("Layer failed to load!")
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         print("Layer loaded")
-    return r_layer
+        print(basename)
+    return basename,r_layer
 
