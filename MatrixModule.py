@@ -20,18 +20,17 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtGui import QAction, QIcon
-# Initialize Qt resources from file resources.py
 import resources_rc
-# Import the code for the dialog
 import MatrixModule_dialog
 import os.path
-from MatrixModule_implementation import run, init
+
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
+from PyQt4.QtGui import QAction, QIcon
+from MatrixModule_Gui_Implementation import run, init, ButtonSignal
 from MatrixModule_dialog import MatrixElaboratorDialog
 
 
-class MatrixElaborator:
+class MatrixElaborator():
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -48,10 +47,7 @@ class MatrixElaborator:
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'MatrixElaborator_{}.qm'.format(locale))
+        locale_path = os.path.join(self.plugin_dir, 'i18n', 'MatrixElaborator_{}.qm'.format(locale))
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -65,10 +61,10 @@ class MatrixElaborator:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&Earh Matrix Elaborator')
-        # TODO: We are going to let the user set this up in a future iteration
-        self.toolbar = self.iface.addToolBar(u'MatrixElaborator')
-        self.toolbar.setObjectName(u'MatrixElaborator')
+        self.menu = self.tr('&Earh Matrix Elaborator')
+
+        self.toolbar = self.iface.addToolBar('MatrixElaborator')
+        self.toolbar.setObjectName('MatrixElaborator')
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -84,7 +80,6 @@ class MatrixElaborator:
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('MatrixElaborator', message)
-
 
     def add_action(
             self,
@@ -161,29 +156,32 @@ class MatrixElaborator:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-
         icon_path = ':/plugins/MatrixElaborator/icon.png'
-        self.add_action(
-            icon_path,
-            text=self.tr(u'Elaborate'),
-            callback=self.run,
-            parent=self.iface.mainWindow())
+        self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&Earh Matrix Elaborator'),
-                action)
+            self.iface.removePluginMenu(self.tr('&Earh Matrix Elaborator'), action)
             self.iface.removeToolBarIcon(action)
 
 
     def run(self):
         """Run method that performs all the real work"""
-        init(self.dlg)
         # show the dialog
         self.dlg.show()
+
+        bott = ButtonSignal(self.dlg)
+
+        self.dlg.DEM.clicked.connect(bott.clickedme1)
+        self.dlg.SoilImage.clicked.connect(bott.clickedme2)
+        self.dlg.FieldImage.clicked.connect(bott.clickedme3)
+        self.dlg.PrecipitationImage.clicked.connect(bott.clickedme4)
+        self.dlg.ManagementImage.clicked.connect(bott.clickedme5)
+        self.dlg.LandCover.clicked.connect(bott.clickedme6)
+
+
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed

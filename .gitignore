@@ -144,7 +144,7 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
-
-
 .pydevproject
 DatiDev/*.asc.aux.xml
+
+*.pyc
