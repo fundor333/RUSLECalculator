@@ -1,5 +1,6 @@
 from PyQt4.uic.properties import QtGui
 from MatrixModule_Math import sumsixraster
+from MatrixModule_lib import open_raster
 
 from MatrixModule_resurce import FILEPATH, OUTPUT_FORMAT, CONFIG_CONFIG
 
@@ -44,6 +45,7 @@ def run(dlg):
     array.append(dlg.inputManagementImage.toPlainText())
     array.append(dlg.inputLandCover.toPlainText())
     sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], FILEPATH + "temp7" + OUTPUT_FORMAT)
+    open_raster(FILEPATH + "temp7" + OUTPUT_FORMAT)
     print("Ended")
 
 
