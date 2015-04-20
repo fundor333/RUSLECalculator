@@ -1,4 +1,5 @@
 from os.path import expanduser
+from MatrixModule_lib import Configuration
 
 PLUGINNAME = 'MatrixElaborator'
 
@@ -13,3 +14,5 @@ CONFIG_CONFIG = "Config_configuration"
 
 CONFIG_NAME = 'config.ini'
 CONFIG_PATH = FILEPATH + 'config/' + CONFIG_NAME
+
+CONFIG_OBJECT = Configuration()
