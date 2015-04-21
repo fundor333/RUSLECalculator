@@ -26,7 +26,7 @@ import os.path
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
-from MatrixModule_Gui_Implementation import run, init, ButtonSignal
+from MatrixModule_Gui_Implementation import run, ButtonSignal
 from MatrixModule_dialog import MatrixElaboratorDialog
 
 
@@ -180,6 +180,7 @@ class MatrixElaborator():
         self.dlg.PrecipitationImage.clicked.connect(bott.clickedme4)
         self.dlg.ManagementImage.clicked.connect(bott.clickedme5)
         self.dlg.LandCover.clicked.connect(bott.clickedme6)
+        self.dlg.RasterPathButton.clicked.connect(bott.selectconfig)
 
 
         # Run the dialog event loop
