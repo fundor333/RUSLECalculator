@@ -9,7 +9,7 @@ from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, F
     CONFIG_PATH, CONFIG_NAME
 
 
-class Configuration():
+class ConfigurationManager:
     def __init__(self):
         try:
             self.config = configparser.ConfigParser()
@@ -75,3 +75,5 @@ def open_raster(filename):
         print(basename)
     return basename, r_layer
 
+
+CONFIG_OBJECT = ConfigurationManager()

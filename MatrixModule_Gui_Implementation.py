@@ -1,8 +1,8 @@
 from PyQt4.uic.properties import QtGui
 from MatrixModule_Math import sumsixraster
-from MatrixModule_lib import open_raster
+from MatrixModule_lib import open_raster, CONFIG_OBJECT
 
-from MatrixModule_resurce import FILEPATH, OUTPUT_FORMAT, CONFIG_CONFIG, CONFIG_OBJECT
+from MatrixModule_resurce import FILEPATH, OUTPUT_FORMAT, CONFIG_CONFIG
 
 
 try:
@@ -20,9 +20,8 @@ def selectFile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
 
 
-def selectconfig(config):
-    filename = QtGui.QFileDialog.getOpenFileName('Open File', '', 'Images (*.png *.xpm *.jpg)',
-        None, QtGui.QFileDialog.DontUseNativeDialog)
+def selectconfig():
+    filename = QFileDialog.getOpenFileName('Open File', '', 'Images (*.png *.xpm *.jpg)', QtGui.QFileDialog.DontUseNativeDialog)
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', filename)
 
 
@@ -33,7 +32,7 @@ def init(dlg):
     dlg.PrecipitationImage.clicked.connect(selectFile(dlg.inputPrecipitationImage))
     dlg.ManagementImage.clicked.connect(selectFile(dlg.inputManagementImage))
     dlg.LandCover.clicked.connect(selectFile(dlg.inputLandCover))
-    dlg.RasterPathButton.clicked.connect(selectconfig(dlg))
+    dlg.RasterPathButton.clicked.connect(selectconfig())
 
 
 def run(dlg):
