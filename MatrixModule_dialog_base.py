@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'MatrixModule_dialog_base.ui'
 #
-# Created: Wed Apr 15 16:13:36 2015
-# by: PyQt4 UI code generator 4.10.4
+# Created: Mon Apr 20 12:02:13 2015
+#      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,13 +17,11 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
-
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-
 
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
@@ -32,7 +30,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
         self.button_box.setGeometry(QtCore.QRect(480, 330, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox_7 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(20, 0, 381, 271))
@@ -119,48 +117,36 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.groupBox_8.setGeometry(QtCore.QRect(420, 0, 231, 271))
         self.groupBox_8.setObjectName(_fromUtf8("groupBox_8"))
         self.label_7 = QtGui.QLabel(self.groupBox_8)
-        self.label_7.setGeometry(QtCore.QRect(20, 30, 121, 16))
+        self.label_7.setGeometry(QtCore.QRect(20, 40, 121, 16))
         self.label_7.setObjectName(_fromUtf8("label_7"))
         self.doubleSpinBox = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.doubleSpinBox.setGeometry(QtCore.QRect(160, 30, 62, 16))
+        self.doubleSpinBox.setGeometry(QtCore.QRect(160, 40, 62, 16))
         self.doubleSpinBox.setObjectName(_fromUtf8("doubleSpinBox"))
         self.label_8 = QtGui.QLabel(self.groupBox_8)
-        self.label_8.setGeometry(QtCore.QRect(10, 60, 141, 21))
+        self.label_8.setGeometry(QtCore.QRect(10, 70, 141, 21))
         self.label_8.setObjectName(_fromUtf8("label_8"))
         self.doubleSpinBox_2 = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.doubleSpinBox_2.setGeometry(QtCore.QRect(160, 60, 62, 16))
+        self.doubleSpinBox_2.setGeometry(QtCore.QRect(160, 70, 62, 16))
         self.doubleSpinBox_2.setObjectName(_fromUtf8("doubleSpinBox_2"))
         self.checkBox = QtGui.QCheckBox(self.groupBox_8)
-        self.checkBox.setGeometry(QtCore.QRect(20, 240, 151, 20))
+        self.checkBox.setGeometry(QtCore.QRect(50, 240, 151, 20))
         self.checkBox.setChecked(True)
         self.checkBox.setObjectName(_fromUtf8("checkBox"))
-        self.ShorterBox = QtGui.QCheckBox(self.groupBox_8)
-        self.ShorterBox.setGeometry(QtCore.QRect(110, 190, 71, 18))
-        self.ShorterBox.setChecked(True)
-        self.ShorterBox.setAutoExclusive(True)
-        self.ShorterBox.setObjectName(_fromUtf8("ShorterBox"))
-        self.label_9 = QtGui.QLabel(self.groupBox_8)
-        self.label_9.setGeometry(QtCore.QRect(10, 200, 71, 20))
-        self.label_9.setObjectName(_fromUtf8("label_9"))
         self.checkBox_3 = QtGui.QCheckBox(self.groupBox_8)
-        self.checkBox_3.setGeometry(QtCore.QRect(20, 90, 191, 18))
+        self.checkBox_3.setGeometry(QtCore.QRect(20, 110, 191, 18))
         self.checkBox_3.setObjectName(_fromUtf8("checkBox_3"))
         self.label_10 = QtGui.QLabel(self.groupBox_8)
-        self.label_10.setGeometry(QtCore.QRect(10, 130, 111, 16))
+        self.label_10.setGeometry(QtCore.QRect(10, 150, 111, 16))
         self.label_10.setObjectName(_fromUtf8("label_10"))
         self.doubleSpinBox_3 = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.doubleSpinBox_3.setGeometry(QtCore.QRect(160, 130, 62, 16))
+        self.doubleSpinBox_3.setGeometry(QtCore.QRect(160, 150, 62, 16))
         self.doubleSpinBox_3.setObjectName(_fromUtf8("doubleSpinBox_3"))
         self.label_11 = QtGui.QLabel(self.groupBox_8)
-        self.label_11.setGeometry(QtCore.QRect(10, 160, 121, 16))
+        self.label_11.setGeometry(QtCore.QRect(10, 190, 121, 16))
         self.label_11.setObjectName(_fromUtf8("label_11"))
         self.doubleSpinBox_4 = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.doubleSpinBox_4.setGeometry(QtCore.QRect(160, 160, 62, 16))
+        self.doubleSpinBox_4.setGeometry(QtCore.QRect(160, 190, 62, 16))
         self.doubleSpinBox_4.setObjectName(_fromUtf8("doubleSpinBox_4"))
-        self.LongestBox = QtGui.QCheckBox(self.groupBox_8)
-        self.LongestBox.setGeometry(QtCore.QRect(110, 210, 85, 18))
-        self.LongestBox.setAutoExclusive(True)
-        self.LongestBox.setObjectName(_fromUtf8("LongestBox"))
         self.groupBox_9 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_9.setGeometry(QtCore.QRect(20, 270, 631, 51))
         self.groupBox_9.setObjectName(_fromUtf8("groupBox_9"))
@@ -181,15 +167,12 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
-                               MatrixElaboratorDialogBase.accept)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")),
-                               MatrixElaboratorDialogBase.reject)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), MatrixElaboratorDialogBase.accept)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")), MatrixElaboratorDialogBase.reject)
         QtCore.QMetaObject.connectSlotsByName(MatrixElaboratorDialogBase)
 
     def retranslateUi(self, MatrixElaboratorDialogBase):
-        MatrixElaboratorDialogBase.setWindowTitle(
-            _translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
+        MatrixElaboratorDialogBase.setWindowTitle(_translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
         self.groupBox_7.setTitle(_translate("MatrixElaboratorDialogBase", "Input Raster", None))
         self.label.setText(_translate("MatrixElaboratorDialogBase", "DEM Image", None))
         self.DEM.setText(_translate("MatrixElaboratorDialogBase", "...", None))
@@ -207,12 +190,9 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.label_7.setText(_translate("MatrixElaboratorDialogBase", "Aspect Threshold", None))
         self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Maximum Slope Lenght", None))
         self.checkBox.setText(_translate("MatrixElaboratorDialogBase", "All in Metric System", None))
-        self.ShorterBox.setText(_translate("MatrixElaboratorDialogBase", "shorter", None))
-        self.label_9.setText(_translate("MatrixElaboratorDialogBase", "Rounded to", None))
         self.checkBox_3.setText(_translate("MatrixElaboratorDialogBase", "Average soil factory patcher", None))
         self.label_10.setText(_translate("MatrixElaboratorDialogBase", "Aspect_threshold", None))
         self.label_11.setText(_translate("MatrixElaboratorDialogBase", "Smallest patch size", None))
-        self.LongestBox.setText(_translate("MatrixElaboratorDialogBase", "longer", None))
         self.groupBox_9.setTitle(_translate("MatrixElaboratorDialogBase", "Output Raster", None))
         self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
         self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))

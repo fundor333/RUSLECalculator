@@ -1,15 +1,15 @@
-# import configparser
+import configparser
 import os
 
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
 
 from PyQt4.QtCore import QFileInfo
 
-'''
 from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
     CONFIG_PATH, CONFIG_NAME
 
-class Configuration():
+
+class ConfigurationManager:
     def __init__(self):
         try:
             self.config = configparser.ConfigParser()
@@ -62,17 +62,18 @@ class Configuration():
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
-'''
 
 
 def open_raster(filename):
     basename = QFileInfo(filename).baseName()
-    print(filename)
     r_layer = QgsRasterLayer(filename, basename)
     if not r_layer.isValid():
         print("Layer failed to load!")
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         print("Layer loaded")
-    return r_layer
+        print(basename)
+    return basename, r_layer
 
+
+CONFIG_OBJECT = ConfigurationManager()

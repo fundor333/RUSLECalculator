@@ -1,28 +1,28 @@
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from MatrixModule_lib import open_raster
+import numpy
+from osgeo import gdal
+from osgeo.gdalnumeric import *
+from osgeo.gdalconst import *
 
 
 def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
-    inp = rl1, rl2, rl3, rl4, rl5, rl6
-    elements = []
-    list_name = []
-    rast_ent = []
-
-    for elem in inp:
-        rast_ent.append((elem, open_raster(elem)))
+    rl = rl1, rl2, rl3, rl4, rl5, rl6
+    ds = range(0, 6)
+    band = range(0, 6)
+    data = range(0, 6)
 
     for i in range(0, 6):
-        a = QgsRasterCalculatorEntry()
-        a.ref = rast_ent[i][0]
-        a.raster = rast_ent[i][1]
-        a.bandNumber = 1
-        list_name.append(a.raster.name())
-        elements.append(a)
+        open_raster(rl[i])
+        ds[i] = gdal.Open(rl[1], GA_ReadOnly)
+        band[i] = ds[i].GetRasterBand(1)
+        data[i] = BandReadAsArray(band[i])
 
-    formula = list_name[0] + " + " + list_name[1] + " + " + list_name[2] + " + " + list_name[3] + " + " + list_name[
-        4] + " + " + list_name[5]
-    print(formula)
-    calc = QgsRasterCalculator(formula, path_out, ras_type, elements[0].raster.extent(), elements[0].raster.width(),
-                               elements[0].raster.height(), elements)
-    print(calc.processCalculation())
-    open_raster(path_out)
+    dataOut = numpy.sqrt(data[0] + data[1] + data[2] + data[3] + data[4] + data[5])
+
+    # Write the out file
+    driver = gdal.GetDriverByName(ras_type)
+    dsOut = driver.Create(path_out, ds[0].RasterXSize, ds[0].RasterYSize, 1, band[0].DataType)
+    CopyDatasetInfo(ds[0], dsOut)
+    bandOut = dsOut.GetRasterBand(1)
+    BandWriteArray(bandOut, dataOut)
