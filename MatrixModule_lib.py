@@ -24,12 +24,10 @@ class ConfigurationManager:
         self.config.sections()
         self.config[CONTROL_CONFIG] = {'Slope_threhold': '0',
                                        'Maximum_slope_lenght': '0',
-                                       'Maximum_slope_unit': 'metric',
-                                       'Rounded_to': 'shorter',
+                                       'Maximum_slope_metric': 'true',
                                        'Average_soil_factory_patcher': 'false',
                                        'Aspect_threshold': '0',
-                                       'Smallest_patch_size': '0',
-                                       'Default_background_value': '0'}
+                                       'Smallest_patch_size': '0'}
         self.config[OUTPUT_CONFIG] = {'Output_directory': FILEPATH,
                                       'Output_file_name': OUTPUT_NAME,
                                       'Output_file_type': OUTPUT_FORMAT}
@@ -38,12 +36,11 @@ class ConfigurationManager:
                                       'Config_dir': CONFIG_DIR}
 
     def save(self):
-        if not os.path.exists(self.config[OUTPUT_CONFIG]['Output_directory']):
-            os.makedirs(self.config[OUTPUT_CONFIG]['Output_directory'])
-        if not os.path.exists(self.config[CONFIG_CONFIG]['Config_dir']):
-            os.makedirs(self.config[CONFIG_CONFIG]['Config_dir'])
-        with open(self.config[CONFIG_CONFIG]['Config_path'],
-                  'w') as configfile:
+        if not os.path.exists(self.read_config(OUTPUT_CONFIG, 'Output_directory')):
+            os.makedirs(self.read_config(OUTPUT_CONFIG, 'Output_directory'))
+        if not os.path.exists(self.read_config(CONFIG_CONFIG, 'Config_dir')):
+            os.makedirs(self.read_config(CONFIG_CONFIG, 'Config_dir'))
+        with open(self.read_config(CONFIG_CONFIG, 'Config_path'), 'w') as configfile:
             self.config.write(configfile)
 
     def read_config(self, section, config):
@@ -76,3 +73,6 @@ def open_raster(filename):
 
 
 CONFIG_OBJECT = ConfigurationManager()
+
+if __name__ == '__main__':
+    CONFIG_OBJECT.save()
