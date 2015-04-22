@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>371</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>330</y>
+     <x>470</x>
+     <y>540</y>
      <width>171</width>
      <height>32</height>
     </rect>
@@ -32,9 +32,9 @@
   <widget class="QGroupBox" name="groupBox_7">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>0</y>
-     <width>381</width>
+     <x>10</x>
+     <y>10</y>
+     <width>641</width>
      <height>271</height>
     </rect>
    </property>
@@ -46,7 +46,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -69,9 +69,9 @@
     <widget class="QTextEdit" name="inputDEM">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -79,10 +79,10 @@
     <widget class="QPushButton" name="DEM">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -95,7 +95,7 @@
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -118,10 +118,10 @@
     <widget class="QPushButton" name="SoilImage">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -131,9 +131,9 @@
     <widget class="QTextEdit" name="inputSoilImage">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -144,7 +144,7 @@
      <rect>
       <x>10</x>
       <y>70</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -167,10 +167,10 @@
     <widget class="QPushButton" name="FieldImage">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -180,9 +180,9 @@
     <widget class="QTextEdit" name="inputFieldImage">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -193,7 +193,7 @@
      <rect>
       <x>10</x>
       <y>150</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -216,10 +216,10 @@
     <widget class="QPushButton" name="PrecipitationImage">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -229,9 +229,9 @@
     <widget class="QTextEdit" name="inputPrecipitationImage">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -242,7 +242,7 @@
      <rect>
       <x>10</x>
       <y>230</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -265,10 +265,10 @@
     <widget class="QPushButton" name="ManagementImage">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -278,9 +278,9 @@
     <widget class="QTextEdit" name="inputManagementImage">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -291,7 +291,7 @@
      <rect>
       <x>10</x>
       <y>190</y>
-      <width>361</width>
+      <width>631</width>
       <height>31</height>
      </rect>
     </property>
@@ -314,10 +314,10 @@
     <widget class="QPushButton" name="LandCover">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>0</y>
+       <x>580</x>
+       <y>-9</y>
        <width>51</width>
-       <height>32</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -327,9 +327,9 @@
     <widget class="QTextEdit" name="inputLandCover">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>0</y>
-       <width>171</width>
+       <width>451</width>
        <height>31</height>
       </rect>
      </property>
@@ -339,10 +339,10 @@
   <widget class="QGroupBox" name="groupBox_8">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>0</y>
-     <width>231</width>
-     <height>271</height>
+     <x>20</x>
+     <y>290</y>
+     <width>621</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="title">
@@ -351,23 +351,23 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>40</y>
+      <x>10</x>
+      <y>30</y>
       <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Aspect Threshold</string>
+     <string>Slope Threshold</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="SlopeThreshold">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>40</y>
+      <x>190</x>
+      <y>20</y>
       <width>62</width>
-      <height>16</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>
@@ -384,23 +384,23 @@
      <string>Maximum Slope Lenght</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+   <widget class="QDoubleSpinBox" name="MaxSlopeLenght">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>70</y>
+      <x>190</x>
+      <y>60</y>
       <width>62</width>
-      <height>16</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>
    <widget class="QCheckBox" name="checkBox">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>240</y>
+      <x>360</x>
+      <y>110</y>
       <width>151</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -413,10 +413,10 @@
    <widget class="QCheckBox" name="checkBox_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>60</x>
       <y>110</y>
       <width>191</width>
-      <height>18</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -426,31 +426,31 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>150</y>
+      <x>300</x>
+      <y>30</y>
       <width>111</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Aspect_threshold</string>
+     <string>Aspect Threshold</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+   <widget class="QDoubleSpinBox" name="AspectThreshold">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>150</y>
+      <x>490</x>
+      <y>20</y>
       <width>62</width>
-      <height>16</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>190</y>
+      <x>300</x>
+      <y>70</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -459,13 +459,13 @@
      <string>Smallest patch size</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+   <widget class="QDoubleSpinBox" name="SmallestPatchSize">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>190</y>
+      <x>490</x>
+      <y>60</y>
       <width>62</width>
-      <height>16</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>
@@ -474,9 +474,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>270</y>
+     <y>440</y>
      <width>631</width>
-     <height>51</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="title">
@@ -485,8 +485,8 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>30</y>
+      <x>10</x>
+      <y>40</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -498,9 +498,9 @@
    <widget class="QTextEdit" name="RasterPath">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>20</y>
-      <width>461</width>
+      <x>130</x>
+      <y>30</y>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>
@@ -509,7 +509,7 @@
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>20</y>
+      <y>30</y>
       <width>51</width>
       <height>32</height>
      </rect>
@@ -519,31 +519,44 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QGroupBox" name="groupBox_10">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>330</y>
-     <width>110</width>
-     <height>32</height>
+     <y>520</y>
+     <width>271</width>
+     <height>61</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Load Config</string>
+   <property name="title">
+    <string>Config</string>
    </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>330</y>
-     <width>110</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Save Config</string>
-   </property>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>110</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>20</y>
+      <width>110</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -180,7 +180,7 @@ class MatrixElaborator():
         self.dlg.PrecipitationImage.clicked.connect(bott.clickedme4)
         self.dlg.ManagementImage.clicked.connect(bott.clickedme5)
         self.dlg.LandCover.clicked.connect(bott.clickedme6)
-        self.dlg.RasterPathButton.clicked.connect(bott.selectconfig)
+        self.dlg.RasterPathButton.clicked.connect(bott.clickedoutput)
 
 
         # Run the dialog event loop

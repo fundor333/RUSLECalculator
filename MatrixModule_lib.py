@@ -1,12 +1,10 @@
+from PyQt4.QtCore import QFileInfo
 import configparser
 import os
 
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
-
-from PyQt4.QtCore import QFileInfo
-
 from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
-    CONFIG_PATH, CONFIG_NAME
+    CONFIG_PATH, CONFIG_NAME, CONFIG_DIR
 
 
 class ConfigurationManager:
@@ -14,10 +12,12 @@ class ConfigurationManager:
         try:
             self.config = configparser.ConfigParser()
             self.config.sections()
-            print(self.config[CONTROL_CONFIG])
         except Exception:
             self.config = configparser.ConfigParser()
             self.init_config()
+
+    def open(self, path):
+        self.config.read(path)
 
     def init_config(self):
         self.config = configparser.ConfigParser()
@@ -34,20 +34,20 @@ class ConfigurationManager:
                                       'Output_file_name': OUTPUT_NAME,
                                       'Output_file_type': OUTPUT_FORMAT}
         self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_PATH,
-                                      'Config_file_name': CONFIG_NAME}
+                                      'Config_file_name': CONFIG_NAME,
+                                      'Config_dir': CONFIG_DIR}
 
     def save(self):
         if not os.path.exists(self.config[OUTPUT_CONFIG]['Output_directory']):
             os.makedirs(self.config[OUTPUT_CONFIG]['Output_directory'])
-        if not os.path.exists(self.config[CONFIG_CONFIG]['Config_path']):
-            os.makedirs(self.config[CONFIG_CONFIG]['Config_path'])
+        if not os.path.exists(self.config[CONFIG_CONFIG]['Config_dir']):
+            os.makedirs(self.config[CONFIG_CONFIG]['Config_dir'])
         with open(self.config[CONFIG_CONFIG]['Config_path'],
                   'w') as configfile:
             self.config.write(configfile)
 
     def read_config(self, section, config):
         try:
-            print(self.config[section][config])
             return self.config[section][config]
         except KeyError:
             self.init_config()
@@ -57,7 +57,7 @@ class ConfigurationManager:
         try:
             data = configparser.ConfigParser()
             data.sections()
-            data.read(self.config['DEFAULT']['Config folder'] + '/' + CONFIG_NAME)
+            data.read(self.config[CONTROL_CONFIG]['Config_path'])
             data.set(section, config, data)
         except KeyError:
             self.init_config()
@@ -72,7 +72,6 @@ def open_raster(filename):
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         print("Layer loaded")
-        print(basename)
     return basename, r_layer
 
 
