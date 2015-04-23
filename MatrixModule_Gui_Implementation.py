@@ -4,6 +4,8 @@ from MatrixModule_Math import sumsixraster
 from MatrixModule_lib import open_raster, CONFIG_OBJECT
 from MatrixModule_resurce import CONFIG_CONFIG
 
+import GdalTools_utils as Utils
+
 try:
     from osgeo import *
 except:
@@ -21,6 +23,28 @@ def selectfile(lineEdit):
 
 def openconfig(dlg):
     CONFIG_OBJECT.open(QFileDialog.getOpenFileName())
+
+
+def get_raster_name(self):
+    lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
+    gdalVersion = Utils.GdalConfig.version()
+    if gdalVersion >= "1.8.0":
+        fileDialogFunc = Utils.FileDialog.getSaveFileName
+    else:
+        fileDialogFunc = Utils.FileDialog.getOpenFileName
+    outputFile = fileDialogFunc(self, self.tr("Select the raster file to save the results to"),
+                                Utils.FileFilter.allRastersFilter(), lastUsedFilter)
+    if outputFile.isEmpty():
+        return
+    Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
+
+    # required either -ts or -tr to create the output file
+    if gdalVersion >= "1.8.0":
+        if not QtCore.QFileInfo(outputFile).exists():
+            QMessageBox.information(self, self.tr("Output size required"), self.tr(
+                "The output file doesn't exist. You must set up the output size to create it."))
+    return outputFile
+
 
 def saveconfig(dlg):
     string_path = get_raster_name(dlg)
