@@ -1,4 +1,5 @@
 from os.path import expanduser
+from qgis._core import QgsRasterLayer
 from MatrixModule_Math import sumsixraster
 from MatrixModule_lib import open_raster, CONFIG_OBJECT
 from MatrixModule_resurce import CONFIG_CONFIG
@@ -10,20 +11,21 @@ except:
     import ogr
     import osr
 
-import GdalTools_utils as Utils
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog
 
 
-def selectFile(lineEdit):
+def selectfile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
 
 
 def openconfig(dlg):
-    CONFIG_OBJECT.open(Utils.FileDialog.getSaveFileName)
-
+    CONFIG_OBJECT.open(QFileDialog.getOpenFileName())
 
 def saveconfig(dlg):
+    string_path = get_raster_name(dlg)
+    QgsRasterLayer.buildSupportedRasterFileFilter(string_path)
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'aspect_threshold', dlg.AspectThreshold.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_metric', dlg.checkBox.value())
@@ -62,22 +64,22 @@ class ButtonSignal(QObject):
         self.dlg = dlg
 
     def clickedme1(self):
-        selectFile(self.dlg.inputDEM)
+        selectfile(self.dlg.inputDEM)
 
     def clickedme2(self):
-        selectFile(self.dlg.inputSoilImage)
+        selectfile(self.dlg.inputSoilImage)
 
     def clickedme3(self):
-        selectFile(self.dlg.inputFieldImage)
+        selectfile(self.dlg.inputFieldImage)
 
     def clickedme4(self):
-        selectFile(self.dlg.inputPrecipitationImage)
+        selectfile(self.dlg.inputPrecipitationImage)
 
     def clickedme5(self):
-        selectFile(self.dlg.inputManagementImage)
+        selectfile(self.dlg.inputManagementImage)
 
     def clickedme6(self):
-        selectFile(self.dlg.inputLandCover)
+        selectfile(self.dlg.inputLandCover)
 
     def clickedoutput(self):
         settingoutput(self.dlg)
