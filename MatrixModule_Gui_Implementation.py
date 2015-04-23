@@ -36,7 +36,6 @@ def get_raster_name(dlg):
 
 def saveconfig(dlg):
     string_path = get_raster_name(dlg)
-    QgsRasterLayer.buildSupportedRasterFileFilter(string_path)
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'aspect_threshold', dlg.AspectThreshold.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
