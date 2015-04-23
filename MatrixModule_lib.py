@@ -52,10 +52,9 @@ class ConfigurationManager:
 
     def edit_config(self, section, config, data):
         try:
-            data = configparser.ConfigParser()
-            data.sections()
-            data.read(self.config[CONTROL_CONFIG]['Config_path'])
-            data.set(section, config, data)
+            self.config.sections()
+            self.config.read(self.config[CONFIG_CONFIG]['Config_path'])
+            self.config.set(section, config, str(data))
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
