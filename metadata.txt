@@ -24,9 +24,9 @@ email=matteoscarpa92@gmail.com
 # Tags are comma separated with spaces allowed
 tags=
 
-homepage=
-tracker=
-repository=
+homepage=http://fundor333.github.io/EarthMatrixElaborator
+tracker=https://github.com/fundor333/EarthMatrixElaborator/issues
+repository=https://github.com/fundor333/EarthMatrixElaborator
 category=Plugins
 icon=icon.png
 # experimental flag
