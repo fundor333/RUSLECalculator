@@ -25,24 +25,12 @@ def openconfig(dlg):
     CONFIG_OBJECT.open(QFileDialog.getOpenFileName())
 
 
-def get_raster_name(self):
+def get_raster_name(dlg):
     lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
-    gdalVersion = Utils.GdalConfig.version()
-    if gdalVersion >= "1.8.0":
-        fileDialogFunc = Utils.FileDialog.getSaveFileName
-    else:
-        fileDialogFunc = Utils.FileDialog.getOpenFileName
-    outputFile = fileDialogFunc(self, self.tr("Select the raster file to save the results to"),
-                                Utils.FileFilter.allRastersFilter(), lastUsedFilter)
-    if outputFile.isEmpty():
-        return
-    Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
-
-    # required either -ts or -tr to create the output file
-    if gdalVersion >= "1.8.0":
-        if not QtCore.QFileInfo(outputFile).exists():
-            QMessageBox.information(self, self.tr("Output size required"), self.tr(
-                "The output file doesn't exist. You must set up the output size to create it."))
+    outputFile = Utils.FileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
+                                                  Utils.FileFilter.allRastersFilter(), lastUsedFilter)
+    if outputFile == "":
+        raise ValueError("Void string")
     return outputFile
 
 
@@ -59,27 +47,24 @@ def saveconfig(dlg):
     CONFIG_OBJECT.save()
 
 
-def settingoutput(dlg):
-    filename = QFileDialog.getOpenFileName(dlg, 'Save File', expanduser("~"), 'All (*.*)')
-    if filename:
-        dlg.RasterPath.setText(filename)
+def outputfunction(dlg):
+    filename = get_raster_name(dlg)
+    dlg.RasterPath.setText(filename)
 
 
 def run(dlg):
-    try:
-        outputfile = CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
-        array = []
-        array.append(dlg.inputDEM.toPlainText())
-        array.append(dlg.inputSoilImage.toPlainText())
-        array.append(dlg.inputFieldImage.toPlainText())
-        array.append(dlg.inputPrecipitationImage.toPlainText())
-        array.append(dlg.inputManagementImage.toPlainText())
-        array.append(dlg.inputLandCover.toPlainText())
-        sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], outputfile)
-        open_raster(outputfile)
-        print("Ended")
-    except:
-        raise NotImplemented
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
+    outputfile = dlg.RasterPath.toPlainText()
+    array = []
+    array.append(dlg.inputDEM.toPlainText())
+    array.append(dlg.inputSoilImage.toPlainText())
+    array.append(dlg.inputFieldImage.toPlainText())
+    array.append(dlg.inputPrecipitationImage.toPlainText())
+    array.append(dlg.inputManagementImage.toPlainText())
+    array.append(dlg.inputLandCover.toPlainText())
+    sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], outputfile)
+    open_raster(outputfile)
+    print("Ended")
 
 
 class ButtonSignal(QObject):
@@ -106,7 +91,7 @@ class ButtonSignal(QObject):
         selectfile(self.dlg.inputLandCover)
 
     def clickedoutput(self):
-        settingoutput(self.dlg)
+        outputfunction(self.dlg)
 
     def clickedloadconfig(self):
         openconfig(self.dlg)

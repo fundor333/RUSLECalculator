@@ -55,6 +55,7 @@ class ConfigurationManager:
             self.config.sections()
             self.config.read(self.config[CONFIG_CONFIG]['Config_path'])
             self.config.set(section, config, str(data))
+            return data
         except KeyError:
             self.init_config()
             self.edit_config(section, config, data)
