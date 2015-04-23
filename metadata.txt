@@ -10,7 +10,7 @@
 name=Earh Matrix Elaborator
 qgisMinimumVersion=2.0
 description=Plugin
-version=0.1.2
+version=0.3.0
 author=Matteo Scarpa
 email=matteoscarpa92@gmail.com
 
@@ -24,9 +24,9 @@ email=matteoscarpa92@gmail.com
 # Tags are comma separated with spaces allowed
 tags=
 
-homepage=
-tracker=
-repository=
+homepage=http://fundor333.github.io/EarthMatrixElaborator
+tracker=https://github.com/fundor333/EarthMatrixElaborator/issues
+repository=https://github.com/fundor333/EarthMatrixElaborator
 category=Plugins
 icon=icon.png
 # experimental flag
