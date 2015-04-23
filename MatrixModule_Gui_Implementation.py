@@ -10,6 +10,7 @@ except:
     import ogr
     import osr
 
+import GdalTools_utils as Utils
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog
 
@@ -19,7 +20,7 @@ def selectFile(lineEdit):
 
 
 def openconfig(dlg):
-    CONFIG_OBJECT.open(QFileDialog.getOpenFileName())
+    CONFIG_OBJECT.open(Utils.FileDialog.getSaveFileName)
 
 
 def saveconfig(dlg):
