@@ -1,10 +1,4 @@
-# This file contains metadata for your plugin. Since 
-# version 2.0 of QGIS this is the proper way to supply 
-# information about a plugin. The old method of 
-# embedding metadata in __init__.py will 
-# is no longer supported since version 2.0.
-
-# This file should be included when you package your plugin.# Mandatory items:
+# Mandatory items:
 
 [general]
 name=Earh Matrix Elaborator
@@ -24,13 +18,13 @@ email=matteoscarpa92@gmail.com
 # Tags are comma separated with spaces allowed
 tags=
 
-homepage=http://fundor333.github.io/EarthMatrixElaborator
+homepage=
 tracker=https://github.com/fundor333/EarthMatrixElaborator/issues
 repository=https://github.com/fundor333/EarthMatrixElaborator
 category=Plugins
 icon=icon.png
 # experimental flag
-experimental=False
+experimental=True
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
