@@ -1,4 +1,7 @@
+from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from MatrixModule_lib import open_raster
+import numpy
+from osgeo import gdal
 from osgeo.gdalnumeric import *
 from osgeo.gdalconst import *
 
