@@ -10,7 +10,7 @@
 name=Earh Matrix Elaborator
 qgisMinimumVersion=2.0
 description=Plugin
-version=0.1.2
+version=0.3.0
 author=Matteo Scarpa
 email=matteoscarpa92@gmail.com
 
