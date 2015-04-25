@@ -3,7 +3,7 @@ import configparser
 import os
 
 from qgis.core import QgsMapLayerRegistry, QgsRasterLayer
-from MatrixModule_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
+from RUSLECalculator_resurce import CONFIG_CONFIG, CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, \
     CONFIG_PATH, CONFIG_NAME, CONFIG_DIR
 
 
@@ -73,6 +73,3 @@ def open_raster(filename):
 
 
 CONFIG_OBJECT = ConfigurationManager()
-
-if __name__ == '__main__':
-    CONFIG_OBJECT.save()

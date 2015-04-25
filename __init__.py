@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- MatrixElaborator
+ RUSLECalculator
                                  A QGIS plugin
  Plugin
                              -------------------
@@ -25,12 +25,6 @@
 
 # noinspection PyPep8Naming
 def classFactory(iface):  # pylint: disable=invalid-name
-    """Load MatrixElaborator class from file MatrixElaborator.
+    from .RUSLECalculator import RUSLECalculator
 
-    :param iface: A QGIS interface instance.
-    :type iface: QgsInterface
-    """
-    #
-    from .MatrixModule import MatrixElaborator
-
-    return MatrixElaborator(iface)
+    return RUSLECalculator(iface)

@@ -1,8 +1,8 @@
 from os.path import expanduser
 from qgis._core import QgsRasterLayer
-from MatrixModule_Math import sumsixraster
-from MatrixModule_lib import open_raster, CONFIG_OBJECT
-from MatrixModule_resurce import CONFIG_CONFIG
+from RUSLECalculator_Math import sumsixraster
+from RUSLECalculator_lib import open_raster, CONFIG_OBJECT
+from RUSLECalculator_resurce import CONFIG_CONFIG
 
 import GdalTools_utils as Utils
 

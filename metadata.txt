@@ -1,7 +1,7 @@
 # Mandatory items:
 
 [general]
-name=Earh Matrix Elaborator
+name=RUSLE Calculator
 qgisMinimumVersion=2.0
 description=Plugin
 version=0.3.0

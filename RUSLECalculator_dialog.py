@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 /***************************************************************************
- MatrixElaboratorDialog
+ RUSLECalculatorDialog
                                  A QGIS plugin
  Plugin
                              -------------------
@@ -26,16 +25,11 @@ import os
 from PyQt4 import QtGui, uic
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'MatrixModule_dialog_base.ui'))
+    os.path.dirname(__file__), 'RUSLECalculator_dialog_base.ui'))
 
 
-class MatrixElaboratorDialog(QtGui.QDialog, FORM_CLASS):
+class RUSLECalculatorDialog(QtGui.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
-        super(MatrixElaboratorDialog, self).__init__(parent)
-        # Set up the user interface from Designer.
-        # After setupUI you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
+        super(RUSLECalculatorDialog, self).__init__(parent)
         self.setupUi(self)

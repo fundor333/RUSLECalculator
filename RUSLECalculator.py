@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- MatrixElaborator
+ RUSLE Calculator
                                  A QGIS plugin
  Plugin
                               -------------------
@@ -21,16 +21,16 @@
  ***************************************************************************/
 """
 import resources_rc
-import MatrixModule_dialog
+import RUSLECalculator_dialog
 import os.path
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QObject, SIGNAL
 from PyQt4.QtGui import QAction, QIcon
-from MatrixModule_Gui_Implementation import run, ButtonSignal
-from MatrixModule_dialog import MatrixElaboratorDialog
+from RUSLECalculator_Gui_Implementation import run, ButtonSignal
+from RUSLECalculator_dialog import RUSLECalculatorDialog
 
 
-class MatrixElaborator():
+class RUSLECalculator():
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -47,7 +47,7 @@ class MatrixElaborator():
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(self.plugin_dir, 'i18n', 'MatrixElaborator_{}.qm'.format(locale))
+        locale_path = os.path.join(self.plugin_dir, 'i18n', 'RUSLECalculator_{}.qm'.format(locale))
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -57,14 +57,14 @@ class MatrixElaborator():
                 QCoreApplication.installTranslator(self.translator)
 
         # Create the dialog (after translation) and keep reference
-        self.dlg = MatrixElaboratorDialog()
+        self.dlg = RUSLECalculatorDialog()
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr('&Earh Matrix Elaborator')
+        self.menu = self.tr('&RUSLE Calculator')
 
-        self.toolbar = self.iface.addToolBar('MatrixElaborator')
-        self.toolbar.setObjectName('MatrixElaborator')
+        self.toolbar = self.iface.addToolBar('RUSLECalculator')
+        self.toolbar.setObjectName('RUSLECalculator')
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -79,7 +79,7 @@ class MatrixElaborator():
         :rtype: QString
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('MatrixElaborator', message)
+        return QCoreApplication.translate('RUSLECalculator', message)
 
     def add_action(
             self,
@@ -156,14 +156,14 @@ class MatrixElaborator():
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-        icon_path = ':/plugins/MatrixElaborator/icon.png'
+        icon_path = ':/plugins/RUSLECalculator/icon.png'
         self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(self.tr('&Earh Matrix Elaborator'), action)
+            self.iface.removePluginMenu(self.tr('&RUSLE Calculator'), action)
             self.iface.removeToolBarIcon(action)
 
 

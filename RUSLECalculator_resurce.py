@@ -1,6 +1,6 @@
 from os.path import expanduser
 
-PLUGINNAME = 'MatrixElaborator'
+PLUGINNAME = 'RUSLECalculator'
 
 FILEPATH = expanduser("~") + '/QGis/' + PLUGINNAME + "/"
 OUTPUT_FORMAT = ".asc"

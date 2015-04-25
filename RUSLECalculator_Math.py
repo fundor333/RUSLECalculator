@@ -1,4 +1,4 @@
-from MatrixModule_lib import open_raster
+from RUSLECalculator_lib import open_raster
 from osgeo.gdalnumeric import *
 from osgeo.gdalconst import *
 
@@ -19,7 +19,6 @@ def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)
-    print (path_out)
     dsOut = driver.Create(path_out, ds[0].RasterXSize, ds[0].RasterYSize, 1, band[0].DataType)
     CopyDatasetInfo(ds[0], dsOut)
     bandOut = dsOut.GetRasterBand(1)
