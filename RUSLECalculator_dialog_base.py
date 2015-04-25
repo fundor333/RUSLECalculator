@@ -179,7 +179,7 @@ class Ui_RUSLECalculatorDialogBase(object):
 
     def retranslateUi(self, RUSLECalculatorDialogBase):
         RUSLECalculatorDialogBase.setWindowTitle(
-            _translate("RUSLECalculatorDialogBase", "Earh Matrix Elaborator", None))
+            _translate("RUSLECalculatorDialogBase", "RUSLECalculator", None))
         self.groupBox_7.setTitle(_translate("RUSLECalculatorDialogBase", "Input Raster", None))
         self.label.setText(_translate("RUSLECalculatorDialogBase", "DEM Image", None))
         self.DEM.setText(_translate("RUSLECalculatorDialogBase", "...", None))
