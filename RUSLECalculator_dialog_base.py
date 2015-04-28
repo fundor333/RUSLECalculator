@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
 # Created: Wed Apr 22 13:57:04 2015
-#      by: PyQt4 UI code generator 4.11.2
+# by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,6 +17,7 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
@@ -31,7 +32,7 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.button_box = QtGui.QDialogButtonBox(RUSLECalculatorDialogBase)
         self.button_box.setGeometry(QtCore.QRect(470, 540, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox_7 = QtGui.QGroupBox(RUSLECalculatorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(10, 10, 641, 271))

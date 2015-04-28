@@ -561,7 +561,7 @@ class GdalConfig:
                     # XXX add check for SDTS; in that case we want (*CATD.DDF)
 
                     # TODO fix and test
-                    #glob.append( QString("*." + extensions.replace("/", " *.")).split(" "))
+                    # glob.append( QString("*." + extensions.replace("/", " *.")).split(" "))
                     glob.append(string.split("*." + string.replace(extensions, "/", " *."), sep=(" ")))
 
                     # Add only the first JP2 driver found to the filter list (it's the one GDAL uses)

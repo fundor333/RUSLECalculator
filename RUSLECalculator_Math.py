@@ -16,6 +16,8 @@ def rastermath(dem, fieldimage, k, r, p, c, path_out, ras_type="GTiff"):
         band[i] = ds[i].GetRasterBand(1)
         data[i] = BandReadAsArray(band[i])
 
+    # ls = calc_ls()
+
     dataOut = numpy.sqrt(data[2] * data[3] * data[4] * data[5])
 
     # Write the out file
@@ -26,5 +28,5 @@ def rastermath(dem, fieldimage, k, r, p, c, path_out, ras_type="GTiff"):
     BandWriteArray(bandOut, dataOut)
 
 
-def calcls(flowacc, cell_size, pend):
-    return ((flowacc * cell_size / 22.13) ^ 0.4) * (-1.5 + 17 / 1 + (math.e ^ (2.3 - 6.1 * math.sin(pend))))
+def calc_ls(flowacc, cell_size, pend):
+    return ((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
