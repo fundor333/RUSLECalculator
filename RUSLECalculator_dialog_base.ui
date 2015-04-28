@@ -128,7 +128,7 @@
       <string>...</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="inputSoilImage">
+    <widget class="QTextEdit" name="inputK">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -226,7 +226,7 @@
       <string>...</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="inputPrecipitationImage">
+    <widget class="QTextEdit" name="inputR">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -275,7 +275,7 @@
       <string>...</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="inputManagementImage">
+    <widget class="QTextEdit" name="inputP">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -324,7 +324,7 @@
       <string>...</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="inputLandCover">
+    <widget class="QTextEdit" name="inputC">
      <property name="geometry">
       <rect>
        <x>130</x>

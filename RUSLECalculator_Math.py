@@ -3,7 +3,7 @@ from osgeo.gdalnumeric import *
 from osgeo.gdalconst import *
 
 
-def sumsixraster(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
+def rastermath(rl1, rl2, rl3, rl4, rl5, rl6, path_out, ras_type="GTiff"):
     rl = rl1, rl2, rl3, rl4, rl5, rl6
     ds = range(0, 6)
     band = range(0, 6)

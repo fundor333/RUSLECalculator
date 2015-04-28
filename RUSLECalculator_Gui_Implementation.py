@@ -1,6 +1,6 @@
 from os.path import expanduser
 from qgis._core import QgsRasterLayer
-from RUSLECalculator_Math import sumsixraster
+from RUSLECalculator_Math import rastermath
 from RUSLECalculator_lib import open_raster, CONFIG_OBJECT
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
@@ -54,14 +54,8 @@ def outputfunction(dlg):
 def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
-    array = []
-    array.append(dlg.inputDEM.toPlainText())
-    array.append(dlg.inputSoilImage.toPlainText())
-    array.append(dlg.inputFieldImage.toPlainText())
-    array.append(dlg.inputPrecipitationImage.toPlainText())
-    array.append(dlg.inputManagementImage.toPlainText())
-    array.append(dlg.inputLandCover.toPlainText())
-    sumsixraster(array[0], array[1], array[2], array[3], array[4], array[5], outputfile)
+    rastermath(dlg.inputDEM.toPlainText(), dlg.inputFieldImage.toPlainText(), dlg.inputK.toPlainText(),
+               dlg.inputR.toPlainText(), dlg.inputP.toPlainText(), dlg.inputC.toPlainText(), outputfile)
     open_raster(outputfile)
     print("Ended")
 
@@ -75,19 +69,19 @@ class ButtonSignal(QObject):
         selectfile(self.dlg.inputDEM)
 
     def clickedme2(self):
-        selectfile(self.dlg.inputSoilImage)
+        selectfile(self.dlg.inputK)
 
     def clickedme3(self):
         selectfile(self.dlg.inputFieldImage)
 
     def clickedme4(self):
-        selectfile(self.dlg.inputPrecipitationImage)
+        selectfile(self.dlg.inputR)
 
     def clickedme5(self):
-        selectfile(self.dlg.inputManagementImage)
+        selectfile(self.dlg.inputP)
 
     def clickedme6(self):
-        selectfile(self.dlg.inputLandCover)
+        selectfile(self.dlg.inputC)
 
     def clickedoutput(self):
         outputfunction(self.dlg)
