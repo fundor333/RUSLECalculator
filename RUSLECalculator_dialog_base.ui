@@ -371,7 +371,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="Flowacc">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -384,7 +384,7 @@
      <string>Maximum Slope Lenght</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="MaxSlopeLenght">
+   <widget class="QDoubleSpinBox" name="InputFlowacc">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -456,10 +456,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Smallest patch size</string>
+     <string>Cell Size</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="SmallestPatchSize">
+   <widget class="QDoubleSpinBox" name="InputCellSize">
     <property name="geometry">
      <rect>
       <x>490</x>

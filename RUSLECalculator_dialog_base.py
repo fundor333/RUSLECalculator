@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
-# Created: Wed Apr 22 13:57:04 2015
+# Created: Wed Apr 29 08:50:13 2015
 # by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,24 +17,22 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
-
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-
-class Ui_RUSLECalculatorDialogBase(object):
-    def setupUi(self, RUSLECalculatorDialogBase):
-        RUSLECalculatorDialogBase.setObjectName(_fromUtf8("RUSLECalculatorDialogBase"))
-        RUSLECalculatorDialogBase.resize(670, 600)
-        self.button_box = QtGui.QDialogButtonBox(RUSLECalculatorDialogBase)
+class Ui_MatrixElaboratorDialogBase(object):
+    def setupUi(self, MatrixElaboratorDialogBase):
+        MatrixElaboratorDialogBase.setObjectName(_fromUtf8("MatrixElaboratorDialogBase"))
+        MatrixElaboratorDialogBase.resize(670, 600)
+        self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
         self.button_box.setGeometry(QtCore.QRect(470, 540, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
         self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
-        self.groupBox_7 = QtGui.QGroupBox(RUSLECalculatorDialogBase)
+        self.groupBox_7 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(10, 10, 641, 271))
         self.groupBox_7.setObjectName(_fromUtf8("groupBox_7"))
         self.groupBox = QtGui.QGroupBox(self.groupBox_7)
@@ -115,7 +113,7 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.inputC = QtGui.QTextEdit(self.groupBox_5)
         self.inputC.setGeometry(QtCore.QRect(130, 0, 451, 31))
         self.inputC.setObjectName(_fromUtf8("inputC"))
-        self.groupBox_8 = QtGui.QGroupBox(RUSLECalculatorDialogBase)
+        self.groupBox_8 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_8.setGeometry(QtCore.QRect(20, 290, 621, 141))
         self.groupBox_8.setObjectName(_fromUtf8("groupBox_8"))
         self.label_7 = QtGui.QLabel(self.groupBox_8)
@@ -124,12 +122,12 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.SlopeThreshold = QtGui.QDoubleSpinBox(self.groupBox_8)
         self.SlopeThreshold.setGeometry(QtCore.QRect(190, 20, 62, 31))
         self.SlopeThreshold.setObjectName(_fromUtf8("SlopeThreshold"))
-        self.label_8 = QtGui.QLabel(self.groupBox_8)
-        self.label_8.setGeometry(QtCore.QRect(10, 70, 171, 21))
-        self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.MaxSlopeLenght = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.MaxSlopeLenght.setGeometry(QtCore.QRect(190, 60, 62, 31))
-        self.MaxSlopeLenght.setObjectName(_fromUtf8("MaxSlopeLenght"))
+        self.Flowacc = QtGui.QLabel(self.groupBox_8)
+        self.Flowacc.setGeometry(QtCore.QRect(10, 70, 171, 21))
+        self.Flowacc.setObjectName(_fromUtf8("Flowacc"))
+        self.InputFlowacc = QtGui.QDoubleSpinBox(self.groupBox_8)
+        self.InputFlowacc.setGeometry(QtCore.QRect(190, 60, 62, 31))
+        self.InputFlowacc.setObjectName(_fromUtf8("InputFlowacc"))
         self.checkBox = QtGui.QCheckBox(self.groupBox_8)
         self.checkBox.setGeometry(QtCore.QRect(360, 110, 151, 31))
         self.checkBox.setChecked(True)
@@ -146,10 +144,10 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.label_11 = QtGui.QLabel(self.groupBox_8)
         self.label_11.setGeometry(QtCore.QRect(300, 70, 181, 16))
         self.label_11.setObjectName(_fromUtf8("label_11"))
-        self.SmallestPatchSize = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.SmallestPatchSize.setGeometry(QtCore.QRect(490, 60, 62, 31))
-        self.SmallestPatchSize.setObjectName(_fromUtf8("SmallestPatchSize"))
-        self.groupBox_9 = QtGui.QGroupBox(RUSLECalculatorDialogBase)
+        self.InputCellSize = QtGui.QDoubleSpinBox(self.groupBox_8)
+        self.InputCellSize.setGeometry(QtCore.QRect(490, 60, 62, 31))
+        self.InputCellSize.setObjectName(_fromUtf8("InputCellSize"))
+        self.groupBox_9 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_9.setGeometry(QtCore.QRect(20, 440, 631, 71))
         self.groupBox_9.setObjectName(_fromUtf8("groupBox_9"))
         self.label_12 = QtGui.QLabel(self.groupBox_9)
@@ -161,7 +159,7 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.RasterPathButton = QtGui.QPushButton(self.groupBox_9)
         self.RasterPathButton.setGeometry(QtCore.QRect(580, 30, 51, 32))
         self.RasterPathButton.setObjectName(_fromUtf8("RasterPathButton"))
-        self.groupBox_10 = QtGui.QGroupBox(RUSLECalculatorDialogBase)
+        self.groupBox_10 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_10.setGeometry(QtCore.QRect(20, 520, 271, 61))
         self.groupBox_10.setObjectName(_fromUtf8("groupBox_10"))
         self.pushButton = QtGui.QPushButton(self.groupBox_10)
@@ -171,40 +169,40 @@ class Ui_RUSLECalculatorDialogBase(object):
         self.pushButton_2.setGeometry(QtCore.QRect(150, 20, 110, 32))
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
 
-        self.retranslateUi(RUSLECalculatorDialogBase)
+        self.retranslateUi(MatrixElaboratorDialogBase)
         QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
-                               RUSLECalculatorDialogBase.accept)
+                               MatrixElaboratorDialogBase.accept)
         QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")),
-                               RUSLECalculatorDialogBase.reject)
-        QtCore.QMetaObject.connectSlotsByName(RUSLECalculatorDialogBase)
+                               MatrixElaboratorDialogBase.reject)
+        QtCore.QMetaObject.connectSlotsByName(MatrixElaboratorDialogBase)
 
-    def retranslateUi(self, RUSLECalculatorDialogBase):
-        RUSLECalculatorDialogBase.setWindowTitle(
-            _translate("RUSLECalculatorDialogBase", "RUSLECalculator", None))
-        self.groupBox_7.setTitle(_translate("RUSLECalculatorDialogBase", "Input Raster", None))
-        self.label.setText(_translate("RUSLECalculatorDialogBase", "DEM Image", None))
-        self.DEM.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.label_3.setText(_translate("RUSLECalculatorDialogBase", "Soil Image", None))
-        self.SoilImage.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.label_2.setText(_translate("RUSLECalculatorDialogBase", "Field image", None))
-        self.FieldImage.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.label_4.setText(_translate("RUSLECalculatorDialogBase", "Precipitation Image", None))
-        self.PrecipitationImage.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.label_6.setText(_translate("RUSLECalculatorDialogBase", "Management image", None))
-        self.ManagementImage.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.label_5.setText(_translate("RUSLECalculatorDialogBase", "Land-cover image", None))
-        self.LandCover.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.groupBox_8.setTitle(_translate("RUSLECalculatorDialogBase", "Control Specification", None))
-        self.label_7.setText(_translate("RUSLECalculatorDialogBase", "Slope Threshold", None))
-        self.label_8.setText(_translate("RUSLECalculatorDialogBase", "Maximum Slope Lenght", None))
-        self.checkBox.setText(_translate("RUSLECalculatorDialogBase", "All in Metric System", None))
-        self.checkBox_3.setText(_translate("RUSLECalculatorDialogBase", "Average soil factory patcher", None))
-        self.label_10.setText(_translate("RUSLECalculatorDialogBase", "Aspect Threshold", None))
-        self.label_11.setText(_translate("RUSLECalculatorDialogBase", "Smallest patch size", None))
-        self.groupBox_9.setTitle(_translate("RUSLECalculatorDialogBase", "Output Raster", None))
-        self.label_12.setText(_translate("RUSLECalculatorDialogBase", "Raster Path", None))
-        self.RasterPathButton.setText(_translate("RUSLECalculatorDialogBase", "...", None))
-        self.groupBox_10.setTitle(_translate("RUSLECalculatorDialogBase", "Config", None))
-        self.pushButton.setText(_translate("RUSLECalculatorDialogBase", "Load", None))
-        self.pushButton_2.setText(_translate("RUSLECalculatorDialogBase", "Save", None))
+    def retranslateUi(self, MatrixElaboratorDialogBase):
+        MatrixElaboratorDialogBase.setWindowTitle(
+            _translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
+        self.groupBox_7.setTitle(_translate("MatrixElaboratorDialogBase", "Input Raster", None))
+        self.label.setText(_translate("MatrixElaboratorDialogBase", "DEM Image", None))
+        self.DEM.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.label_3.setText(_translate("MatrixElaboratorDialogBase", "Soil Image", None))
+        self.SoilImage.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.label_2.setText(_translate("MatrixElaboratorDialogBase", "Field image", None))
+        self.FieldImage.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.label_4.setText(_translate("MatrixElaboratorDialogBase", "Precipitation Image", None))
+        self.PrecipitationImage.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.label_6.setText(_translate("MatrixElaboratorDialogBase", "Management image", None))
+        self.ManagementImage.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.label_5.setText(_translate("MatrixElaboratorDialogBase", "Land-cover image", None))
+        self.LandCover.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.groupBox_8.setTitle(_translate("MatrixElaboratorDialogBase", "Control Specification", None))
+        self.label_7.setText(_translate("MatrixElaboratorDialogBase", "Slope Threshold", None))
+        self.Flowacc.setText(_translate("MatrixElaboratorDialogBase", "Maximum Slope Lenght", None))
+        self.checkBox.setText(_translate("MatrixElaboratorDialogBase", "All in Metric System", None))
+        self.checkBox_3.setText(_translate("MatrixElaboratorDialogBase", "Average soil factory patcher", None))
+        self.label_10.setText(_translate("MatrixElaboratorDialogBase", "Aspect Threshold", None))
+        self.label_11.setText(_translate("MatrixElaboratorDialogBase", "Cell Size", None))
+        self.groupBox_9.setTitle(_translate("MatrixElaboratorDialogBase", "Output Raster", None))
+        self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
+        self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.groupBox_10.setTitle(_translate("MatrixElaboratorDialogBase", "Config", None))
+        self.pushButton.setText(_translate("MatrixElaboratorDialogBase", "Load", None))
+        self.pushButton_2.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
 

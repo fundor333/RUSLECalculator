@@ -4,7 +4,7 @@ from osgeo.gdalconst import *
 import math
 
 
-def rastermath(dem, fieldimage, k, r, p, c, path_out, ras_type="GTiff"):
+def rastermath(dem, fieldimage, k, r, p, c, path_out, flowacc, cell_size, pend, ras_type="GTiff"):
     rl = dem, fieldimage, k, r, p, c
     ds = range(0, 6)
     band = range(0, 6)
@@ -16,9 +16,9 @@ def rastermath(dem, fieldimage, k, r, p, c, path_out, ras_type="GTiff"):
         band[i] = ds[i].GetRasterBand(1)
         data[i] = BandReadAsArray(band[i])
 
-    # ls = calc_ls()
+    ls = calc_ls(flowacc, cell_size, pend)
 
-    dataOut = numpy.sqrt(data[2] * data[3] * data[4] * data[5])
+    dataOut = numpy.sqrt(data[2] * data[3] * data[4] * data[5] * ls)
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)

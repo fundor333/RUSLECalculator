@@ -55,7 +55,9 @@ def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
     rastermath(dlg.inputDEM.toPlainText(), dlg.inputFieldImage.toPlainText(), dlg.inputK.toPlainText(),
-               dlg.inputR.toPlainText(), dlg.inputP.toPlainText(), dlg.inputC.toPlainText(), outputfile)
+        dlg.inputR.toPlainText(), dlg.inputP.toPlainText(), dlg.inputC.toPlainText(), outputfile,
+        dlg.InputFlowacc.value(),
+        dlg.InputCellSize.value(), dlg.AspectThreshold.value())
     open_raster(outputfile)
     print("Ended")
 
