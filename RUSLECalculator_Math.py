@@ -39,7 +39,7 @@ def rastermath(dem, fieldimage, k, r, p, c, path_out, flowacc, cell_size, pend, 
 
     for i in range(2, 6):
         open_raster(rl[i])
-        ds[i] = gdal.Open(rl[1], GA_ReadOnly)
+        ds[i] = gdal.Open(rl[2], GA_ReadOnly)
         band[i] = ds[i].GetRasterBand(1)
         data[i] = BandReadAsArray(band[i])
 
