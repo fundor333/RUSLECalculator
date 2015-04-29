@@ -1,12 +1,12 @@
-#from RUSLECalculator_Exception import NoDem, NoFieldImage
+from RUSLECalculator_Exception import RasterError  # NoDem, NoFieldImage
 from RUSLECalculator_lib import open_raster
 from osgeo.gdalnumeric import *
 from osgeo.gdalconst import *
 import math
 
 
-def rastermath(dem, fieldimage, k, r, p, c, path_out, flowacc, cell_size, pend, ras_type="GTiff"):
-    rl = dem, fieldimage, k, r, p, c
+def rastermath(dem, fieldimage, k, r, ls, c, p, path_out, flowacc, cell_size, pend, ras_type="GTiff"):
+    rl = dem, fieldimage, k, r, ls, c
     ds = range(0, 6)
     band = range(0, 6)
     data = range(0, 6)
@@ -38,14 +38,15 @@ def rastermath(dem, fieldimage, k, r, p, c, path_out, flowacc, cell_size, pend, 
 
 
     for i in range(2, 6):
-        open_raster(rl[i])
-        ds[i] = gdal.Open(rl[2], GA_ReadOnly)
-        band[i] = ds[i].GetRasterBand(1)
-        data[i] = BandReadAsArray(band[i])
+        try:
+            open_raster(rl[i])
+            ds[i] = gdal.Open(rl[2], GA_ReadOnly)
+            band[i] = ds[i].GetRasterBand(1)
+            data[i] = BandReadAsArray(band[i])
+        except Exception:
+            raise RasterError("Error with the raster number " + str(i - 1))
 
-    ls = calc_ls(flowacc, cell_size, pend)
-
-    dataOut = numpy.sqrt(data[2] * data[3] * data[4] * data[5] * ls)
+    dataOut = numpy.sqrt(data[2] * data[3] * data[4] * data[5] * p)
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)

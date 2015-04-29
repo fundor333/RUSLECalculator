@@ -7,3 +7,8 @@ class NoDem(Exception):
 class NoFieldImage(Exception):
     def __init__(self, message):
         self.message=message
+
+
+class RasterError(Exception):
+    def __init__(self, message):
+        self.message = message
