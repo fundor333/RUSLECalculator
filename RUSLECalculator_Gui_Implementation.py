@@ -1,7 +1,5 @@
-from os.path import expanduser
-from qgis._core import QgsRasterLayer
 from RUSLECalculator_Math import rastermath
-from RUSLECalculator_lib import open_raster, CONFIG_OBJECT
+from RUSLECalculator_lib import open_raster, CONFIG_OBJECT, name_opener
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
 import GdalTools_utils as Utils
@@ -54,13 +52,31 @@ def outputfunction(dlg):
 def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
-    rastermath(dlg.inputDEM.toPlainText(), dlg.inputFieldImage.toPlainText(), dlg.inputK.toPlainText(),
-        dlg.inputR.toPlainText(), dlg.inputP.toPlainText(), dlg.inputC.toPlainText(), dlg.inputPp.data(), outputfile,
-        dlg.InputFlowacc.value(),
-        dlg.InputCellSize.value(), dlg.AspectThreshold.value(), "Tif")
+    runhelper(dlg)
     open_raster(outputfile)
     print("Ended")
 
+
+def runhelper(dlg):
+    dem = dlg.inputDEM.toPlainText()
+    fieldimage = dlg.inputFieldImage.toPlainText()
+    k = dlg.inputK.toPlainText()
+    r = dlg.inputR.toPlainText()
+    ls = dlg.inputLS.toPlainText()
+    c = dlg.inputC.toPlainText()
+    p = makep(dlg.inputP.data())
+
+    ds = range(0, 6)
+    band = range(0, 6)
+    data = {}
+
+    ds[k] = name_opener(k)
+    ds[r] = name_opener(r)
+    ds[ls] = name_opener(ls)
+    ds[c] = name_opener(c)
+
+    k.RasterXSize, k.RasterYSize, 1, k.GetRasterBand(1).DataType
+    rastermath()
 
 class ButtonSignal(QObject):
     def __init__(self, dlg):

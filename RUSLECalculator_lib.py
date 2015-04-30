@@ -1,3 +1,6 @@
+import gdal
+from osgeo.gdal_array import BandReadAsArray
+from osgeo.gdalconst import GA_ReadOnly
 from PyQt4.QtCore import QFileInfo
 import configparser
 import os
@@ -70,6 +73,14 @@ def open_raster(filename):
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         print("Layer loaded")
     return basename, r_layer
+
+
+def name_opener(element):
+    open_raster(element)
+    ds = gdal.Open(element, GA_ReadOnly)
+    band = ds.GetRasterBand(1)
+    data = BandReadAsArray(band)
+    return data
 
 
 CONFIG_OBJECT = ConfigurationManager()
