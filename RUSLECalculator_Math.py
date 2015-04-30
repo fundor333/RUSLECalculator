@@ -5,7 +5,7 @@ from osgeo.gdalconst import *
 import math
 
 
-def rastermath(dem, fieldimage, k, r, ls, c, p, path_out, flowacc, cell_size, pend, ras_type="GTiff"):
+def rastermath(dem, fieldimage, k, r, ls, c, p, path_out, ras_type="GTiff"):
     rl = dem, fieldimage, k, r, ls, c
     ds = range(0, 6)
     band = range(0, 6)
@@ -18,11 +18,10 @@ def rastermath(dem, fieldimage, k, r, ls, c, p, path_out, flowacc, cell_size, pe
         data[0] = BandReadAsArray(band[0])
     except AttributeError:
         print("No dem find")
-        #raise NoDem("No dem find")
-        ds[0]= None
+        # raise NoDem("No dem find")
+        ds[0] = None
         band[0] = None
         data[0] = None
-
 
     try:
         open_raster(rl[1])
@@ -31,11 +30,10 @@ def rastermath(dem, fieldimage, k, r, ls, c, p, path_out, flowacc, cell_size, pe
         data[1] = BandReadAsArray(band[1])
     except AttributeError:
         print("No field image")
-        #raise NoFieldImage("No field image")
-        ds[1]= None
+        # raise NoFieldImage("No field image")
+        ds[1] = None
         band[1] = None
         data[1] = None
-
 
     for i in range(2, 6):
         try:
