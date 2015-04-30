@@ -1,4 +1,4 @@
-from RUSLECalculator_Math import rastermath
+from RUSLECalculator_Math import rastermath, calc_p
 from RUSLECalculator_lib import open_raster, CONFIG_OBJECT, name_opener
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
@@ -19,7 +19,7 @@ def selectfile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
 
 
-def openconfig(dlg):
+def openconfig():
     CONFIG_OBJECT.open(QFileDialog.getOpenFileName())
 
 
@@ -52,31 +52,37 @@ def outputfunction(dlg):
 def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
-    runhelper(dlg)
+    runhelper(dlg, outputfile)
     open_raster(outputfile)
     print("Ended")
 
 
-def runhelper(dlg):
+def runhelper(dlg, output_file):
     dem = dlg.inputDEM.toPlainText()
     fieldimage = dlg.inputFieldImage.toPlainText()
     k = dlg.inputK.toPlainText()
     r = dlg.inputR.toPlainText()
     ls = dlg.inputLS.toPlainText()
     c = dlg.inputC.toPlainText()
-    p = makep(dlg.inputP.data())
+    p = dlg.inputP.toPlainText()
 
     ds = range(0, 6)
     band = range(0, 6)
     data = {}
+    rastersize = k.RasterXSize, k.RasterYSize
+    datatype = k.GetRasterBand(1).DataType
 
-    ds[k] = name_opener(k)
-    ds[r] = name_opener(r)
-    ds[ls] = name_opener(ls)
-    ds[c] = name_opener(c)
+    # TODO: impostare il try catch per la generazione dei singoli raster
+    ds['k'] = name_opener(k)
+    ds['r'] = name_opener(r)
+    ds['ls'] = name_opener(ls)
+    ds['c'] = name_opener(c)
+    ds['dem'] = name_opener(dem)
+    ds['p'] = name_opener(p)
+    ds['fieldimage'] = fieldimage
 
-    k.RasterXSize, k.RasterYSize, 1, k.GetRasterBand(1).DataType
-    rastermath()
+    rastermath(ds['dem'], ds['fieldimage'], ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], rastersize[0], rastersize[1],
+               datatype, output_file)
 
 class ButtonSignal(QObject):
     def __init__(self, dlg):
@@ -105,7 +111,7 @@ class ButtonSignal(QObject):
         outputfunction(self.dlg)
 
     def clickedloadconfig(self):
-        openconfig(self.dlg)
+        openconfig()
 
     def clickedsaveconfig(self):
         saveconfig(self.dlg)
