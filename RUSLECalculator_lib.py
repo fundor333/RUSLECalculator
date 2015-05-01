@@ -75,7 +75,7 @@ def open_raster(filename):
     return basename, r_layer
 
 
-def name_opener(element):
+def input_open(element):
     open_raster(element)
     ds = gdal.Open(element, GA_ReadOnly)
     band = ds.GetRasterBand(1)

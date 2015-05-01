@@ -1,5 +1,5 @@
-from RUSLECalculator_Math import rastermath, calc_p
-from RUSLECalculator_lib import open_raster, CONFIG_OBJECT, name_opener
+from RUSLECalculator_Math import rastermath, calc_p, calc_ls
+from RUSLECalculator_lib import open_raster, CONFIG_OBJECT, input_open
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
 import GdalTools_utils as Utils
@@ -64,24 +64,34 @@ def runhelper(dlg, output_file):
     r = dlg.inputR.toPlainText()
     ls = dlg.inputLS.toPlainText()
     c = dlg.inputC.toPlainText()
-    try:
-        p = dlg.inputP.toPlainText()
-    except Exception:
-        p = None
+    p = dlg.inputP.toPlainText()
+
 
     ds = range(0, 6)
-    band = range(0, 6)
-    data = {}
     rastersize = k.RasterXSize, k.RasterYSize
     datatype = k.GetRasterBand(1).DataType
 
     # TODO: impostare il try catch per la generazione dei singoli raster
-    ds['k'] = name_opener(k)
-    ds['r'] = name_opener(r)
-    ds['ls'] = name_opener(ls)
-    ds['c'] = name_opener(c)
-    ds['dem'] = name_opener(dem)
-    ds['p'] = name_opener(p)
+
+    ds['k'] = input_open(k)
+
+    ds['r'] = input_open(r)
+
+    try:
+        ds['ls'] = input_open(ls)
+    except Exception:
+        # ds['ls'] = calc_ls(flowacc, cell_size, pend)
+        raise NotImplemented
+
+    ds['c'] = input_open(c)
+
+    ds['dem'] = input_open(dem)
+
+    try:
+        ds['p'] = input_open(p)
+    except Exception:
+        ds['p'] = None
+
     ds['fieldimage'] = fieldimage
 
     rastermath(ds['dem'], ds['fieldimage'], ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], rastersize[0], rastersize[1],

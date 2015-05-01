@@ -1,7 +1,4 @@
-from RUSLECalculator_Exception import RasterError  # NoDem, NoFieldImage
-from RUSLECalculator_lib import open_raster
 from osgeo.gdalnumeric import *
-from osgeo.gdalconst import *
 import math
 
 
@@ -20,4 +17,8 @@ def rastermath(dem, fieldimage, k, r, ls, c, p, rasterxsize, rasterysize, dataty
 
 
 def calc_ls(flowacc, cell_size, pend):
-    return ((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
+    return numpy.sqrt((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
+
+
+def clanc_r(dem):
+    return numpy.sqrt((dem < 600) * 2768.8196 + (dem >= 600) * 5509.1530)
