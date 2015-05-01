@@ -64,7 +64,10 @@ def runhelper(dlg, output_file):
     r = dlg.inputR.toPlainText()
     ls = dlg.inputLS.toPlainText()
     c = dlg.inputC.toPlainText()
-    p = dlg.inputP.toPlainText()
+    try:
+        p = dlg.inputP.toPlainText()
+    except Exception:
+        p = None
 
     ds = range(0, 6)
     band = range(0, 6)
