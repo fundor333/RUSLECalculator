@@ -26,6 +26,7 @@ from qgis.utils import iface
 from PyQt4.QtCore import QFileInfo
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
+from RUSLECalculator_Exception import RError
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
@@ -49,17 +50,19 @@ def calc_ls(flowacc, cell_size, pend):
     return numpy.sqrt((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
 
 
-def calc_r(dem):
+def calc_r(dem, fileout, type_file):
     activeLayer = iface.activeLayer()
     input = QgsRasterCalculatorEntry()
     input.ref = dem[2]
     input.raster = dem[1]
     input.bandNumber = 1
-    calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530", 'D:\outputfile.tif',
-                               'GTiff', activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
+    calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530", fileout, type_file,
+                               activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
 
     calc.processCalculation()
-    return calc
+    if calc == 1:
+        return checker(fileout)
+    raise RError
 
 
 def calc_c(pendenze):
@@ -83,3 +86,11 @@ def input_open(element):
     band = ds.GetRasterBand(1)
     data = BandReadAsArray(band)
     return data, basename, r_layer
+
+
+def checker(element):
+    open_raster(element)
+    ds = gdal.Open(element, GA_ReadOnly)
+    band = ds.GetRasterBand(1)
+    data = BandReadAsArray(band)
+    return data
