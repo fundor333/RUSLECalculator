@@ -1,5 +1,5 @@
-from RUSLECalculator_Math import rastermath, calc_p, calc_ls
-from RUSLECalculator_lib import open_raster, CONFIG_OBJECT, input_open
+from RUSLECalculator_config import saveconfig, CONFIG_OBJECT
+from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
 import GdalTools_utils as Utils
@@ -32,18 +32,6 @@ def get_raster_name(dlg):
     return outputFile
 
 
-def saveconfig(dlg):
-    string_path = get_raster_name(dlg)
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'aspect_threshold', dlg.AspectThreshold.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_metric', dlg.checkBox.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'average_soil_factory_patcher', dlg.checkBox_3.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'slope_threhold', dlg.SlopeThreshold.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'smallest_patch_size', dlg.SmallestPatchSize.value())
-    CONFIG_OBJECT.save()
-
-
 def outputfunction(dlg):
     filename = get_raster_name(dlg)
     dlg.RasterPath.setText(filename)
@@ -52,12 +40,12 @@ def outputfunction(dlg):
 def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
-    runhelper(dlg, outputfile)
+    runhelper(dlg)
     open_raster(outputfile)
     print("Ended")
 
 
-def runhelper(dlg, output_file):
+def runhelper(dlg):
     dem = dlg.inputDEM.toPlainText()
     fieldimage = dlg.inputFieldImage.toPlainText()
     k = dlg.inputK.toPlainText()
@@ -71,11 +59,12 @@ def runhelper(dlg, output_file):
     rastersize = k.RasterXSize, k.RasterYSize
     datatype = k.GetRasterBand(1).DataType
 
-    # TODO: impostare il try catch per la generazione dei singoli raster
-
     ds['k'] = input_open(k)
 
-    ds['r'] = input_open(r)
+    try:
+        ds['r'] = input_open(r)
+    except Exception:
+        ds['r'] = calc_r(input_open(dem))
 
     try:
         ds['ls'] = input_open(ls)
@@ -85,8 +74,6 @@ def runhelper(dlg, output_file):
 
     ds['c'] = input_open(c)
 
-    ds['dem'] = input_open(dem)
-
     try:
         ds['p'] = input_open(p)
     except Exception:
@@ -94,8 +81,7 @@ def runhelper(dlg, output_file):
 
     ds['fieldimage'] = fieldimage
 
-    rastermath(ds['dem'], ds['fieldimage'], ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], rastersize[0], rastersize[1],
-               datatype, output_file)
+    rastermath(ds['k'][0], ds['r'][0], ds['ls'][0], ds['c'][0], ds['p'][0], rastersize[0], rastersize[1], datatype)
 
 class ButtonSignal(QObject):
     def __init__(self, dlg):
