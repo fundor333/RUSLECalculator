@@ -24,8 +24,7 @@ import os
 
 import configparser
 
-from RUSLECalculator_resurce import CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, CONFIG_CONFIG, \
-    CONFIG_PATH, CONFIG_NAME, CONFIG_DIR
+from RUSLECalculator_resurce import *
 
 
 class ConfigurationManager:
@@ -40,7 +39,7 @@ class ConfigurationManager:
     def open(self, path):
         self.config.read(path)
 
-    # TODO bisogna sistemare in base alla nuova gui e alle nuove necessità
+    # TODO bisogna sistemare in base alla nuova gui e alle nuove necessita
     def init_config(self):
         self.config = configparser.ConfigParser()
         self.config.sections()
@@ -52,8 +51,9 @@ class ConfigurationManager:
                                        'Smallest_patch_size': '0'}
         self.config[OUTPUT_CONFIG] = {'Output_directory': FILEPATH,
                                       'Output_file_name': OUTPUT_NAME,
-                                      'Output_file_type': OUTPUT_FORMAT}
-        self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_PATH,
+                                      'Output_file_type': OUTPUT_FORMAT,
+                                      'Output_temp': CONFIG_DIR + OUTPUT_TEMP}
+        self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_DIR + CONFIG_NAME,
                                       'Config_file_name': CONFIG_NAME,
                                       'Config_dir': CONFIG_DIR}
 
