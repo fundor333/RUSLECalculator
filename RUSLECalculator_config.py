@@ -1,11 +1,30 @@
+"""
+/***************************************************************************
+ RUSLECalculator_config
+                                 A QGIS plugin
+ Plugin
+                             -------------------
+        begin                : 2015-03-12
+        git sha              : $Format:%H$
+        copyright            : (C) 2015 by Matteo Scarpa
+        email                : matteoscarpa92@gmail.com
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+
 import os
 import configparser
 from RUSLECalculator_Gui_Implementation import get_raster_name
 from RUSLECalculator_resurce import CONTROL_CONFIG, OUTPUT_CONFIG, FILEPATH, OUTPUT_NAME, OUTPUT_FORMAT, CONFIG_CONFIG, \
     CONFIG_PATH, CONFIG_NAME, CONFIG_DIR
-
-__author__ = 'Fundor333'
-
 
 class ConfigurationManager:
     def __init__(self):
