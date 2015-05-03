@@ -28,8 +28,7 @@ from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
 from RUSLECalculator_Exception import RError
 from RUSLECalculator_config import CONFIG_OBJECT
-from RUSLECalculator_resurce import CONFIG_CONFIG
-
+from RUSLECalculator_resurce import CONFIG_CONFIG, OUTPUT_CONFIG
 
 def rastermath(k, r, ls, c, p, rasterxsize, rasterysize, datatype,
                path_out=CONFIG_OBJECT.read_config(CONFIG_CONFIG, 'Config_path'), ras_type="GTiff"):
@@ -66,7 +65,7 @@ def calc_r(dem, fileout, type_file):
     raise RError
 
 
-def calc_alpha(dem, fileout, type_file):
+def calc_alpha(dem, type_file):
     activeLayer = iface.activeLayer()
     input = QgsRasterCalculatorEntry()
     input.ref = dem[2]
@@ -75,11 +74,12 @@ def calc_alpha(dem, fileout, type_file):
     calc = QgsRasterCalculator(
         "(" + dem[2] + "<8)*100000)+((" + dem[2] + ">=8 AND " + dem[2] + "<16)*200000)+((" + dem[2] + ">=16 AND " + dem[
             2] + "<30)*300000)+((" + dem[2] + ">=30*400000)",
-        fileout, type_file, activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
+        CONFIG_OBJECT.read_config(OUTPUT_CONFIG, "Output_temp") + "alpha.tif", type_file, activeLayer.extent(),
+        activeLayer.width(), activeLayer.height(), input)
 
     calc.processCalculation()
     if calc == 1:
-        return checker(fileout)
+        return checker(CONFIG_OBJECT.read_config(OUTPUT_CONFIG, "Output_temp") + "alpha.tif")
     raise RError
 
 
