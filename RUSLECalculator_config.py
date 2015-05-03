@@ -40,6 +40,7 @@ class ConfigurationManager:
     def open(self, path):
         self.config.read(path)
 
+    # TODO bisogna sistemare in base alla nuova gui e alle nuove necessità
     def init_config(self):
         self.config = configparser.ConfigParser()
         self.config.sections()

@@ -137,6 +137,7 @@ class ButtonSignal(QObject):
         saveconfig(self.dlg)
 
 
+# TODO cambiare le configurazioni
 def saveconfig(dlg):
     string_path = get_raster_name(dlg)
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
