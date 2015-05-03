@@ -135,15 +135,15 @@ class RUSLECalculator():
 
         bott = ButtonSignal(self.dlg)
 
-        self.dlg.DEM.clicked.connect(bott.clickedme1)
-        self.dlg.SoilImage.clicked.connect(bott.clickedme2)
-        self.dlg.FieldImage.clicked.connect(bott.clickedme3)
-        self.dlg.PrecipitationImage.clicked.connect(bott.clickedme4)
-        self.dlg.ManagementImage.clicked.connect(bott.clickedme5)
-        self.dlg.LandCover.clicked.connect(bott.clickedme6)
-        self.dlg.RasterPathButton.clicked.connect(bott.clickedoutput)
-        self.dlg.pushButton.clicked.connect(bott.clickedloadconfig)
-        self.dlg.pushButton_2.clicked.connect(bott.clickedsaveconfig)
+        self.dlg.buttonDem.clicked.connect(bott.clickdem)
+        self.dlg.SoilImage.clicked.connect(bott.clickk)
+        self.dlg.FieldImage.clicked.connect(bott.clickfieldimage)
+        self.dlg.PrecipitationImage.clicked.connect(bott.clickr)
+        self.dlg.ManagementImage.clicked.connect(bott.clickp)
+        self.dlg.LandCover.clicked.connect(bott.clickc)
+        self.dlg.RasterPathButton.clicked.connect(bott.clickoutput)
+        self.dlg.pushButton.clicked.connect(bott.clickloadconfig)
+        self.dlg.pushButton_2.clicked.connect(bott.clicksaveconfig)
 
 
         # Run the dialog event loop

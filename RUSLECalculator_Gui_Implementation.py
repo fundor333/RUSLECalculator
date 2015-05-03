@@ -109,31 +109,31 @@ class ButtonSignal(QObject):
         QObject.__init__(self)
         self.dlg = dlg
 
-    def clickedme1(self):
+    def clickdem(self):
         selectfile(self.dlg.inputDEM)
 
-    def clickedme2(self):
+    def clickk(self):
         selectfile(self.dlg.inputK)
 
-    def clickedme3(self):
+    def clickfieldimage(self):
         selectfile(self.dlg.inputFieldImage)
 
-    def clickedme4(self):
+    def clickr(self):
         selectfile(self.dlg.inputR)
 
-    def clickedme5(self):
+    def clickp(self):
         selectfile(self.dlg.inputP)
 
-    def clickedme6(self):
+    def clickc(self):
         selectfile(self.dlg.inputC)
 
-    def clickedoutput(self):
+    def clickoutput(self):
         outputfunction(self.dlg)
 
-    def clickedloadconfig(self):
+    def clickloadconfig(self):
         openconfig()
 
-    def clickedsaveconfig(self):
+    def clicksaveconfig(self):
         saveconfig(self.dlg)
 
 
