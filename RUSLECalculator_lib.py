@@ -65,6 +65,20 @@ def calc_r(dem, fileout, type_file):
     raise RError
 
 
+def calc_alpha(dem, fileout, type_file):
+    activeLayer = iface.activeLayer()
+    input = QgsRasterCalculatorEntry()
+    input.ref = dem[2]
+    input.raster = dem[1]
+    input.bandNumber = 1
+    calc = QgsRasterCalculator("", fileout, type_file,
+                               activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
+
+    calc.processCalculation()
+    if calc == 1:
+        return checker(fileout)
+    raise RError
+
 def calc_c(pendenze):
     return numpy.sqrt()
 

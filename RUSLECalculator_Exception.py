@@ -40,6 +40,11 @@ class RError(Exception):
         self.message = message
 
 
+class AlphaError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+
 class LSError(Exception):
     def __init__(self, message):
         self.message = message
