@@ -56,8 +56,9 @@ def calc_r(dem, fileout, type_file):
     input.ref = dem[2]
     input.raster = dem[1]
     input.bandNumber = 1
-    calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530", fileout, type_file,
-                               activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
+    calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530",
+                               fileout, type_file, activeLayer.extent(), activeLayer.width(), activeLayer.height(),
+                               input)
 
     calc.processCalculation()
     if calc == 1:
@@ -71,13 +72,16 @@ def calc_alpha(dem, fileout, type_file):
     input.ref = dem[2]
     input.raster = dem[1]
     input.bandNumber = 1
-    calc = QgsRasterCalculator("", fileout, type_file,
-                               activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
+    calc = QgsRasterCalculator(
+        "(" + dem[2] + "<8)*100000)+((" + dem[2] + ">=8 AND " + dem[2] + "<16)*200000)+((" + dem[2] + ">=16 AND " + dem[
+            2] + "<30)*300000)+((" + dem[2] + ">=30*400000)",
+        fileout, type_file, activeLayer.extent(), activeLayer.width(), activeLayer.height(), input)
 
     calc.processCalculation()
     if calc == 1:
         return checker(fileout)
     raise RError
+
 
 def calc_c(pendenze):
     return numpy.sqrt()
