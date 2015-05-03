@@ -19,7 +19,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from RUSLECalculator_config import saveconfig, CONFIG_OBJECT
+from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
 from RUSLECalculator_resurce import CONFIG_CONFIG
 
@@ -135,3 +135,15 @@ class ButtonSignal(QObject):
 
     def clickedsaveconfig(self):
         saveconfig(self.dlg)
+
+
+def saveconfig(dlg):
+    string_path = get_raster_name(dlg)
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'aspect_threshold', dlg.AspectThreshold.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_metric', dlg.checkBox.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'average_soil_factory_patcher', dlg.checkBox_3.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'slope_threhold', dlg.SlopeThreshold.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'smallest_patch_size', dlg.SmallestPatchSize.value())
+    CONFIG_OBJECT.save()
