@@ -116,7 +116,7 @@ class ButtonSignal(QObject):
         selectfile(self.dlg.inputK)
 
     def clickfieldimage(self):
-        selectfile(self.dlg.inputFieldImage)
+        selectfile(self.dlg.imputImageField)
 
     def clickr(self):
         selectfile(self.dlg.inputR)
