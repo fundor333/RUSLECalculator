@@ -33,7 +33,7 @@ from RUSLECalculator_resurce import CONFIG_CONFIG, OUTPUT_CONFIG
 def rastermath(k, r, ls, c, p, rasterxsize, rasterysize, datatype,
                path_out=CONFIG_OBJECT.read_config(CONFIG_CONFIG, 'Config_path'), ras_type="GTiff"):
     if p == None:
-        dataOut = numpy.sqrt(k * r * ls * c * p)
+        dataOut = numpy.sqrt(k * r * ls * c)
     else:
         dataOut = numpy.sqrt(k * r * ls * c * p)
 
