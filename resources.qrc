@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/plugins/MatrixElaborator">
+    <qresource prefix="/plugins/RUSLECalculator">
         <file>icon.png</file>
     </qresource>
 </RCC>
