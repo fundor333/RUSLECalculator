@@ -84,3 +84,6 @@ class ConfigurationManager:
 
 
 CONFIG_OBJECT = ConfigurationManager()
+
+if __name__ == '__main__':
+    CONFIG_OBJECT.save()
