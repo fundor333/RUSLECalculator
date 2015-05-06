@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>592</height>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>550</y>
+     <x>470</x>
+     <y>590</y>
      <width>171</width>
      <height>32</height>
     </rect>
@@ -262,7 +262,7 @@
       <string>DEM</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="imputDEM">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -339,8 +339,8 @@
   <widget class="QGroupBox" name="groupBox_8">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>300</y>
+     <x>20</x>
+     <y>340</y>
      <width>621</width>
      <height>141</height>
     </rect>
@@ -473,8 +473,8 @@
   <widget class="QGroupBox" name="groupBox_9">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>450</y>
+     <x>20</x>
+     <y>490</y>
      <width>631</width>
      <height>71</height>
     </rect>
@@ -522,8 +522,8 @@
   <widget class="QGroupBox" name="groupBox_10">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>530</y>
+     <x>20</x>
+     <y>570</y>
      <width>271</width>
      <height>51</height>
     </rect>
@@ -531,7 +531,7 @@
    <property name="title">
     <string>Config</string>
    </property>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="buttonLoad">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -544,7 +544,7 @@
      <string>Load</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="buttonSave">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -555,6 +555,55 @@
     </property>
     <property name="text">
      <string>Save</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_11">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>631</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Image Field</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="imputImageField">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>0</y>
+      <width>451</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonImageField">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>-10</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
     </property>
    </widget>
   </widget>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
-# Created: Fri May  1 17:25:34 2015
+# Created: Wed May  6 09:23:53 2015
 # by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,9 +26,9 @@ except AttributeError:
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
         MatrixElaboratorDialogBase.setObjectName(_fromUtf8("MatrixElaboratorDialogBase"))
-        MatrixElaboratorDialogBase.resize(670, 592)
+        MatrixElaboratorDialogBase.resize(670, 629)
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
-        self.button_box.setGeometry(QtCore.QRect(480, 550, 171, 32))
+        self.button_box.setGeometry(QtCore.QRect(470, 590, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
         self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
@@ -94,9 +94,9 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(10, 10, 111, 16))
         self.label.setObjectName(_fromUtf8("label"))
-        self.textEdit = QtGui.QTextEdit(self.groupBox)
-        self.textEdit.setGeometry(QtCore.QRect(130, 0, 451, 31))
-        self.textEdit.setObjectName(_fromUtf8("textEdit"))
+        self.imputDEM = QtGui.QTextEdit(self.groupBox)
+        self.imputDEM.setGeometry(QtCore.QRect(130, 0, 451, 31))
+        self.imputDEM.setObjectName(_fromUtf8("imputDEM"))
         self.buttonDem = QtGui.QPushButton(self.groupBox)
         self.buttonDem.setGeometry(QtCore.QRect(580, -10, 51, 51))
         self.buttonDem.setObjectName(_fromUtf8("buttonDem"))
@@ -114,7 +114,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonP.setGeometry(QtCore.QRect(580, -10, 51, 51))
         self.buttonP.setObjectName(_fromUtf8("buttonP"))
         self.groupBox_8 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_8.setGeometry(QtCore.QRect(30, 300, 621, 141))
+        self.groupBox_8.setGeometry(QtCore.QRect(20, 340, 621, 141))
         self.groupBox_8.setObjectName(_fromUtf8("groupBox_8"))
         self.label_7 = QtGui.QLabel(self.groupBox_8)
         self.label_7.setGeometry(QtCore.QRect(10, 30, 171, 16))
@@ -148,7 +148,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.InputCellSize.setGeometry(QtCore.QRect(490, 60, 62, 31))
         self.InputCellSize.setObjectName(_fromUtf8("InputCellSize"))
         self.groupBox_9 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_9.setGeometry(QtCore.QRect(30, 450, 631, 71))
+        self.groupBox_9.setGeometry(QtCore.QRect(20, 490, 631, 71))
         self.groupBox_9.setObjectName(_fromUtf8("groupBox_9"))
         self.label_12 = QtGui.QLabel(self.groupBox_9)
         self.label_12.setGeometry(QtCore.QRect(10, 40, 71, 16))
@@ -160,14 +160,27 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.RasterPathButton.setGeometry(QtCore.QRect(580, 30, 51, 32))
         self.RasterPathButton.setObjectName(_fromUtf8("RasterPathButton"))
         self.groupBox_10 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_10.setGeometry(QtCore.QRect(30, 530, 271, 51))
+        self.groupBox_10.setGeometry(QtCore.QRect(20, 570, 271, 51))
         self.groupBox_10.setObjectName(_fromUtf8("groupBox_10"))
-        self.pushButton = QtGui.QPushButton(self.groupBox_10)
-        self.pushButton.setGeometry(QtCore.QRect(20, 20, 110, 32))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
-        self.pushButton_2 = QtGui.QPushButton(self.groupBox_10)
-        self.pushButton_2.setGeometry(QtCore.QRect(150, 20, 110, 32))
-        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.buttonLoad = QtGui.QPushButton(self.groupBox_10)
+        self.buttonLoad.setGeometry(QtCore.QRect(20, 20, 110, 32))
+        self.buttonLoad.setObjectName(_fromUtf8("buttonLoad"))
+        self.buttonSave = QtGui.QPushButton(self.groupBox_10)
+        self.buttonSave.setGeometry(QtCore.QRect(150, 20, 110, 32))
+        self.buttonSave.setObjectName(_fromUtf8("buttonSave"))
+        self.groupBox_11 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
+        self.groupBox_11.setGeometry(QtCore.QRect(10, 280, 631, 31))
+        self.groupBox_11.setTitle(_fromUtf8(""))
+        self.groupBox_11.setObjectName(_fromUtf8("groupBox_11"))
+        self.label_8 = QtGui.QLabel(self.groupBox_11)
+        self.label_8.setGeometry(QtCore.QRect(10, 10, 111, 16))
+        self.label_8.setObjectName(_fromUtf8("label_8"))
+        self.imputImageField = QtGui.QTextEdit(self.groupBox_11)
+        self.imputImageField.setGeometry(QtCore.QRect(130, 0, 451, 31))
+        self.imputImageField.setObjectName(_fromUtf8("imputImageField"))
+        self.buttonImageField = QtGui.QPushButton(self.groupBox_11)
+        self.buttonImageField.setGeometry(QtCore.QRect(580, -10, 51, 51))
+        self.buttonImageField.setObjectName(_fromUtf8("buttonImageField"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
         QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
@@ -203,6 +216,8 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
         self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))
         self.groupBox_10.setTitle(_translate("MatrixElaboratorDialogBase", "Config", None))
-        self.pushButton.setText(_translate("MatrixElaboratorDialogBase", "Load", None))
-        self.pushButton_2.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
+        self.buttonLoad.setText(_translate("MatrixElaboratorDialogBase", "Load", None))
+        self.buttonSave.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
+        self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Image Field", None))
+        self.buttonImageField.setText(_translate("MatrixElaboratorDialogBase", "...", None))
 
