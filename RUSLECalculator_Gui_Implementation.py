@@ -19,6 +19,8 @@
  *                                                                         *
  ***************************************************************************/
 """
+from RUSLECalculator_Exception import error_window
+
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
 from RUSLECalculator_resurce import CONFIG_CONFIG
@@ -74,13 +76,16 @@ def runhelper(dlg):
     ls = dlg.inputLS.toPlainText()
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
+    outputfile = dlg.RasterPath.toPlainText()
+    datatype = Utils.FileFilter.lastUsedRasterFilter()
 
     ds = {}
 
     ds['k'] = input_open(k)
 
-    rastersize = ds['k'].RasterXSize, ds['k'].RasterYSize
-    datatype = ds['k'].GetRasterBand(1).DataType
+    print(ds['k'])
+
+    rastersize = ds['k'][0].shape
 
     try:
         ds['r'] = input_open(r)
@@ -93,12 +98,20 @@ def runhelper(dlg):
         # ds['ls'] = calc_ls(flowacc, cell_size, pend)
         raise NotImplemented
 
-    ds['c'] = input_open(c)
+    try:
+        ds['c'] = input_open(c)
+    except:
+        raise NotImplemented
 
     try:
         ds['p'] = input_open(p)
     except Exception:
         ds['p'] = None
+
+    try:
+        ds['out'] = input_open(outputfile)
+    except:
+        error_window(dlg, "Error", "You need to specify an output file")
 
     ds['fieldimage'] = fieldimage
 

@@ -17,11 +17,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
@@ -227,4 +229,3 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonSave.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
         self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Image Field", None))
         self.buttonImageField.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-

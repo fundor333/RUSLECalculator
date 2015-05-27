@@ -120,13 +120,11 @@ class RUSLECalculator():
         icon_path = ':/plugins/RUSLECalculator/icon.png'
         self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
-
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(self.tr('&RUSLE Calculator'), action)
             self.iface.removeToolBarIcon(action)
-
 
     def run(self):
         """Run method that performs all the real work"""

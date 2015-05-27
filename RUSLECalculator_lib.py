@@ -31,6 +31,7 @@ from RUSLECalculator_Exception import RError
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_resurce import CONFIG_CONFIG, OUTPUT_CONFIG
 
+
 def rastermath(k, r, ls, c, p, rasterxsize, rasterysize, datatype,
                path_out=CONFIG_OBJECT.read_config(CONFIG_CONFIG, 'Config_path'), ras_type="GTiff"):
     if p == None:
