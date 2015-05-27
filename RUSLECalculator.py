@@ -141,6 +141,7 @@ class RUSLECalculator():
         self.dlg.buttonR.clicked.connect(bott.clickr)
         self.dlg.buttonP.clicked.connect(bott.clickp)
         self.dlg.buttonC.clicked.connect(bott.clickc)
+        self.dlg.buttonLS.clicked.connect(bott.clickls)
         self.dlg.RasterPathButton.clicked.connect(bott.clickoutput)
         self.dlg.buttonLoad.clicked.connect(bott.clickloadconfig)
         self.dlg.buttonSave.clicked.connect(bott.clicksaveconfig)

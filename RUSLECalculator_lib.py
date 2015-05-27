@@ -19,9 +19,10 @@
  *                                                                         *
  ***************************************************************************/
 """
+import math
+
 from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import *
-import math
 from qgis.utils import iface
 from PyQt4.QtCore import QFileInfo
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
@@ -58,7 +59,6 @@ def calc_r(dem, fileout, type_file):
     calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530",
                                fileout, type_file, activeLayer.extent(), activeLayer.width(), activeLayer.height(),
                                input)
-
     calc.processCalculation()
     if calc == 1:
         return checker(fileout)
@@ -83,8 +83,14 @@ def calc_alpha(dem, type_file):
     raise RError
 
 
-def calc_c(pendenze):
-    return numpy.sqrt()
+def calc_c(alpha):
+    raise NotImplemented
+    options, flags = grass.parser()
+
+    inmap = "alpha"
+    outmap = "layerC"
+    # some junk example calculation
+    grass.mapcalc("$outmap = float($inmap / $value)", inmap=inmap, outmap=outmap)
 
 
 def open_raster(filename):

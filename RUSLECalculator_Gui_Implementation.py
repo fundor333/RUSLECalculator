@@ -75,12 +75,12 @@ def runhelper(dlg):
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
 
-
-    ds = range(0, 6)
-    rastersize = k.RasterXSize, k.RasterYSize
-    datatype = k.GetRasterBand(1).DataType
+    ds = {}
 
     ds['k'] = input_open(k)
+
+    rastersize = ds['k'].RasterXSize, ds['k'].RasterYSize
+    datatype = ds['k'].GetRasterBand(1).DataType
 
     try:
         ds['r'] = input_open(r)
@@ -104,6 +104,7 @@ def runhelper(dlg):
 
     rastermath(ds['k'][0], ds['r'][0], ds['ls'][0], ds['c'][0], ds['p'][0], rastersize[0], rastersize[1], datatype)
 
+
 class ButtonSignal(QObject):
     def __init__(self, dlg):
         QObject.__init__(self)
@@ -123,6 +124,9 @@ class ButtonSignal(QObject):
 
     def clickp(self):
         selectfile(self.dlg.inputP)
+
+    def clickls(self):
+        selectfile(self.dlg.inputLS)
 
     def clickc(self):
         selectfile(self.dlg.inputC)
