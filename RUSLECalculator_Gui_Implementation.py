@@ -19,7 +19,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from RUSLECalculator_Exception import error_window
+from RUSLECalculator import error_window
 
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
@@ -60,7 +60,7 @@ def outputfunction(dlg):
     dlg.RasterPath.setText(filename)
 
 
-def run(dlg):
+def execute_all(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
     runhelper(dlg)

@@ -19,7 +19,6 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt5.QtWidgets import QMessageBox
 
 
 class NoDem(Exception):
@@ -62,5 +61,3 @@ class KError(Exception):
         self.message = message
 
 
-def error_window(dlg, title, body):
-    QMessageBox.information(dlg, dlg.tr(title), dlg.tr(body))

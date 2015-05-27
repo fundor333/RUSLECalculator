@@ -20,13 +20,14 @@
  *                                                                         *
  ***************************************************************************/
 """
+from PyQt5.QtWidgets import QMessageBox
 import resources_rc
 import RUSLECalculator_dialog
 import os.path
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
-from RUSLECalculator_Gui_Implementation import run, ButtonSignal
+from RUSLECalculator_Gui_Implementation import execute_all, ButtonSignal
 from RUSLECalculator_dialog import RUSLECalculatorDialog
 
 
@@ -151,4 +152,8 @@ class RUSLECalculator():
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            run(self.dlg)
+            execute_all(self.dlg)
+
+
+def error_window(dlg, title, body):
+    QMessageBox.information(dlg, dlg.tr(title), dlg.tr(body))
