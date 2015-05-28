@@ -19,8 +19,8 @@
  *                                                                         *
  ***************************************************************************/
 """
-from RUSLECalculator import error_window
-
+from PyQt4.QtCore import QObject
+from PyQt4.QtGui import QFileDialog, QMessageBox
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
 from RUSLECalculator_resurce import CONFIG_CONFIG
@@ -33,9 +33,6 @@ except:
     import gdal
     import ogr
     import osr
-
-from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog
 
 
 def selectfile(lineEdit):
@@ -60,7 +57,7 @@ def outputfunction(dlg):
     dlg.RasterPath.setText(filename)
 
 
-def execute_all(dlg):
+def run(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
     runhelper(dlg)
@@ -165,3 +162,7 @@ def saveconfig(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'slope_threhold', dlg.SlopeThreshold.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'smallest_patch_size', dlg.SmallestPatchSize.value())
     CONFIG_OBJECT.save()
+
+
+def error_window(dlg, title, body):
+    QMessageBox.information(dlg, dlg.tr(title), dlg.tr(body), "")
