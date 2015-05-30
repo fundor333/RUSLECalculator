@@ -19,14 +19,12 @@
  *                                                                         *
  ***************************************************************************/
 """
-import math
-
-from osgeo.gdalconst import GA_ReadOnly
-from osgeo.gdalnumeric import *
 from qgis.utils import iface
-from PyQt4.QtCore import QFileInfo
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
+from PyQt4.QtCore import QFileInfo
+from osgeo.gdalconst import GA_ReadOnly
+from osgeo.gdalnumeric import CopyDatasetInfo, BandWriteArray, BandReadAsArray, math, numpy, gdal
 from RUSLECalculator_Exception import RError
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_resurce import CONFIG_CONFIG, OUTPUT_CONFIG
