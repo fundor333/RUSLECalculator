@@ -87,7 +87,7 @@ def runhelper(dlg):
     try:
         ds['r'] = input_open(r)
     except Exception:
-        ds['r'] = calc_r(input_open(dem))
+        ds['r'] = calc_r()
 
     try:
         ds['ls'] = input_open(ls)

@@ -25,7 +25,7 @@ from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
 from PyQt4.QtCore import QFileInfo
 from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import CopyDatasetInfo, BandWriteArray, BandReadAsArray, math, numpy, gdal
-from RUSLECalculator_Exception import RError
+from RUSLECalculator_Exception import RError, CError
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_resurce import CONFIG_CONFIG, OUTPUT_CONFIG
 
@@ -49,18 +49,7 @@ def calc_ls(flowacc, cell_size, pend):
     return numpy.sqrt((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
 
 
-def calc_r(dem, fileout, type_file):
-    activeLayer = iface.activeLayer()
-    input = QgsRasterCalculatorEntry()
-    input.ref = dem[2]
-    input.raster = dem[1]
-    input.bandNumber = 1
-    calc = QgsRasterCalculator("(" + dem[2] + '<600)*2768.8196+((' + dem[2] + ">=600)*5509.1530",
-                               fileout, type_file, activeLayer.extent(), activeLayer.width(), activeLayer.height(),
-                               input)
-    calc.processCalculation()
-    if calc == 1:
-        return checker(fileout)
+def calc_r():
     raise RError
 
 
@@ -83,13 +72,13 @@ def calc_alpha(dem, type_file):
 
 
 def calc_c(alpha):
-    raise NotImplemented
-    options, flags = grass.parser()
-
-    inmap = "alpha"
-    outmap = "layerC"
+    raise CError
+    # options, flags = gscript.parser()
+    #
+    # inmap = "alpha"
+    # outmap = "layerC"
     # some junk example calculation
-    grass.mapcalc("$outmap = float($inmap / $value)", inmap=inmap, outmap=outmap)
+    # gscript.mapcalc("$outmap = float($inmap / $value)", inmap=inmap, outmap=outmap)
 
 
 def open_raster(filename):
