@@ -21,11 +21,19 @@
 """
 
 import os
-
 import configparser
 
-from RUSLECalculator_resurce import *
-
+PLUGIN_NAME = 'RUSLECalculator'
+FILEPATH = os.path.expanduser("~") + '/QGis/' + PLUGIN_NAME + "/"
+OUTPUT_FORMAT = ".asc"
+OUTPUT_NAME = "output"
+OUTPUT_TECNOLOGY = "GTiff"
+OUTPUT_TEMP = 'temp/'
+CONTROL_CONFIG = "Control_specifications"
+OUTPUT_CONFIG = "Output_file"
+CONFIG_NAME = 'config.ini'
+CONFIG_DIR = FILEPATH + 'config/'
+CONFIG_CONFIGURATION = "Config_configuration"
 
 class ConfigurationManager:
     def __init__(self):
@@ -53,16 +61,16 @@ class ConfigurationManager:
                                       'Output_file_name': OUTPUT_NAME,
                                       'Output_file_type': OUTPUT_FORMAT,
                                       'Output_temp': CONFIG_DIR + OUTPUT_TEMP}
-        self.config[CONFIG_CONFIG] = {'Config_path': CONFIG_DIR + CONFIG_NAME,
+        self.config[CONFIG_CONFIGURATION] = {'Config_path': CONFIG_DIR + CONFIG_NAME,
                                       'Config_file_name': CONFIG_NAME,
                                       'Config_dir': CONFIG_DIR}
 
     def save(self):
         if not os.path.exists(self.read_config(OUTPUT_CONFIG, 'Output_directory')):
             os.makedirs(self.read_config(OUTPUT_CONFIG, 'Output_directory'))
-        if not os.path.exists(self.read_config(CONFIG_CONFIG, 'Config_dir')):
-            os.makedirs(self.read_config(CONFIG_CONFIG, 'Config_dir'))
-        with open(self.read_config(CONFIG_CONFIG, 'Config_path'), 'w') as configfile:
+        if not os.path.exists(self.read_config(CONFIG_CONFIGURATION, 'Config_dir')):
+            os.makedirs(self.read_config(CONFIG_CONFIGURATION, 'Config_dir'))
+        with open(self.read_config(CONFIG_CONFIGURATION, 'Config_path'), 'w') as configfile:
             self.config.write(configfile)
 
     def read_config(self, section, config):
@@ -75,7 +83,7 @@ class ConfigurationManager:
     def edit_config(self, section, config, data):
         try:
             self.config.sections()
-            self.config.read(self.config[CONFIG_CONFIG]['Config_path'])
+            self.config.read(self.config[CONFIG_CONFIGURATION]['Config_path'])
             self.config.set(section, config, str(data))
             return data
         except KeyError:

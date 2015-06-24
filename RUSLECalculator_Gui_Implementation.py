@@ -21,9 +21,8 @@
 """
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog, QMessageBox
-from RUSLECalculator_config import CONFIG_OBJECT
+from RUSLECalculator_config import CONFIG_OBJECT, CONFIG_CONFIGURATION
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
-from RUSLECalculator_resurce import CONFIG_CONFIG
 
 import GdalTools_utils as Utils
 
@@ -58,7 +57,7 @@ def outputfunction(dlg):
 
 
 def run(dlg):
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'Config_path', dlg.RasterPath.toPlainText())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'Config_path', dlg.RasterPath.toPlainText())
     outputfile = dlg.RasterPath.toPlainText()
     runhelper(dlg)
     open_raster(outputfile)
@@ -154,13 +153,13 @@ class ButtonSignal(QObject):
 # TODO cambiare le configurazioni
 def saveconfig(dlg):
     string_path = get_raster_name(dlg)
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'config_path', string_path)
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'aspect_threshold', dlg.AspectThreshold.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'maximum_slope_metric', dlg.checkBox.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'average_soil_factory_patcher', dlg.checkBox_3.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'slope_threhold', dlg.SlopeThreshold.value())
-    CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'smallest_patch_size', dlg.SmallestPatchSize.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'config_path', string_path)
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'aspect_threshold', dlg.AspectThreshold.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'maximum_slope_lenght', dlg.MaxSlopeLenght.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'maximum_slope_metric', dlg.checkBox.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'average_soil_factory_patcher', dlg.checkBox_3.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'slope_threhold', dlg.SlopeThreshold.value())
+    CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'smallest_patch_size', dlg.SmallestPatchSize.value())
     CONFIG_OBJECT.save()
 
 
