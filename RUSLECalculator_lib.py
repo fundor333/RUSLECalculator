@@ -31,21 +31,24 @@ from RUSLECalculator_config import OUTPUT_CONFIG, CONFIG_OBJECT
 from RUSLECalculator_error import RError, LSError, CError, LOGGER, AlphaError, OutError
 
 
-def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, datatype, ras_type="GTiff"):
+def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, ras_type="GTiff"):
     LOGGER.info("Start calc the raster")
     # TODO Fare i conti con le matrici contenute non con l oggetto
     if p is None:
-        dataOut = numpy.sqrt(k * r * ls * c)
         LOGGER.debug("P is None")
+        dataOut = numpy.sqrt(k[0] * r[0] * ls[0] * c[0])
+        dataOut = dataOut * 29.0142 / 100
+        LOGGER.debug(dataOut)
     else:
-        dataOut = numpy.sqrt(k * r * ls * c * p)
         LOGGER.debug("P is not NONE")
+        dataOut = numpy.sqrt(k[0] * r[0] * ls[0] * c[0] * p[0])
+        dataOut = dataOut * 29.0142 / 100
+        LOGGER.debug(dataOut)
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)
-    dsOut = driver.Create(out, rasterxsize, rasterysize, 1, datatype)
+    dsOut = driver.Create(out, rasterxsize, rasterysize, 1)
     LOGGER.info("Writing the result")
-    CopyDatasetInfo(k, dsOut)
     bandOut = dsOut.GetRasterBand(1)
     BandWriteArray(bandOut, dataOut)
 
@@ -99,7 +102,7 @@ def calc_c(alpha):
 
 
 def open_raster(filename):
-    LOGGER.info("Opening the layer")
+    LOGGER.info("Opening the layer " + filename)
     basename = QFileInfo(filename).baseName()
     r_layer = QgsRasterLayer(filename, basename)
     if not r_layer.isValid():
@@ -107,7 +110,7 @@ def open_raster(filename):
         raise IOError
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
-        LOGGER.info("Layer loaded")
+        LOGGER.info("Layer loaded " + filename)
     return basename, r_layer
 
 

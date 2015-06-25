@@ -115,8 +115,7 @@ def runhelper(dlg):
 
     ds['fieldimage'] = fieldimage
 
-    rastermath(ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], ds['out'], rastersize[0], rastersize[1],
-               datatype)
+    rastermath(ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], ds['out'], rastersize[0], rastersize[1])
 
 
 class ButtonSignal(QObject):
