@@ -19,7 +19,6 @@
  *                                                                         *
  ***************************************************************************/
 """
-import logging
 from qgis.utils import iface
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
@@ -27,12 +26,14 @@ from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import CopyDatasetInfo, BandWriteArray, BandReadAsArray, math, numpy, gdal
 
 from PyQt4.QtCore import QFileInfo
-from RUSLECalculator_config import CONFIG_CONFIGURATION, OUTPUT_CONFIG, CONFIG_DIR, CONFIG_OBJECT
+
+from RUSLECalculator_config import OUTPUT_CONFIG, CONFIG_OBJECT
+from RUSLECalculator_error import RError, LSError, CError, LOGGER, AlphaError, OutError
 
 
-def rastermath(k, r, ls, c, p, rasterxsize, rasterysize, datatype,
-               path_out=CONFIG_OBJECT.read_config(CONFIG_CONFIGURATION, 'Config_path'), ras_type="GTiff"):
+def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, datatype, ras_type="GTiff"):
     LOGGER.info("Start calc the raster")
+    # TODO Fare i conti con le matrici contenute non con l oggetto
     if p is None:
         dataOut = numpy.sqrt(k * r * ls * c)
         LOGGER.debug("P is None")
@@ -42,14 +43,21 @@ def rastermath(k, r, ls, c, p, rasterxsize, rasterysize, datatype,
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)
-    dsOut = driver.Create(path_out, rasterxsize, rasterysize, 1, datatype)
+    dsOut = driver.Create(out, rasterxsize, rasterysize, 1, datatype)
     LOGGER.info("Writing the result")
     CopyDatasetInfo(k, dsOut)
     bandOut = dsOut.GetRasterBand(1)
     BandWriteArray(bandOut, dataOut)
 
 
+def output_open(filename):
+    if filename is None:
+        raise OutError
+    return filename
+
+
 def calc_ls(flowacc, cell_size, pend):
+    raise LSError
     LOGGER.info("Calc ls")
     var = numpy.sqrt((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
     LOGGER.debug("LS is " + str(var))
@@ -62,6 +70,7 @@ def calc_r():
 
 
 def calc_alpha(dem, type_file):
+    raise AlphaError
     activeLayer = iface.activeLayer()
     input = QgsRasterCalculatorEntry()
     input.ref = dem[2]
@@ -94,7 +103,8 @@ def open_raster(filename):
     basename = QFileInfo(filename).baseName()
     r_layer = QgsRasterLayer(filename, basename)
     if not r_layer.isValid():
-        LOGGER.error("Layer failed to load!")
+        LOGGER.error("Layer failed to load! " + filename)
+        raise IOError
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
         LOGGER.info("Layer loaded")
@@ -116,78 +126,3 @@ def checker(element):
     data = BandReadAsArray(band)
     LOGGER.debug("checker() return " + data)
     return data
-
-
-class NoDem(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("NoDem " + message)
-
-
-class NoFieldImage(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("NoFieldImage " + message)
-
-
-class RasterError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("RasterError " + message)
-
-
-class RError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("RError " + message)
-
-
-class AlphaError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("AlphaError " + message)
-
-
-class LSError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("LSError " + message)
-
-
-class CError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("CError " + message)
-
-
-class KError(Exception):
-    def __init__(self, message):
-        self.message = message
-        LOGGER.error("KError " + message)
-
-
-class MyLogger():
-    def __init__(self, filename=None):
-        if filename is None:
-            logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-        else:
-            logging.basicConfig(filename=filename, level=logging.DEBUG,
-                                format='%(asctime)s - %(levelname)s - %(message)s')
-
-    def critical(self, string):
-        logging.critical(string)
-
-    def error(self, string):
-        logging.error(string)
-
-    def warning(self, string):
-        logging.warning(string)
-
-    def info(self, string):
-        logging.info(string)
-
-    def debug(self, string):
-        logging.debug(string)
-
-
-LOGGER = MyLogger("/var/tmp/log.txt")

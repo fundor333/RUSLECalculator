@@ -26,7 +26,9 @@ from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 
 from RUSLECalculator_Gui_Implementation import run, ButtonSignal
+from RUSLECalculator_config import PLUGIN_NAME
 from RUSLECalculator_dialog import RUSLECalculatorDialog
+from RUSLECalculator_error import MyLogger
 
 
 class RUSLECalculator():

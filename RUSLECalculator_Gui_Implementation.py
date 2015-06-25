@@ -20,10 +20,11 @@
  ***************************************************************************/
 """
 from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog, QMessageBox
-from RUSLECalculator_config import CONFIG_OBJECT, CONFIG_CONFIGURATION
-from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
+from PyQt4.QtGui import QFileDialog
 
+from RUSLECalculator_config import CONFIG_OBJECT, CONFIG_CONFIGURATION
+from RUSLECalculator_lib import open_raster, input_open, rastermath, output_open
+from RUSLECalculator_error import RError, LSError, CError, LOGGER
 import GdalTools_utils as Utils
 
 try:
@@ -47,6 +48,7 @@ def get_raster_name(dlg):
     outputFile = Utils.FileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
                                                   Utils.FileFilter.allRastersFilter(), lastUsedFilter)
     if outputFile == "":
+        LOGGER.error("Void string")
         raise ValueError("Void string")
     return outputFile
 
@@ -61,7 +63,7 @@ def run(dlg):
     outputfile = dlg.RasterPath.toPlainText()
     runhelper(dlg)
     open_raster(outputfile)
-    print("Ended")
+    LOGGER.info("Ended")
 
 
 def runhelper(dlg):
@@ -73,45 +75,48 @@ def runhelper(dlg):
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
-    datatype = Utils.FileFilter.lastUsedRasterFilter()
+    datatype = "GTiff"  # Utils.FileFilter.lastUsedRasterFilter()
 
-    ds = {}
+    ds = {'k': input_open(k), 'dem': dem}
 
-    ds['k'] = input_open(k)
-
-    print(ds['k'])
+    LOGGER.info(ds['k'])
 
     rastersize = ds['k'][0].shape
 
     try:
         ds['r'] = input_open(r)
+        LOGGER.info("r " + str(ds['r']))
     except Exception:
-        ds['r'] = calc_r()
+        raise RError
 
     try:
         ds['ls'] = input_open(ls)
+        LOGGER.info("ls " + str(ds['ls']))
     except Exception:
-        # ds['ls'] = calc_ls(flowacc, cell_size, pend)
-        raise NotImplemented
+        raise LSError
 
     try:
         ds['c'] = input_open(c)
+        LOGGER.info("c " + str(ds['c']))
     except:
-        raise NotImplemented
+        raise CError
 
     try:
         ds['p'] = input_open(p)
+        LOGGER.info("p " + str(ds['p']))
     except Exception:
         ds['p'] = None
 
     try:
-        ds['out'] = input_open(outputfile)
-    except:
-        error_window(dlg, "Error", "You need to specify an output file")
+        ds['out'] = output_open(outputfile)
+        LOGGER.info("out  " + str(ds['out']))
+    except Exception:
+        LOGGER.error("You need to specify an output file", dlg)
 
     ds['fieldimage'] = fieldimage
 
-    rastermath(ds['k'][0], ds['r'][0], ds['ls'][0], ds['c'][0], ds['p'][0], rastersize[0], rastersize[1], datatype)
+    rastermath(ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], ds['out'], rastersize[0], rastersize[1],
+               datatype)
 
 
 class ButtonSignal(QObject):
@@ -161,7 +166,3 @@ def saveconfig(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'slope_threhold', dlg.SlopeThreshold.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIGURATION, 'smallest_patch_size', dlg.SmallestPatchSize.value())
     CONFIG_OBJECT.save()
-
-
-def error_window(dlg, title, body):
-    QMessageBox.information(dlg, dlg.tr(title), dlg.tr(body), "")
