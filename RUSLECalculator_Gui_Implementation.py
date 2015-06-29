@@ -19,6 +19,8 @@
  *                                                                         *
  ***************************************************************************/
 """
+from PyQt4.QtCore import QObject
+from PyQt4.QtGui import QFileDialog, QMessageBox
 from RUSLECalculator_config import CONFIG_OBJECT
 from RUSLECalculator_lib import open_raster, input_open, calc_r, rastermath
 from RUSLECalculator_resurce import CONFIG_CONFIG
@@ -31,9 +33,6 @@ except:
     import gdal
     import ogr
     import osr
-
-from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog
 
 
 def selectfile(lineEdit):
@@ -74,18 +73,21 @@ def runhelper(dlg):
     ls = dlg.inputLS.toPlainText()
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
+    outputfile = dlg.RasterPath.toPlainText()
+    datatype = Utils.FileFilter.lastUsedRasterFilter()
 
-
-    ds = range(0, 6)
-    rastersize = k.RasterXSize, k.RasterYSize
-    datatype = k.GetRasterBand(1).DataType
+    ds = {}
 
     ds['k'] = input_open(k)
+
+    print(ds['k'])
+
+    rastersize = ds['k'][0].shape
 
     try:
         ds['r'] = input_open(r)
     except Exception:
-        ds['r'] = calc_r(input_open(dem))
+        ds['r'] = calc_r()
 
     try:
         ds['ls'] = input_open(ls)
@@ -93,16 +95,25 @@ def runhelper(dlg):
         # ds['ls'] = calc_ls(flowacc, cell_size, pend)
         raise NotImplemented
 
-    ds['c'] = input_open(c)
+    try:
+        ds['c'] = input_open(c)
+    except:
+        raise NotImplemented
 
     try:
         ds['p'] = input_open(p)
     except Exception:
         ds['p'] = None
 
+    try:
+        ds['out'] = input_open(outputfile)
+    except:
+        error_window(dlg, "Error", "You need to specify an output file")
+
     ds['fieldimage'] = fieldimage
 
     rastermath(ds['k'][0], ds['r'][0], ds['ls'][0], ds['c'][0], ds['p'][0], rastersize[0], rastersize[1], datatype)
+
 
 class ButtonSignal(QObject):
     def __init__(self, dlg):
@@ -123,6 +134,9 @@ class ButtonSignal(QObject):
 
     def clickp(self):
         selectfile(self.dlg.inputP)
+
+    def clickls(self):
+        selectfile(self.dlg.inputLS)
 
     def clickc(self):
         selectfile(self.dlg.inputC)
@@ -148,3 +162,7 @@ def saveconfig(dlg):
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'slope_threhold', dlg.SlopeThreshold.value())
     CONFIG_OBJECT.edit_config(CONFIG_CONFIG, 'smallest_patch_size', dlg.SmallestPatchSize.value())
     CONFIG_OBJECT.save()
+
+
+def error_window(dlg, title, body):
+    QMessageBox.information(dlg, dlg.tr(title), dlg.tr(body), "")

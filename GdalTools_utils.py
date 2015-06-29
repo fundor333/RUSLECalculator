@@ -894,8 +894,6 @@ def setMacOSXDefaultEnvironment():
         if getHelpPath() == '':
             setHelpPath(u"%s/Resources/doc" % gdal_base_path)
 
-
 # setup the MacOSX path to both GDAL executables and python modules
 if platform.system() == "Darwin":
     setMacOSXDefaultEnvironment()
-

@@ -20,12 +20,14 @@
  *                                                                         *
  ***************************************************************************/
 """
-import resources_rc
-import RUSLECalculator_dialog
 import os.path
 
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
+
+import RUSLECalculator_resurce
+import RUSLECalculator_dialog_base
+
 from RUSLECalculator_Gui_Implementation import run, ButtonSignal
 from RUSLECalculator_dialog import RUSLECalculatorDialog
 
@@ -120,13 +122,11 @@ class RUSLECalculator():
         icon_path = ':/plugins/RUSLECalculator/icon.png'
         self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
-
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(self.tr('&RUSLE Calculator'), action)
             self.iface.removeToolBarIcon(action)
-
 
     def run(self):
         """Run method that performs all the real work"""
@@ -141,6 +141,7 @@ class RUSLECalculator():
         self.dlg.buttonR.clicked.connect(bott.clickr)
         self.dlg.buttonP.clicked.connect(bott.clickp)
         self.dlg.buttonC.clicked.connect(bott.clickc)
+        self.dlg.buttonLS.clicked.connect(bott.clickls)
         self.dlg.RasterPathButton.clicked.connect(bott.clickoutput)
         self.dlg.buttonLoad.clicked.connect(bott.clickloadconfig)
         self.dlg.buttonSave.clicked.connect(bott.clicksaveconfig)
