@@ -75,7 +75,7 @@ def runhelper(dlg):
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
-    datatype = "GTiff"  # Utils.FileFilter.lastUsedRasterFilter()
+    datatype = Utils.FileFilter.lastUsedRasterFilter()
 
     ds = {'k': input_open(k), 'dem': dem}
 

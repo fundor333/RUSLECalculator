@@ -47,7 +47,7 @@ def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, ras_type="GTiff"):
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)
-    dsOut = driver.Create(out, rasterxsize, rasterysize, 1)
+    dsOut = driver.Create(out, rasterxsize, rasterysize, 1, gdal.GDT_Byte)
     LOGGER.info("Writing the result")
     bandOut = dsOut.GetRasterBand(1)
     BandWriteArray(bandOut, dataOut)
