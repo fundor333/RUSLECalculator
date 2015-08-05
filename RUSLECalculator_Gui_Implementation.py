@@ -19,7 +19,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt4.uic.uiparser import QtCore
+from PyQt4.uic.properties import QtCore
 
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog, QMessageBox
