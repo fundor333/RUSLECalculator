@@ -19,36 +19,38 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.utils import iface
-from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
 from osgeo.gdalconst import GA_ReadOnly
-from osgeo.gdalnumeric import CopyDatasetInfo, BandWriteArray, BandReadAsArray, math, numpy, gdal
+from osgeo.gdalnumeric import BandWriteArray, BandReadAsArray, numpy, gdal
 
 from PyQt4.QtCore import QFileInfo
 
-from RUSLECalculator_config import OUTPUT_CONFIG, CONFIG_OBJECT
-from RUSLECalculator_error import RError, LSError, CError, LOGGER, AlphaError, OutError
+from RUSLECalculator_error import LOG, OutError
 
 
-def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, ras_type="GTiff"):
-    LOGGER.info("Start calc the raster")
-    # TODO Fare i conti con le matrici contenute non con l oggetto
+def rastermath(k, r, ls, c, p, out, rasterxsize, rasterysize, gdalType, ras_type="GTiff"):
+    LOG.i("Start calc the raster")
     if p is None:
-        LOGGER.debug("P is None")
+        LOG.d("P is None")
         dataOut = numpy.sqrt(k[0] * r[0] * ls[0] * c[0])
         dataOut = dataOut * 29.0142 / 100
-        LOGGER.debug(dataOut)
+        LOG.d(dataOut)
     else:
-        LOGGER.debug("P is not NONE")
+        LOG.d("P is not NONE")
         dataOut = numpy.sqrt(k[0] * r[0] * ls[0] * c[0] * p[0])
         dataOut = dataOut * 29.0142 / 100
-        LOGGER.debug(dataOut)
+        LOG.d(dataOut)
 
     # Write the out file
     driver = gdal.GetDriverByName(ras_type)
-    dsOut = driver.Create(out, rasterxsize, rasterysize, 1, gdal.GDT_Byte)
-    LOGGER.info("Writing the result")
+    dsOut = driver.Create(out, rasterxsize, rasterysize, 1, gdalType)
+
+    geotransform = k.GetGeoTransform()
+    spatialreference = k.GetProjection()
+    dsOut.SetGeoTransform(geotransform)
+    dsOut.SetProjection(spatialreference)
+
+    LOG.i("Writing the result")
     bandOut = dsOut.GetRasterBand(1)
     BandWriteArray(bandOut, dataOut)
 
@@ -59,58 +61,16 @@ def output_open(filename):
     return filename
 
 
-def calc_ls(flowacc, cell_size, pend):
-    raise LSError
-    LOGGER.info("Calc ls")
-    var = numpy.sqrt((flowacc * cell_size / 22.13) ** 0.4) * (-1.5 + 17 / 1 + (math.e ** (2.3 - 6.1 * math.sin(pend))))
-    LOGGER.debug("LS is " + str(var))
-    LOGGER.info("Ending calc ls")
-    return var
-
-
-def calc_r():
-    raise RError("")
-
-
-def calc_alpha(dem, type_file):
-    raise AlphaError
-    activeLayer = iface.activeLayer()
-    input = QgsRasterCalculatorEntry()
-    input.ref = dem[2]
-    input.raster = dem[1]
-    input.bandNumber = 1
-    calc = QgsRasterCalculator(
-        "(" + dem[2] + "<8)*100000)+((" + dem[2] + ">=8 AND " + dem[2] + "<16)*200000)+((" + dem[2] + ">=16 AND " + dem[
-            2] + "<30)*300000)+((" + dem[2] + ">=30*400000)",
-        CONFIG_OBJECT.read_config(OUTPUT_CONFIG, "Output_temp") + "alpha.tif", type_file, activeLayer.extent(),
-        activeLayer.width(), activeLayer.height(), input)
-
-    calc.processCalculation()
-    if calc == 1:
-        return checker(CONFIG_OBJECT.read_config(OUTPUT_CONFIG, "Output_temp") + "alpha.tif")
-    raise RError
-
-
-def calc_c(alpha):
-    raise CError
-    # options, flags = gscript.parser()
-    #
-    # inmap = "alpha"
-    # outmap = "layerC"
-    # some junk example calculation
-    # gscript.mapcalc("$outmap = float($inmap / $value)", inmap=inmap, outmap=outmap)
-
-
 def open_raster(filename):
-    LOGGER.info("Opening the layer " + filename)
+    LOG.i("Opening the layer " + filename)
     basename = QFileInfo(filename).baseName()
     r_layer = QgsRasterLayer(filename, basename)
     if not r_layer.isValid():
-        LOGGER.error("Layer failed to load! " + filename)
+        LOG.e("Layer failed to load! " + filename)
         raise IOError
     else:
         QgsMapLayerRegistry.instance().addMapLayer(r_layer)
-        LOGGER.info("Layer loaded " + filename)
+        LOG.i("Layer loaded " + filename)
     return basename, r_layer
 
 
@@ -127,5 +87,43 @@ def checker(element):
     ds = gdal.Open(element, GA_ReadOnly)
     band = ds.GetRasterBand(1)
     data = BandReadAsArray(band)
-    LOGGER.debug("checker() return " + data)
+    LOG.d("checker() return " + data)
     return data
+
+
+def test_math(dem, fieldimage, k, r, ls, c, p, outputfile, datatype):
+    LOG.i("Start calc the raster")
+    open_k = gdal.Open(k)
+    open_r = gdal.Open(r)
+    open_ls = gdal.Open(ls)
+    open_c = gdal.Open(c)
+    open_p = gdal.Open(p)
+    open_dem = gdal.Open(dem)
+    open_fieldimage = gdal.Open(fieldimage)
+
+    src_k = open_k.ReadAsArray()
+    src_r = open_r.ReadAsArray()
+    src_ls = open_ls.ReadAsArray()
+    src_c = open_c.ReadAsArray()
+    src_p = open_p.ReadAsArray()
+    src_dem = open_dem.ReadAsArray()
+    src_fieldimage = open_fieldimage.ReadAsArray()
+
+    # final_data is a 2-D Numpy array of the same dimensions as src_data
+    final_data = src_c + src_k + src_r + src_ls + src_p
+
+    # get parameters
+    geotransform = src_k.GetGeoTransform()
+    spatialreference = src_k.GetProjection()
+    ncol = src_k.RasterXSize
+    nrow = src_k.RasterYSize
+    nband = 1
+
+    # create dataset for output
+    fmt = 'GTiff'
+    driver = gdal.GetDriverByName(fmt)
+    dst_dataset = driver.Create([outputfile], ncol, nrow, nband, gdal.GDT_Byte)
+    dst_dataset.SetGeoTransform(geotransform)
+    dst_dataset.SetProjection(spatialreference)
+    dst_dataset.GetRasterBand(1).WriteArray(final_data)
+    dst_dataset = None

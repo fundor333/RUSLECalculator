@@ -28,64 +28,64 @@ from RUSLECalculator_config import PLUGIN_NAME
 class NoDem(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("NoDem " + message)
+        LOG.e("NoDem " + message)
 
 
 class NoFieldImage(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("NoFieldImage " + message)
+        LOG.e("NoFieldImage " + message)
 
 
 class PError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("PError " + message)
+        LOG.e("PError " + message)
 
 
 class RasterError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("RasterError " + message)
+        LOG.e("RasterError " + message)
 
 
 class RError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("RError " + message)
+        LOG.e("RError " + message)
 
 
 class AlphaError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("AlphaError " + message)
+        LOG.e("AlphaError " + message)
 
 
 class LSError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("LSError " + message)
+        LOG.e("LSError " + message)
 
 
 class CError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("CError " + message)
+        LOG.e("CError " + message)
 
 
 class KError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("KError " + message)
+        LOG.e("KError " + message)
 
 
 class OutError(Exception):
     def __init__(self, message=""):
         self.message = message
-        LOGGER.error("OutError " + message)
+        LOG.e("OutError " + message)
 
 
-class MyLogger():
+class Log():
     def __init__(self, filename=None):
         if filename is None:
             logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -93,32 +93,32 @@ class MyLogger():
             logging.basicConfig(filename=filename, level=logging.DEBUG,
                                 format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def critical(self, string, dlg=None):
+    def c(self, string, dlg=None):
         if dlg is not None:
             error_window(dlg, "Critical", string)
         logging.critical(string)
         print(string)
 
-    def error(self, string, dlg=None):
+    def e(self, string, dlg=None):
         if dlg is not None:
             error_window(dlg, "Error", string)
         logging.error(string)
         print(string)
 
-    def warning(self, string):
+    def w(self, string):
         logging.warning(string)
         print(string)
 
-    def info(self, string):
+    def i(self, string):
         logging.info(string)
         print(string)
 
-    def debug(self, string):
+    def d(self, string):
         logging.debug(string)
         print(string)
 
 
-LOGGER = MyLogger("/var/tmp/" + PLUGIN_NAME + ".log")
+LOG = Log("/var/tmp/" + PLUGIN_NAME + ".log")
 
 
 def error_window(dlg, title, body):

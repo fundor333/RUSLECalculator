@@ -19,12 +19,14 @@
  *                                                                         *
  ***************************************************************************/
 """
+from PyQt4.uic.uiparser import QtCore
+
 from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QFileDialog, QMessageBox
 
 from RUSLECalculator_config import CONFIG_OBJECT, CONFIG_CONFIGURATION
-from RUSLECalculator_lib import open_raster, input_open, rastermath, output_open
-from RUSLECalculator_error import RError, LSError, CError, LOGGER
+from RUSLECalculator_lib import open_raster, input_open, rastermath, output_open, test_math
+from RUSLECalculator_error import RError, LSError, CError, LOG
 import GdalTools_utils as Utils
 
 try:
@@ -45,11 +47,15 @@ def openconfig():
 
 def get_raster_name(dlg):
     lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
-    outputFile = Utils.FileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
-                                                  Utils.FileFilter.allRastersFilter(), lastUsedFilter)
-    if outputFile == "":
-        LOGGER.error("Void string")
-        raise ValueError("Void string")
+    fileDialog = Utils.FileDialog
+    outputFile = fileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
+                                            Utils.FileFilter.allRastersFilter(), lastUsedFilter)
+    Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
+
+    # required either -ts or -tr to create the output file
+    if not QtCore.QFileInfo(outputFile).exists():
+        QMessageBox.information(dlg, dlg.tr("Output size required"),
+                                dlg.tr("The output file doesn't exist. You must set up the output size to create it."))
     return outputFile
 
 
@@ -63,7 +69,7 @@ def run(dlg):
     outputfile = dlg.RasterPath.toPlainText()
     runhelper(dlg)
     open_raster(outputfile)
-    LOGGER.info("Ended")
+    LOG.i("Ended")
 
 
 def runhelper(dlg):
@@ -77,45 +83,50 @@ def runhelper(dlg):
     outputfile = dlg.RasterPath.toPlainText()
     datatype = Utils.FileFilter.lastUsedRasterFilter()
 
+    test_math(dem, fieldimage, k, r, ls, c, p, outputfile, datatype)
+
+    if datatype[0] == "":
+        datatype = gdal.GDT_CFloat64
+
     ds = {'k': input_open(k), 'dem': dem}
 
-    LOGGER.info(ds['k'])
+    LOG.i(ds['k'])
 
     rastersize = ds['k'][0].shape
 
     try:
         ds['r'] = input_open(r)
-        LOGGER.info("r " + str(ds['r']))
+        LOG.i("r " + str(ds['r']))
     except Exception:
         raise RError
 
     try:
         ds['ls'] = input_open(ls)
-        LOGGER.info("ls " + str(ds['ls']))
+        LOG.i("ls " + str(ds['ls']))
     except Exception:
         raise LSError
 
     try:
         ds['c'] = input_open(c)
-        LOGGER.info("c " + str(ds['c']))
+        LOG.i("c " + str(ds['c']))
     except:
         raise CError
 
     try:
         ds['p'] = input_open(p)
-        LOGGER.info("p " + str(ds['p']))
+        LOG.i("p " + str(ds['p']))
     except Exception:
         ds['p'] = None
 
     try:
         ds['out'] = output_open(outputfile)
-        LOGGER.info("out  " + str(ds['out']))
+        LOG.i("out  " + str(ds['out']))
     except Exception:
-        LOGGER.error("You need to specify an output file", dlg)
+        LOG.e("You need to specify an output file", dlg)
 
     ds['fieldimage'] = fieldimage
 
-    rastermath(ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], ds['out'], rastersize[0], rastersize[1])
+    rastermath(ds['k'], ds['r'], ds['ls'], ds['c'], ds['p'], ds['out'], rastersize[0], rastersize[1], datatype)
 
 
 class ButtonSignal(QObject):
@@ -146,12 +157,6 @@ class ButtonSignal(QObject):
 
     def clickoutput(self):
         outputfunction(self.dlg)
-
-    def clickloadconfig(self):
-        openconfig()
-
-    def clicksaveconfig(self):
-        saveconfig(self.dlg)
 
 
 # TODO cambiare le configurazioni
