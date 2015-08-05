@@ -25,9 +25,6 @@ import os.path
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 
-import RUSLECalculator_resurce
-import RUSLECalculator_dialog_base
-
 from RUSLECalculator_Gui_Implementation import run, ButtonSignal
 from RUSLECalculator_dialog import RUSLECalculatorDialog
 
@@ -143,9 +140,6 @@ class RUSLECalculator():
         self.dlg.buttonC.clicked.connect(bott.clickc)
         self.dlg.buttonLS.clicked.connect(bott.clickls)
         self.dlg.RasterPathButton.clicked.connect(bott.clickoutput)
-        self.dlg.buttonLoad.clicked.connect(bott.clickloadconfig)
-        self.dlg.buttonSave.clicked.connect(bott.clicksaveconfig)
-
 
         # Run the dialog event loop
         result = self.dlg.exec_()
