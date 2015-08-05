@@ -22,7 +22,6 @@
 
 import logging
 from PyQt4.QtGui import QMessageBox
-from RUSLECalculator_config import PLUGIN_NAME
 
 
 class NoDem(Exception):
@@ -118,7 +117,7 @@ class Log():
         print(string)
 
 
-LOG = Log("/var/tmp/" + PLUGIN_NAME + ".log")
+LOG = Log("/var/tmp/RUSLECalculator.log")
 
 
 def error_window(dlg, title, body):

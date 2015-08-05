@@ -17,11 +17,13 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
@@ -30,7 +32,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
         self.button_box.setGeometry(QtCore.QRect(470, 640, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox_7 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(10, 10, 641, 271))
@@ -189,12 +191,15 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonImageField.setObjectName(_fromUtf8("buttonImageField"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), MatrixElaboratorDialogBase.accept)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")), MatrixElaboratorDialogBase.reject)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
+                               MatrixElaboratorDialogBase.accept)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")),
+                               MatrixElaboratorDialogBase.reject)
         QtCore.QMetaObject.connectSlotsByName(MatrixElaboratorDialogBase)
 
     def retranslateUi(self, MatrixElaboratorDialogBase):
-        MatrixElaboratorDialogBase.setWindowTitle(_translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
+        MatrixElaboratorDialogBase.setWindowTitle(
+            _translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
         self.groupBox_7.setTitle(_translate("MatrixElaboratorDialogBase", "Input Raster", None))
         self.label_3.setText(_translate("MatrixElaboratorDialogBase", "Erosion of rainfall (R)", None))
         self.buttonR.setText(_translate("MatrixElaboratorDialogBase", "...", None))
@@ -224,4 +229,3 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonSave.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
         self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Image Field", None))
         self.buttonImageField.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-
