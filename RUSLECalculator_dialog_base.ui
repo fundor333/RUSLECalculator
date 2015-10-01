@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>487</height>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>430</y>
+     <y>390</y>
      <width>171</width>
      <height>32</height>
     </rect>
@@ -308,7 +308,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Qualcosa (P)</string>
+      <string>P Factor (P)</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="inputP">
@@ -340,7 +340,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>330</y>
+     <y>290</y>
      <width>631</width>
      <height>71</height>
     </rect>
@@ -378,55 +378,6 @@
       <y>30</y>
       <width>51</width>
       <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="groupBox_11">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>280</y>
-     <width>631</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string/>
-   </property>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>111</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Image Field</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="inputFieldImage">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>0</y>
-      <width>451</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="buttonImageField">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>-10</y>
-      <width>51</width>
-      <height>51</height>
      </rect>
     </property>
     <property name="text">

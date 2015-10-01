@@ -45,6 +45,7 @@ import sys
 import string
 import re
 
+
 # Escapes arguments and return them joined in a string
 def escapeAndJoin(strList):
     joined = ''
@@ -893,6 +894,7 @@ def setMacOSXDefaultEnvironment():
                 u"%s/Python/%s.%s/site-packages" % (gdal_base_path, sys.version_info[0], sys.version_info[1]))
         if getHelpPath() == '':
             setHelpPath(u"%s/Resources/doc" % gdal_base_path)
+
 
 # setup the MacOSX path to both GDAL executables and python modules
 if platform.system() == "Darwin":

@@ -29,7 +29,7 @@ import GdalTools_utils as Utils
 
 try:
     from osgeo import *
-except:
+except Exception:
     import gdal
     import ogr
     import osr
@@ -62,7 +62,6 @@ def run(dlg):
     dem = dlg.inputDEM.toPlainText()
     fieldimage = dlg.inputFieldImage.toPlainText()
     datatype = Utils.FileFilter.lastUsedRasterFilter()
-
 
     k = dlg.inputK.toPlainText()
     r = dlg.inputR.toPlainText()

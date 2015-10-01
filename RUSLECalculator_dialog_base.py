@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
-# Created: Thu May 28 09:28:23 2015
-#      by: PyQt4 UI code generator 4.11.2
+# Created: Thu Oct  1 12:42:55 2015
+#      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,20 +17,18 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
-
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
         MatrixElaboratorDialogBase.setObjectName(_fromUtf8("MatrixElaboratorDialogBase"))
-        MatrixElaboratorDialogBase.resize(670, 695)
+        MatrixElaboratorDialogBase.resize(670, 487)
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
-        self.button_box.setGeometry(QtCore.QRect(470, 640, 171, 32))
+        self.button_box.setGeometry(QtCore.QRect(460, 430, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
         self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
@@ -115,48 +113,8 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonP = QtGui.QPushButton(self.groupBox_2)
         self.buttonP.setGeometry(QtCore.QRect(580, -10, 51, 51))
         self.buttonP.setObjectName(_fromUtf8("buttonP"))
-        self.groupBox_8 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_8.setGeometry(QtCore.QRect(20, 330, 621, 201))
-        self.groupBox_8.setObjectName(_fromUtf8("groupBox_8"))
-        self.label_7 = QtGui.QLabel(self.groupBox_8)
-        self.label_7.setGeometry(QtCore.QRect(10, 30, 171, 16))
-        self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.SlopeThreshold = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.SlopeThreshold.setGeometry(QtCore.QRect(190, 20, 62, 31))
-        self.SlopeThreshold.setObjectName(_fromUtf8("SlopeThreshold"))
-        self.Flowacc = QtGui.QLabel(self.groupBox_8)
-        self.Flowacc.setGeometry(QtCore.QRect(10, 70, 171, 21))
-        self.Flowacc.setObjectName(_fromUtf8("Flowacc"))
-        self.InputFlowacc = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.InputFlowacc.setGeometry(QtCore.QRect(190, 60, 62, 31))
-        self.InputFlowacc.setObjectName(_fromUtf8("InputFlowacc"))
-        self.checkBox = QtGui.QCheckBox(self.groupBox_8)
-        self.checkBox.setGeometry(QtCore.QRect(360, 110, 151, 31))
-        self.checkBox.setChecked(True)
-        self.checkBox.setObjectName(_fromUtf8("checkBox"))
-        self.checkBox_3 = QtGui.QCheckBox(self.groupBox_8)
-        self.checkBox_3.setGeometry(QtCore.QRect(60, 110, 191, 31))
-        self.checkBox_3.setObjectName(_fromUtf8("checkBox_3"))
-        self.label_10 = QtGui.QLabel(self.groupBox_8)
-        self.label_10.setGeometry(QtCore.QRect(300, 30, 181, 16))
-        self.label_10.setObjectName(_fromUtf8("label_10"))
-        self.AspectThreshold = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.AspectThreshold.setGeometry(QtCore.QRect(490, 20, 62, 31))
-        self.AspectThreshold.setObjectName(_fromUtf8("AspectThreshold"))
-        self.label_11 = QtGui.QLabel(self.groupBox_8)
-        self.label_11.setGeometry(QtCore.QRect(300, 70, 181, 16))
-        self.label_11.setObjectName(_fromUtf8("label_11"))
-        self.InputCellSize = QtGui.QDoubleSpinBox(self.groupBox_8)
-        self.InputCellSize.setGeometry(QtCore.QRect(490, 60, 62, 31))
-        self.InputCellSize.setObjectName(_fromUtf8("InputCellSize"))
-        self.inputyear = QtGui.QSpinBox(self.groupBox_8)
-        self.inputyear.setGeometry(QtCore.QRect(190, 150, 61, 31))
-        self.inputyear.setObjectName(_fromUtf8("inputyear"))
-        self.label_9 = QtGui.QLabel(self.groupBox_8)
-        self.label_9.setGeometry(QtCore.QRect(30, 160, 56, 17))
-        self.label_9.setObjectName(_fromUtf8("label_9"))
         self.groupBox_9 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_9.setGeometry(QtCore.QRect(20, 540, 631, 71))
+        self.groupBox_9.setGeometry(QtCore.QRect(10, 330, 631, 71))
         self.groupBox_9.setObjectName(_fromUtf8("groupBox_9"))
         self.label_12 = QtGui.QLabel(self.groupBox_9)
         self.label_12.setGeometry(QtCore.QRect(10, 40, 71, 16))
@@ -167,15 +125,6 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.RasterPathButton = QtGui.QPushButton(self.groupBox_9)
         self.RasterPathButton.setGeometry(QtCore.QRect(580, 30, 51, 32))
         self.RasterPathButton.setObjectName(_fromUtf8("RasterPathButton"))
-        self.groupBox_10 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_10.setGeometry(QtCore.QRect(20, 620, 271, 51))
-        self.groupBox_10.setObjectName(_fromUtf8("groupBox_10"))
-        self.buttonLoad = QtGui.QPushButton(self.groupBox_10)
-        self.buttonLoad.setGeometry(QtCore.QRect(20, 20, 110, 32))
-        self.buttonLoad.setObjectName(_fromUtf8("buttonLoad"))
-        self.buttonSave = QtGui.QPushButton(self.groupBox_10)
-        self.buttonSave.setGeometry(QtCore.QRect(150, 20, 110, 32))
-        self.buttonSave.setObjectName(_fromUtf8("buttonSave"))
         self.groupBox_11 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_11.setGeometry(QtCore.QRect(10, 280, 631, 31))
         self.groupBox_11.setTitle(_fromUtf8(""))
@@ -211,21 +160,10 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonLS.setText(_translate("MatrixElaboratorDialogBase", "...", None))
         self.label.setText(_translate("MatrixElaboratorDialogBase", "DEM", None))
         self.buttonDem.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-        self.label_2.setText(_translate("MatrixElaboratorDialogBase", "Qualcosa (P)", None))
+        self.label_2.setText(_translate("MatrixElaboratorDialogBase", "P Factor (P)", None))
         self.buttonP.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-        self.groupBox_8.setTitle(_translate("MatrixElaboratorDialogBase", "Control Specification", None))
-        self.label_7.setText(_translate("MatrixElaboratorDialogBase", "Slope Threshold", None))
-        self.Flowacc.setText(_translate("MatrixElaboratorDialogBase", "Maximum Slope Lenght", None))
-        self.checkBox.setText(_translate("MatrixElaboratorDialogBase", "All in Metric System", None))
-        self.checkBox_3.setText(_translate("MatrixElaboratorDialogBase", "Average soil factory patcher", None))
-        self.label_10.setText(_translate("MatrixElaboratorDialogBase", "Aspect Threshold", None))
-        self.label_11.setText(_translate("MatrixElaboratorDialogBase", "Cell Size", None))
-        self.label_9.setText(_translate("MatrixElaboratorDialogBase", "Yars", None))
         self.groupBox_9.setTitle(_translate("MatrixElaboratorDialogBase", "Output Raster", None))
         self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
         self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-        self.groupBox_10.setTitle(_translate("MatrixElaboratorDialogBase", "Config", None))
-        self.buttonLoad.setText(_translate("MatrixElaboratorDialogBase", "Load", None))
-        self.buttonSave.setText(_translate("MatrixElaboratorDialogBase", "Save", None))
         self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Image Field", None))
         self.buttonImageField.setText(_translate("MatrixElaboratorDialogBase", "...", None))
