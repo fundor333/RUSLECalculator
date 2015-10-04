@@ -29,6 +29,22 @@ from PyQt4.QtCore import QFileInfo
 from RUSLECalculator_error import LOG
 
 
+def aez_calc(aez):
+    i = 0
+    for row in aez:
+        y = 0
+        for element in row:
+            ele = element.get(4)
+            if ele == 1:
+                aez[i][y] = 11.6171685
+            elif ele == 2:
+                aez[i][y] = 11.6171685
+            elif ele == 3:
+                aez[i][y] = 13.5533632
+            y += 1
+        i += 1
+
+
 def open_raster(filename):
     LOG.i("Opening the layer " + filename)
     basename = QFileInfo(filename).baseName()
@@ -59,7 +75,7 @@ def real_math(k, r, ls, c, p, outputfile):
         src_p = open_p.ReadAsArray()
         final_data = src_c * src_k * src_r * src_ls * src_p
 
-    except:
+    except Exception:
         final_data = src_c * src_k * src_r * src_ls
 
     final_data = final_data * 29.0142 / 100

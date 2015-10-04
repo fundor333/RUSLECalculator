@@ -60,7 +60,6 @@ def outputfunction(dlg):
 
 def run(dlg):
     dem = dlg.inputDEM.toPlainText()
-    fieldimage = dlg.inputFieldImage.toPlainText()
     datatype = Utils.FileFilter.lastUsedRasterFilter()
 
     k = dlg.inputK.toPlainText()
