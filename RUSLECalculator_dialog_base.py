@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
-# Created: Thu Oct  1 12:42:55 2015
+# Created: Wed Oct  7 11:15:47 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,9 +26,9 @@ except AttributeError:
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
         MatrixElaboratorDialogBase.setObjectName(_fromUtf8("MatrixElaboratorDialogBase"))
-        MatrixElaboratorDialogBase.resize(670, 487)
+        MatrixElaboratorDialogBase.resize(670, 438)
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
-        self.button_box.setGeometry(QtCore.QRect(460, 430, 171, 32))
+        self.button_box.setGeometry(QtCore.QRect(460, 390, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
         self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
@@ -114,7 +114,7 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.buttonP.setGeometry(QtCore.QRect(580, -10, 51, 51))
         self.buttonP.setObjectName(_fromUtf8("buttonP"))
         self.groupBox_9 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_9.setGeometry(QtCore.QRect(10, 330, 631, 71))
+        self.groupBox_9.setGeometry(QtCore.QRect(10, 290, 631, 71))
         self.groupBox_9.setObjectName(_fromUtf8("groupBox_9"))
         self.label_12 = QtGui.QLabel(self.groupBox_9)
         self.label_12.setGeometry(QtCore.QRect(10, 40, 71, 16))
@@ -125,19 +125,12 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.RasterPathButton = QtGui.QPushButton(self.groupBox_9)
         self.RasterPathButton.setGeometry(QtCore.QRect(580, 30, 51, 32))
         self.RasterPathButton.setObjectName(_fromUtf8("RasterPathButton"))
-        self.groupBox_11 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
-        self.groupBox_11.setGeometry(QtCore.QRect(10, 280, 631, 31))
-        self.groupBox_11.setTitle(_fromUtf8(""))
-        self.groupBox_11.setObjectName(_fromUtf8("groupBox_11"))
-        self.label_8 = QtGui.QLabel(self.groupBox_11)
-        self.label_8.setGeometry(QtCore.QRect(10, 10, 111, 16))
-        self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.inputFieldImage = QtGui.QTextEdit(self.groupBox_11)
-        self.inputFieldImage.setGeometry(QtCore.QRect(130, 0, 451, 31))
-        self.inputFieldImage.setObjectName(_fromUtf8("inputFieldImage"))
-        self.buttonImageField = QtGui.QPushButton(self.groupBox_11)
-        self.buttonImageField.setGeometry(QtCore.QRect(580, -10, 51, 51))
-        self.buttonImageField.setObjectName(_fromUtf8("buttonImageField"))
+        self.years_input = QtGui.QSpinBox(MatrixElaboratorDialogBase)
+        self.years_input.setGeometry(QtCore.QRect(140, 380, 111, 31))
+        self.years_input.setObjectName(_fromUtf8("years_input"))
+        self.years_label = QtGui.QLabel(MatrixElaboratorDialogBase)
+        self.years_label.setGeometry(QtCore.QRect(20, 390, 101, 17))
+        self.years_label.setObjectName(_fromUtf8("years_label"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
         QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
@@ -165,5 +158,4 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.groupBox_9.setTitle(_translate("MatrixElaboratorDialogBase", "Output Raster", None))
         self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
         self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))
-        self.label_8.setText(_translate("MatrixElaboratorDialogBase", "Image Field", None))
-        self.buttonImageField.setText(_translate("MatrixElaboratorDialogBase", "...", None))
+        self.years_label.setText(_translate("MatrixElaboratorDialogBase", "Number of years", None))

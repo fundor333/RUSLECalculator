@@ -24,8 +24,9 @@ from PyQt4.uic.properties import QtCore
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog, QMessageBox
 
-from RUSLECalculator_lib import real_math
+from RUSLECalculator_lib import get_soil_loss
 import GdalTools_utils as Utils
+from RUSLECalculator_resurce import RASTER_FILE, RASTER_DRIVER
 
 try:
     from osgeo import *
@@ -42,14 +43,22 @@ def selectfile(lineEdit):
 def get_raster_name(dlg):
     lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
     fileDialog = Utils.FileDialog
+    name_list = RASTER_DRIVER.keys()
+    name_list.sort()
+    string_to_dialog = ""
+    for s in name_list:
+        string_to_dialog += s + ";;"
+
+    string_to_dialog = string_to_dialog[:-2]
+    string_to_dialog = unicode(string_to_dialog, 'utf-8')
     outputFile = fileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
-                                            Utils.FileFilter.allRastersFilter(), lastUsedFilter)
+                                            string_to_dialog, lastUsedFilter)
     Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
 
-    # required either -ts or -tr to create the output file
+
     if not QtCore.QFileInfo(outputFile).exists():
-        QMessageBox.information(dlg, dlg.tr("Output size required"),
-                                dlg.tr("The output file doesn't exist. You must set up the output size to create it."))
+        file = open(outputFile, 'r+')  # Trying to create a new file or open one
+        file.close()
     return outputFile
 
 
@@ -60,7 +69,7 @@ def outputfunction(dlg):
 
 def run(dlg):
     dem = dlg.inputDEM.toPlainText()
-    datatype = Utils.FileFilter.lastUsedRasterFilter()
+    datatype = RASTER_DRIVER[str(Utils.FileFilter.lastUsedRasterFilter()[0])]
 
     k = dlg.inputK.toPlainText()
     r = dlg.inputR.toPlainText()
@@ -68,8 +77,9 @@ def run(dlg):
     c = dlg.inputC.toPlainText()
     p = dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
+    years = dlg.years_input.value()
 
-    real_math(k, r, ls, c, p, outputfile)
+    get_soil_loss(k, r, ls, c, p, dem, outputfile, datatype, years)
 
 
 class ButtonSignal(QObject):

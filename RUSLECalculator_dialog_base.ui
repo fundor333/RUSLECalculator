@@ -385,6 +385,29 @@
     </property>
    </widget>
   </widget>
+  <widget class="QSpinBox" name="years_input">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>380</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="years_label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>390</y>
+     <width>101</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Number of years</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

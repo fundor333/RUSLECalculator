@@ -23,13 +23,30 @@ from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
 
 from osgeo.gdalconst import GA_ReadOnly
 
-from osgeo.gdalnumeric import BandWriteArray, BandReadAsArray, numpy, gdal
+from osgeo.gdalnumeric import gdal
 
 from PyQt4.QtCore import QFileInfo
 from RUSLECalculator_error import LOG
 
 
 def aez_calc(aez):
+    i = 0
+    for row in aez:
+        y = 0
+        for element in row:
+            ele = element.get(4)
+            if ele == 1:
+                aez[i][y] = 11.6171685
+            elif ele == 2:
+                aez[i][y] = 11.6171685
+            elif ele == 3:
+                aez[i][y] = 13.5533632
+            y += 1
+        i += 1
+
+
+def get_aez(c):
+    aez = c
     i = 0
     for row in aez:
         y = 0
@@ -58,13 +75,11 @@ def open_raster(filename):
     return basename, r_layer
 
 
-def real_math(k, r, ls, c, p, outputfile):
-    LOG.i("Start calc the raster")
+def iterable_function(k, r, ls, c, p):
     open_k = gdal.Open(k)
     open_r = gdal.Open(r)
     open_ls = gdal.Open(ls)
     open_c = gdal.Open(c)
-
     src_k = open_k.ReadAsArray()
     src_r = open_r.ReadAsArray()
     src_ls = open_ls.ReadAsArray()
@@ -78,24 +93,29 @@ def real_math(k, r, ls, c, p, outputfile):
     except Exception:
         final_data = src_c * src_k * src_r * src_ls
 
-    final_data = final_data * 29.0142 / 100
+    return (final_data * 29.0142 / 100)
+
+
+def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
+    LOG.i("Start calc the raster")
+    open_dem = gdal.Open(dem)
+    final_data = None
+
+    for i in range(0, years):
+        final_data = iterable_function(k, r, ls, c, p)
+
 
     # get parameters
-    geotransform = open_k.GetGeoTransform()
-    spatialreference = open_k.GetProjection()
-    data_type = open_k.GetRasterBand(1).DataType
-    ncol = open_k.RasterXSize
-    nrow = open_k.RasterYSize
+    geotransform = open_dem.GetGeoTransform()
+    spatialreference = open_dem.GetProjection()
+    data_type = open_dem.GetRasterBand(1).DataType
+    ncol = open_dem.RasterXSize
+    nrow = open_dem.RasterYSize
     nband = 1
 
     # create dataset for output
-    fmt = 'GTiff'
-    driver = gdal.GetDriverByName(fmt)
-    dst_dataset = driver.Create(outputfile,
-                                ncol,
-                                nrow,
-                                nband,
-                                data_type)
+    driver = gdal.GetDriverByName(driver_name)
+    dst_dataset = driver.Create(outputfile, ncol, nrow, nband, data_type)
     dst_dataset.SetGeoTransform(geotransform)
     dst_dataset.SetProjection(spatialreference)
     dst_dataset.GetRasterBand(1).WriteArray(final_data)
