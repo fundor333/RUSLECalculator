@@ -27,6 +27,7 @@ from osgeo.gdalnumeric import gdal
 
 from PyQt4.QtCore import QFileInfo
 from RUSLECalculator_error import LOG, DriverError
+from RUSLECalculator_resurce import AEZ100, AEZ200, AEZ300
 
 
 def aez_calc(aez):
@@ -36,11 +37,11 @@ def aez_calc(aez):
         for element in row:
             ele = element.get(3)
             if ele == 1:
-                aez[i][y] = 11.6171685
+                aez[i][y] = AEZ100
             elif ele == 2:
-                aez[i][y] = 11.6171685
+                aez[i][y] = AEZ200
             elif ele == 3:
-                aez[i][y] = 13.5533632
+                aez[i][y] = AEZ300
             y += 1
         i += 1
 
@@ -76,13 +77,14 @@ def iterable_function(k, r, ls, c, p, pixel_value):
     except Exception:
         final_data = src_c * src_k * src_r * src_ls
 
-    return (final_data * pixel_value / 100)
+    return final_data * pixel_value / 100
 
 
 def get_pixel_size(dem):
     dataset = gdal.Open(dem, GA_ReadOnly)
     geotransform = dataset.GetGeoTransform()
     return geotransform[1]
+
 
 def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     LOG.i("Start calc the raster")

@@ -20,6 +20,10 @@
  ***************************************************************************/
 """
 
+AEZ100 = 11.6171685
+AEZ200 = 11.6171685
+AEZ300 = 13.5533632
+
 RASTER_FILE = {' AAIGrid': 'Arc/Info ASCII Grid',
                ' ACE2': 'ACE2',
                ' ADRG': 'ADRG/ARC Digitilized Raster Graphics (.gen/.thf)',
