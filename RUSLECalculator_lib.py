@@ -26,7 +26,7 @@ from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import gdal
 
 from PyQt4.QtCore import QFileInfo
-from RUSLECalculator_error import LOG
+from RUSLECalculator_error import LOG, DriverError
 
 
 def aez_calc(aez):
@@ -34,24 +34,7 @@ def aez_calc(aez):
     for row in aez:
         y = 0
         for element in row:
-            ele = element.get(4)
-            if ele == 1:
-                aez[i][y] = 11.6171685
-            elif ele == 2:
-                aez[i][y] = 11.6171685
-            elif ele == 3:
-                aez[i][y] = 13.5533632
-            y += 1
-        i += 1
-
-
-def get_aez(c):
-    aez = c
-    i = 0
-    for row in aez:
-        y = 0
-        for element in row:
-            ele = element.get(4)
+            ele = element.get(3)
             if ele == 1:
                 aez[i][y] = 11.6171685
             elif ele == 2:
@@ -75,7 +58,7 @@ def open_raster(filename):
     return basename, r_layer
 
 
-def iterable_function(k, r, ls, c, p):
+def iterable_function(k, r, ls, c, p, pixel_value):
     open_k = gdal.Open(k)
     open_r = gdal.Open(r)
     open_ls = gdal.Open(ls)
@@ -93,16 +76,26 @@ def iterable_function(k, r, ls, c, p):
     except Exception:
         final_data = src_c * src_k * src_r * src_ls
 
-    return (final_data * 29.0142 / 100)
+    return (final_data * pixel_value / 100)
 
+
+def get_pixel_size(dem):
+    dataset = gdal.Open(dem, GA_ReadOnly)
+    geotransform = dataset.GetGeoTransform()
+    return geotransform[1]
 
 def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     LOG.i("Start calc the raster")
+    LOG.i("The driver use is " + driver_name)
     open_dem = gdal.Open(dem)
+    pixel_size = get_pixel_size(dem)
     final_data = None
 
     for i in range(0, years):
-        final_data = iterable_function(k, r, ls, c, p)
+        if (final_data == None):
+            final_data = iterable_function(k, r, ls, c, p, pixel_size)
+        else:
+            final_data += iterable_function(k, r, ls, c, p, pixel_size)
 
 
     # get parameters
@@ -115,9 +108,13 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
 
     # create dataset for output
     driver = gdal.GetDriverByName(driver_name)
-    dst_dataset = driver.Create(outputfile, ncol, nrow, nband, data_type)
-    dst_dataset.SetGeoTransform(geotransform)
-    dst_dataset.SetProjection(spatialreference)
-    dst_dataset.GetRasterBand(1).WriteArray(final_data)
-    dst_dataset = None
-    open_raster(outputfile)
+    LOG.d(driver)
+    if driver != None:
+        dst_dataset = driver.Create(outputfile, ncol, nrow, nband, data_type)
+        dst_dataset.SetGeoTransform(geotransform)
+        dst_dataset.SetProjection(spatialreference)
+        dst_dataset.GetRasterBand(1).WriteArray(final_data)
+        dst_dataset = None
+        open_raster(outputfile)
+    else:
+        raise DriverError()

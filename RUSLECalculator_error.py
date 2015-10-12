@@ -30,6 +30,12 @@ class NoDem(Exception):
         LOG.e("NoDem " + message)
 
 
+class DriverError(Exception):
+    def __init__(self, message=""):
+        self.message = message
+        LOG.e("DriverError: Output format not support in this installation. Yout need to install it " + message)
+
+
 class NoFieldImage(Exception):
     def __init__(self, message=""):
         self.message = message
