@@ -116,7 +116,7 @@ class RUSLECalculator():
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-        icon_path = ':/plugins/RUSLECalculator/icon.png'
+        icon_path = ':/plugins/RUSLECalculator/logo.png'
         self.add_action(icon_path, text=self.tr('Elaborate'), callback=self.run, parent=self.iface.mainWindow())
 
     def unload(self):
