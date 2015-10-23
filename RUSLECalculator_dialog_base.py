@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'RUSLECalculator_dialog_base.ui'
 #
-# Created: Wed Oct  7 11:15:47 2015
+# Created: Fri Oct 23 09:54:19 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,11 +26,11 @@ except AttributeError:
 class Ui_MatrixElaboratorDialogBase(object):
     def setupUi(self, MatrixElaboratorDialogBase):
         MatrixElaboratorDialogBase.setObjectName(_fromUtf8("MatrixElaboratorDialogBase"))
-        MatrixElaboratorDialogBase.resize(670, 438)
+        MatrixElaboratorDialogBase.resize(739, 437)
         self.button_box = QtGui.QDialogButtonBox(MatrixElaboratorDialogBase)
-        self.button_box.setGeometry(QtCore.QRect(460, 390, 171, 32))
+        self.button_box.setGeometry(QtCore.QRect(550, 390, 171, 32))
         self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.button_box.setObjectName(_fromUtf8("button_box"))
         self.groupBox_7 = QtGui.QGroupBox(MatrixElaboratorDialogBase)
         self.groupBox_7.setGeometry(QtCore.QRect(10, 10, 641, 271))
@@ -131,17 +131,38 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.years_label = QtGui.QLabel(MatrixElaboratorDialogBase)
         self.years_label.setGeometry(QtCore.QRect(20, 390, 101, 17))
         self.years_label.setObjectName(_fromUtf8("years_label"))
+        self.label_7 = QtGui.QLabel(MatrixElaboratorDialogBase)
+        self.label_7.setGeometry(QtCore.QRect(640, 10, 101, 20))
+        self.label_7.setObjectName(_fromUtf8("label_7"))
+        self.checkerR = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerR.setGeometry(QtCore.QRect(680, 40, 16, 31))
+        self.checkerR.setObjectName(_fromUtf8("checkerR"))
+        self.checkerK = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerK.setGeometry(QtCore.QRect(680, 80, 16, 31))
+        self.checkerK.setObjectName(_fromUtf8("checkerK"))
+        self.checkerLS = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerLS.setGeometry(QtCore.QRect(680, 120, 16, 31))
+        self.checkerLS.setObjectName(_fromUtf8("checkerLS"))
+        self.checkerC = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerC.setGeometry(QtCore.QRect(680, 160, 16, 31))
+        self.checkerC.setObjectName(_fromUtf8("checkerC"))
+        self.checkerDEM = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerDEM.setGeometry(QtCore.QRect(680, 240, 16, 31))
+        self.checkerDEM.setObjectName(_fromUtf8("checkerDEM"))
+        self.checkerP = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerP.setGeometry(QtCore.QRect(680, 200, 16, 31))
+        self.checkerP.setObjectName(_fromUtf8("checkerP"))
+        self.checkerDEM_2 = QtGui.QCheckBox(MatrixElaboratorDialogBase)
+        self.checkerDEM_2.setGeometry(QtCore.QRect(680, 320, 16, 31))
+        self.checkerDEM_2.setObjectName(_fromUtf8("checkerDEM_2"))
 
         self.retranslateUi(MatrixElaboratorDialogBase)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")),
-                               MatrixElaboratorDialogBase.accept)
-        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")),
-                               MatrixElaboratorDialogBase.reject)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), MatrixElaboratorDialogBase.accept)
+        QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("rejected()")), MatrixElaboratorDialogBase.reject)
         QtCore.QMetaObject.connectSlotsByName(MatrixElaboratorDialogBase)
 
     def retranslateUi(self, MatrixElaboratorDialogBase):
-        MatrixElaboratorDialogBase.setWindowTitle(
-            _translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
+        MatrixElaboratorDialogBase.setWindowTitle(_translate("MatrixElaboratorDialogBase", "Earh Matrix Elaborator", None))
         self.groupBox_7.setTitle(_translate("MatrixElaboratorDialogBase", "Input Raster", None))
         self.label_3.setText(_translate("MatrixElaboratorDialogBase", "Erosion of rainfall (R)", None))
         self.buttonR.setText(_translate("MatrixElaboratorDialogBase", "...", None))
@@ -159,3 +180,12 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.label_12.setText(_translate("MatrixElaboratorDialogBase", "Raster Path", None))
         self.RasterPathButton.setText(_translate("MatrixElaboratorDialogBase", "...", None))
         self.years_label.setText(_translate("MatrixElaboratorDialogBase", "Number of years", None))
+        self.label_7.setText(_translate("MatrixElaboratorDialogBase", "Multiple input", None))
+        self.checkerR.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerK.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerLS.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerC.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerDEM.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerP.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+        self.checkerDEM_2.setText(_translate("MatrixElaboratorDialogBase", "CheckBox", None))
+
