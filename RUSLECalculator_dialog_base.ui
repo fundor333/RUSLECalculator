@@ -502,7 +502,7 @@
     <string>CheckBox</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkerDEM_2">
+  <widget class="QCheckBox" name="checkerOutput">
    <property name="geometry">
     <rect>
      <x>680</x>

@@ -26,6 +26,7 @@ from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import gdal
 
 from PyQt4.QtCore import QFileInfo
+from RUSLECalculator_Gui_Implementation import getListFile
 from RUSLECalculator_error import LOG, DriverError
 from RUSLECalculator_resurce import AEZ100, AEZ200, AEZ300
 
@@ -86,6 +87,20 @@ def get_pixel_size(dem):
     return geotransform[1]
 
 
+def elaborate_document(document_file, num):
+    output = []
+    if document_file[0] == num:
+        output = document_file[1]
+    else:
+        if document_file[0] == 0:
+            for i in range(0, num):
+                output[i] = document_file[0]
+        else:
+            for i in range(0, num):
+                output[i] = document_file[0][i % document_file[0].size]
+    return output
+
+
 def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     LOG.i("Start calc the raster")
     LOG.i("The driver use is " + driver_name)
@@ -93,11 +108,23 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     pixel_size = get_pixel_size(dem)
     final_data = None
 
-    for i in range(0, years):
-        if (final_data == None):
-            final_data = iterable_function(k, r, ls, c, p, pixel_size)
-        else:
-            final_data += iterable_function(k, r, ls, c, p, pixel_size)
+    k_file = getListFile(k[0], k[1])
+    r_file = getListFile(r[0], r[1])
+    ls_file = getListFile(ls[0], ls[1])
+    c_file = getListFile(c[0], c[1])
+    p_file = getListFile(p[0], p[1])
+    dem_file = getListFile(dem[0], dem[1])
+    number = k[1] + r[1] + ls[1] + c[1] + p[1] + dem[1]
+
+    if number == 0:
+        for i in range(0, years):
+            if (final_data == None):
+                final_data = iterable_function(k, r, ls, c, p, pixel_size)
+            else:
+                final_data += iterable_function(k, r, ls, c, p, pixel_size)
+    else:
+        # todo implementare gestore liste
+        raise NotImplemented
 
 
     # get parameters

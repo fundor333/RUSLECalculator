@@ -23,6 +23,7 @@ from PyQt4.uic.properties import QtCore
 
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog, QMessageBox
+import os
 
 from RUSLECalculator_lib import get_soil_loss
 import GdalTools_utils as Utils
@@ -40,6 +41,10 @@ def selectfile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
 
 
+def selectdirectory(lineEdit):
+    lineEdit.setText(QFileDialog.getExistingDirectory())
+
+
 def get_raster_name(dlg):
     lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
     fileDialog = Utils.FileDialog
@@ -55,7 +60,6 @@ def get_raster_name(dlg):
                                             string_to_dialog, lastUsedFilter)
     Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
 
-
     if not QtCore.QFileInfo(outputFile).exists():
         file = open(outputFile, 'r+')  # Trying to create a new file or open one
         file.close()
@@ -67,15 +71,29 @@ def outputfunction(dlg):
     dlg.RasterPath.setText(filename)
 
 
+def getListFile(checker_boolean,input_position):
+    flag = 0
+    if checker_boolean:
+        list_out = input_position
+    else:
+        list_out = []
+        for file_name in os.listdir(input_position):
+            list_out.append(file_name)
+        list_out.sort()
+        flag = 1
+
+    return flag, list_out
+
+
 def run(dlg):
     dem = dlg.inputDEM.toPlainText()
     datatype = RASTER_DRIVER[str(Utils.FileFilter.lastUsedRasterFilter()[0])]
 
-    k = dlg.inputK.toPlainText()
-    r = dlg.inputR.toPlainText()
-    ls = dlg.inputLS.toPlainText()
-    c = dlg.inputC.toPlainText()
-    p = dlg.inputP.toPlainText()
+    k = dlg.checkerK.isChecked(),dlg.inputK.toPlainText()
+    r = dlg.checkerR.isChecked(),dlg.inputR.toPlainText()
+    ls = dlg.checkerLS.isChecked(),dlg.inputLS.toPlainText()
+    c = dlg.checkerC.isChecked(),dlg.inputC.toPlainText()
+    p = dlg.checkerP.isChecked(),dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
     years = dlg.years_input.value()
 
@@ -88,25 +106,40 @@ class ButtonSignal(QObject):
         self.dlg = dlg
 
     def clickdem(self):
-        selectfile(self.dlg.inputDEM)
+        if self.dlg.checkerDEM.isChecked():
+            selectfile(self.dlg.inputDEM)
+        else:
+            selectdirectory(self.dlg.inputDEM)
 
     def clickk(self):
-        selectfile(self.dlg.inputK)
-
-    def clickfieldimage(self):
-        selectfile(self.dlg.imputImageField)
+        if self.dlg.checkerK.isChecked():
+            selectfile(self.dlg.inputK)
+        else:
+            selectdirectory(self.dlg.inputK)
 
     def clickr(self):
-        selectfile(self.dlg.inputR)
+        if self.dlg.checkerR.isChecked():
+            selectfile(self.dlg.inputR)
+        else:
+            selectdirectory(self.dlg.inputR)
 
     def clickp(self):
-        selectfile(self.dlg.inputP)
+        if self.dlg.checkerP.isChecked():
+            selectfile(self.dlg.inputP)
+        else:
+            selectdirectory(self.dlg.inputP)
 
     def clickls(self):
-        selectfile(self.dlg.inputLS)
+        if self.dlg.checkerLS.isChecked():
+            selectfile(self.dlg.inputLS)
+        else:
+            selectdirectory(self.dlg.inputLS)
 
     def clickc(self):
-        selectfile(self.dlg.inputC)
+        if self.dlg.checkerC.isChecked():
+            selectfile(self.dlg.inputC)
+        else:
+            selectdirectory(self.dlg.inputC)
 
     def clickoutput(self):
         outputfunction(self.dlg)
