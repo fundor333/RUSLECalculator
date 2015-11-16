@@ -14,7 +14,6 @@ BOT_NAME = 'raster_type'
 SPIDER_MODULES = ['raster_type.spiders']
 NEWSPIDER_MODULE = 'raster_type.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'raster_type (+http://www.yourdomain.com)'
 

@@ -31,13 +31,10 @@ __revision__ = '$Format:%H$'
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-
 from qgis.core import *
 from qgis.gui import *
-
 from osgeo import gdal, ogr, osr
 from osgeo.gdalconst import *
-
 import os
 # to know the os
 import platform

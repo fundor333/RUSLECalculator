@@ -20,10 +20,11 @@
  ***************************************************************************/
 """
 from PyQt4.uic.properties import QtCore
-
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog, QMessageBox
 import os
+
+from __builtin__ import unicode
 
 from RUSLECalculator_lib import get_soil_loss
 import GdalTools_utils as Utils
@@ -71,29 +72,28 @@ def outputfunction(dlg):
     dlg.RasterPath.setText(filename)
 
 
-def getListFile(checker_boolean,input_position):
-    flag = 0
+def getListFile(checker_boolean, input_position, years):
+    list_out = []
     if checker_boolean:
-        list_out = input_position
+        for _ in range(0, years):
+            list_out.append(input_position)
     else:
-        list_out = []
         for file_name in os.listdir(input_position):
             list_out.append(file_name)
         list_out.sort()
-        flag = 1
 
-    return flag, list_out
+    return list_out
 
 
 def run(dlg):
     dem = dlg.inputDEM.toPlainText()
     datatype = RASTER_DRIVER[str(Utils.FileFilter.lastUsedRasterFilter()[0])]
 
-    k = dlg.checkerK.isChecked(),dlg.inputK.toPlainText()
-    r = dlg.checkerR.isChecked(),dlg.inputR.toPlainText()
-    ls = dlg.checkerLS.isChecked(),dlg.inputLS.toPlainText()
-    c = dlg.checkerC.isChecked(),dlg.inputC.toPlainText()
-    p = dlg.checkerP.isChecked(),dlg.inputP.toPlainText()
+    k = dlg.checkerK.isChecked(), dlg.inputK.toPlainText()
+    r = dlg.checkerR.isChecked(), dlg.inputR.toPlainText()
+    ls = dlg.checkerLS.isChecked(), dlg.inputLS.toPlainText()
+    c = dlg.checkerC.isChecked(), dlg.inputC.toPlainText()
+    p = dlg.checkerP.isChecked(), dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
     years = dlg.years_input.value()
 

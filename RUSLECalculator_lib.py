@@ -20,11 +20,8 @@
  ***************************************************************************/
 """
 from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
-
 from osgeo.gdalconst import GA_ReadOnly
-
 from osgeo.gdalnumeric import gdal
-
 from PyQt4.QtCore import QFileInfo
 from RUSLECalculator_Gui_Implementation import getListFile
 from RUSLECalculator_error import LOG, DriverError
@@ -108,24 +105,18 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     pixel_size = get_pixel_size(dem)
     final_data = None
 
-    k_file = getListFile(k[0], k[1])
-    r_file = getListFile(r[0], r[1])
-    ls_file = getListFile(ls[0], ls[1])
-    c_file = getListFile(c[0], c[1])
-    p_file = getListFile(p[0], p[1])
-    dem_file = getListFile(dem[0], dem[1])
-    number = k[1] + r[1] + ls[1] + c[1] + p[1] + dem[1]
+    k_file = getListFile(k[0], k[1], years)
+    r_file = getListFile(r[0], r[1], years)
+    ls_file = getListFile(ls[0], ls[1], years)
+    c_file = getListFile(c[0], c[1], years)
+    p_file = getListFile(p[0], p[1], years)
+    dem_file = getListFile(dem[0], dem[1], years)
 
-    if number == 0:
-        for i in range(0, years):
-            if (final_data == None):
-                final_data = iterable_function(k, r, ls, c, p, pixel_size)
-            else:
-                final_data += iterable_function(k, r, ls, c, p, pixel_size)
-    else:
-        # todo implementare gestore liste
-        raise NotImplemented
-
+    for i in range(0, years):
+        if (final_data == None):
+            final_data = iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
+        else:
+            final_data += iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
 
     # get parameters
     geotransform = open_dem.GetGeoTransform()
