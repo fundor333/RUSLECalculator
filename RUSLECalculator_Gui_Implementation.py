@@ -19,16 +19,13 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt4.uic.properties import QtCore
-from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog, QMessageBox
 import os
-
-from __builtin__ import unicode
-
-from RUSLECalculator_lib import get_soil_loss
+from PyQt4.QtCore import QObject
+from PyQt4.QtGui import QFileDialog
+from PyQt4.uic.properties import QtCore
 import GdalTools_utils as Utils
-from RUSLECalculator_resurce import RASTER_FILE, RASTER_DRIVER
+from RUSLECalculator_lib import get_soil_loss
+from RUSLECalculator_resurce import RASTER_DRIVER
 
 try:
     from osgeo import *
@@ -55,8 +52,7 @@ def get_raster_name(dlg):
     for s in name_list:
         string_to_dialog += s + ";;"
 
-    string_to_dialog = string_to_dialog[:-2]
-    string_to_dialog = unicode(string_to_dialog, 'utf-8')
+    string_to_dialog = unicode(string_to_dialog[:-2], 'utf-8')
     outputFile = fileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
                                             string_to_dialog, lastUsedFilter)
     Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
@@ -78,7 +74,9 @@ def getListFile(checker_boolean, input_position, years):
         for _ in range(0, years):
             list_out.append(input_position)
     else:
-        for file_name in os.listdir(input_position):
+        dir_root = os.listdir(input_position)
+        dir_root.sort()
+        for file_name in dir_root:
             list_out.append(file_name)
         list_out.sort()
 

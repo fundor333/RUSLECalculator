@@ -98,26 +98,7 @@ def elaborate_document(document_file, num):
     return output
 
 
-def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
-    LOG.i("Start calc the raster")
-    LOG.i("The driver use is " + driver_name)
-    open_dem = gdal.Open(dem)
-    pixel_size = get_pixel_size(dem)
-    final_data = None
-
-    k_file = getListFile(k[0], k[1], years)
-    r_file = getListFile(r[0], r[1], years)
-    ls_file = getListFile(ls[0], ls[1], years)
-    c_file = getListFile(c[0], c[1], years)
-    p_file = getListFile(p[0], p[1], years)
-    dem_file = getListFile(dem[0], dem[1], years)
-
-    for i in range(0, years):
-        if (final_data == None):
-            final_data = iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
-        else:
-            final_data += iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
-
+def writer_dataset(open_dem, driver_name, final_data, outputfile):
     # get parameters
     geotransform = open_dem.GetGeoTransform()
     spatialreference = open_dem.GetProjection()
@@ -138,3 +119,26 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
         open_raster(outputfile)
     else:
         raise DriverError()
+
+
+def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
+    LOG.i("Start calc the raster")
+    LOG.i("The driver use is " + driver_name)
+    open_dem = gdal.Open(dem)
+    pixel_size = get_pixel_size(dem)
+    final_data = None
+
+    k_file = getListFile(k[0], k[1], years)
+    r_file = getListFile(r[0], r[1], years)
+    ls_file = getListFile(ls[0], ls[1], years)
+    c_file = getListFile(c[0], c[1], years)
+    p_file = getListFile(p[0], p[1], years)
+    dem_file = getListFile(dem[0], dem[1], years)
+
+    for i in range(0, years):
+        if (final_data == None):
+            final_data = iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
+        else:
+            final_data += iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
+
+    writer_dataset(open_dem, driver_name, final_data, outputfile)
