@@ -68,7 +68,7 @@ def outputfunction(dlg):
     dlg.RasterPath.setText(filename)
 
 
-def getListFile(checker_boolean, input_position, years):
+def getlistfile(checker_boolean, input_position, years):
     list_out = []
     if checker_boolean:
         for _ in range(0, years):
@@ -78,8 +78,8 @@ def getListFile(checker_boolean, input_position, years):
         dir_root.sort()
         for file_name in dir_root:
             list_out.append(file_name)
-        list_out.sort()
 
+        list_out.sort()
     return list_out
 
 

@@ -23,7 +23,7 @@ from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
 from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import gdal
 from PyQt4.QtCore import QFileInfo
-from RUSLECalculator_Gui_Implementation import getListFile
+from RUSLECalculator_Gui_Implementation import getlistfile
 from RUSLECalculator_error import LOG, DriverError
 from RUSLECalculator_resurce import AEZ100, AEZ200, AEZ300
 
@@ -128,12 +128,12 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     pixel_size = get_pixel_size(dem)
     final_data = None
 
-    k_file = getListFile(k[0], k[1], years)
-    r_file = getListFile(r[0], r[1], years)
-    ls_file = getListFile(ls[0], ls[1], years)
-    c_file = getListFile(c[0], c[1], years)
-    p_file = getListFile(p[0], p[1], years)
-    dem_file = getListFile(dem[0], dem[1], years)
+    k_file = getlistfile(k[0], k[1], years)
+    r_file = getlistfile(r[0], r[1], years)
+    ls_file = getlistfile(ls[0], ls[1], years)
+    c_file = getlistfile(c[0], c[1], years)
+    p_file = getlistfile(p[0], p[1], years)
+    dem_file = getlistfile(dem[0], dem[1], years)
 
     for i in range(0, years):
         if (final_data == None):
