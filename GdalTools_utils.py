@@ -29,13 +29,14 @@ __revision__ = '$Format:%H$'
 # setLastUsedDir( QString *file_or_dir path )
 # -------------------------------------------------
 
+import os
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from qgis.core import *
-from qgis.gui import *
 from osgeo import gdal, ogr, osr
 from osgeo.gdalconst import *
-import os
+from qgis.core import *
+from qgis.gui import *
 # to know the os
 import platform
 import sys

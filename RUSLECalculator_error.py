@@ -21,6 +21,7 @@
 """
 
 import logging
+
 from PyQt4.QtGui import QMessageBox
 
 

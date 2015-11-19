@@ -19,10 +19,10 @@
  *                                                                         *
  ***************************************************************************/
 """
-import os
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QFileDialog
 from PyQt4.uic.properties import QtCore
+
 import GdalTools_utils as Utils
 from RUSLECalculator_lib import get_soil_loss
 from RUSLECalculator_resurce import RASTER_DRIVER
@@ -66,21 +66,6 @@ def get_raster_name(dlg):
 def outputfunction(dlg):
     filename = get_raster_name(dlg)
     dlg.RasterPath.setText(filename)
-
-
-def getlistfile(checker_boolean, input_position, years):
-    list_out = []
-    if checker_boolean:
-        for _ in range(0, years):
-            list_out.append(input_position)
-    else:
-        dir_root = os.listdir(input_position)
-        dir_root.sort()
-        for file_name in dir_root:
-            list_out.append(file_name)
-
-        list_out.sort()
-    return list_out
 
 
 def run(dlg):

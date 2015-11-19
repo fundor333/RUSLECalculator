@@ -21,6 +21,7 @@
 """
 
 import os
+
 from PyQt4 import QtGui, uic
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(

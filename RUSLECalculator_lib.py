@@ -19,11 +19,13 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
+import os
+
+from PyQt4.QtCore import QFileInfo
 from osgeo.gdalconst import GA_ReadOnly
 from osgeo.gdalnumeric import gdal
-from PyQt4.QtCore import QFileInfo
-from RUSLECalculator_Gui_Implementation import getlistfile
+from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
+
 from RUSLECalculator_error import LOG, DriverError
 from RUSLECalculator_resurce import AEZ100, AEZ200, AEZ300
 
@@ -133,7 +135,7 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
     ls_file = getlistfile(ls[0], ls[1], years)
     c_file = getlistfile(c[0], c[1], years)
     p_file = getlistfile(p[0], p[1], years)
-    dem_file = getlistfile(dem[0], dem[1], years)
+    # dem_file = getlistfile(dem[0], dem[1], years)
 
     for i in range(0, years):
         if (final_data == None):
@@ -142,3 +144,18 @@ def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
             final_data += iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
 
     writer_dataset(open_dem, driver_name, final_data, outputfile)
+
+
+def getlistfile(checker_boolean, input_position, years):
+    list_out = []
+    if checker_boolean:
+        for _ in range(0, years):
+            list_out.append(input_position)
+    else:
+        dir_root = os.listdir(input_position)
+        dir_root.sort()
+        for file_name in dir_root:
+            list_out.append(file_name)
+
+        list_out.sort()
+    return list_out
