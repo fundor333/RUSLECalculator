@@ -129,7 +129,6 @@ class Ui_MatrixElaboratorDialogBase(object):
         self.RasterPathButton.setObjectName(_fromUtf8("RasterPathButton"))
         self.years_input = QtGui.QSpinBox(MatrixElaboratorDialogBase)
         self.years_input.setGeometry(QtCore.QRect(140, 380, 111, 31))
-        self.years_input.setMinimum(1)
         self.years_input.setObjectName(_fromUtf8("years_input"))
         self.years_label = QtGui.QLabel(MatrixElaboratorDialogBase)
         self.years_label.setGeometry(QtCore.QRect(20, 390, 101, 17))
