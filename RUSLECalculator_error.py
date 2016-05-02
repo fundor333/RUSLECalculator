@@ -117,7 +117,7 @@ class Log():
         print(string)
 
 
-LOG = Log("/var/tmp/RUSLECalculator.log")
+LOG = Log()
 
 
 def error_window(dlg, title, body):
