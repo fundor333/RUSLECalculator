@@ -134,7 +134,6 @@ class RUSLECalculator():
 
         self.dlg.buttonDem.clicked.connect(bott.clickdem)
         self.dlg.buttonK.clicked.connect(bott.clickk)
-        self.dlg.buttonImageField.clicked.connect(bott.clickfieldimage)
         self.dlg.buttonR.clicked.connect(bott.clickr)
         self.dlg.buttonP.clicked.connect(bott.clickp)
         self.dlg.buttonC.clicked.connect(bott.clickc)

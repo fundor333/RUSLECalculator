@@ -21,6 +21,7 @@
 """
 
 import logging
+
 from PyQt4.QtGui import QMessageBox
 
 
@@ -28,6 +29,12 @@ class NoDem(Exception):
     def __init__(self, message=""):
         self.message = message
         LOG.e("NoDem " + message)
+
+
+class DriverError(Exception):
+    def __init__(self, message=""):
+        self.message = message
+        LOG.e("DriverError: Output format not support in this installation. Yout need to install it " + message)
 
 
 class NoFieldImage(Exception):
