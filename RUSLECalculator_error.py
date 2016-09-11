@@ -116,8 +116,10 @@ class Log():
         logging.debug(string)
         print(string)
 
-
-LOG = Log("/var/tmp/RUSLECalculator.log")
+try:
+    LOG = Log("/var/tmp/RUSLECalculator.log")
+except:
+    LOG = Log=()
 
 
 def error_window(dlg, title, body):
