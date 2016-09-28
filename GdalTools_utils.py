@@ -29,21 +29,20 @@ __revision__ = '$Format:%H$'
 # setLastUsedDir( QString *file_or_dir path )
 # -------------------------------------------------
 
+import os
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-
-from qgis.core import *
-from qgis.gui import *
-
 from osgeo import gdal, ogr, osr
 from osgeo.gdalconst import *
-
-import os
+from qgis.core import *
+from qgis.gui import *
 # to know the os
 import platform
 import sys
 import string
 import re
+
 
 # Escapes arguments and return them joined in a string
 def escapeAndJoin(strList):
@@ -893,6 +892,7 @@ def setMacOSXDefaultEnvironment():
                 u"%s/Python/%s.%s/site-packages" % (gdal_base_path, sys.version_info[0], sys.version_info[1]))
         if getHelpPath() == '':
             setHelpPath(u"%s/Resources/doc" % gdal_base_path)
+
 
 # setup the MacOSX path to both GDAL executables and python modules
 if platform.system() == "Darwin":

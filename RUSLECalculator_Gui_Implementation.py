@@ -19,17 +19,17 @@
  *                                                                         *
  ***************************************************************************/
 """
+from PyQt4.QtCore import QObject
+from PyQt4.QtGui import QFileDialog
 from PyQt4.uic.properties import QtCore
 
-from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QFileDialog, QMessageBox
-
-from RUSLECalculator_lib import real_math
 import GdalTools_utils as Utils
+from RUSLECalculator_lib import get_soil_loss
+from RUSLECalculator_resurce import RASTER_DRIVER
 
 try:
     from osgeo import *
-except:
+except Exception:
     import gdal
     import ogr
     import osr
@@ -39,17 +39,27 @@ def selectfile(lineEdit):
     lineEdit.setText(QFileDialog.getOpenFileName())
 
 
+def selectdirectory(lineEdit):
+    lineEdit.setText(QFileDialog.getExistingDirectory())
+
+
 def get_raster_name(dlg):
     lastUsedFilter = Utils.FileFilter.lastUsedRasterFilter()
     fileDialog = Utils.FileDialog
+    name_list = RASTER_DRIVER.keys()
+    name_list.sort()
+    string_to_dialog = ""
+    for s in name_list:
+        string_to_dialog += s + ";;"
+
+    string_to_dialog = unicode(string_to_dialog[:-2], 'utf-8')
     outputFile = fileDialog.getSaveFileName(dlg, dlg.tr("Select the raster file to save the results to"),
-                                            Utils.FileFilter.allRastersFilter(), lastUsedFilter)
+                                            string_to_dialog, lastUsedFilter)
     Utils.FileFilter.setLastUsedRasterFilter(lastUsedFilter)
 
-    # required either -ts or -tr to create the output file
     if not QtCore.QFileInfo(outputFile).exists():
-        QMessageBox.information(dlg, dlg.tr("Output size required"),
-                                dlg.tr("The output file doesn't exist. You must set up the output size to create it."))
+        file = open(outputFile, 'r+')  # Trying to create a new file or open one
+        file.close()
     return outputFile
 
 
@@ -60,18 +70,17 @@ def outputfunction(dlg):
 
 def run(dlg):
     dem = dlg.inputDEM.toPlainText()
-    fieldimage = dlg.inputFieldImage.toPlainText()
-    datatype = Utils.FileFilter.lastUsedRasterFilter()
+    datatype = RASTER_DRIVER[str(Utils.FileFilter.lastUsedRasterFilter()[0])]
 
-
-    k = dlg.inputK.toPlainText()
-    r = dlg.inputR.toPlainText()
-    ls = dlg.inputLS.toPlainText()
-    c = dlg.inputC.toPlainText()
-    p = dlg.inputP.toPlainText()
+    k = dlg.checkerK.isChecked(), dlg.inputK.toPlainText()
+    r = dlg.checkerR.isChecked(), dlg.inputR.toPlainText()
+    ls = dlg.checkerLS.isChecked(), dlg.inputLS.toPlainText()
+    c = dlg.checkerC.isChecked(), dlg.inputC.toPlainText()
+    p = dlg.checkerP.isChecked(), dlg.inputP.toPlainText()
     outputfile = dlg.RasterPath.toPlainText()
+    years = dlg.years_input.value()
 
-    real_math(k, r, ls, c, p, outputfile)
+    get_soil_loss(k, r, ls, c, p, dem, outputfile, datatype, years)
 
 
 class ButtonSignal(QObject):
@@ -80,25 +89,40 @@ class ButtonSignal(QObject):
         self.dlg = dlg
 
     def clickdem(self):
-        selectfile(self.dlg.inputDEM)
+        if self.dlg.checkerDEM.isChecked():
+            selectfile(self.dlg.inputDEM)
+        else:
+            selectdirectory(self.dlg.inputDEM)
 
     def clickk(self):
-        selectfile(self.dlg.inputK)
-
-    def clickfieldimage(self):
-        selectfile(self.dlg.imputImageField)
+        if self.dlg.checkerK.isChecked():
+            selectfile(self.dlg.inputK)
+        else:
+            selectdirectory(self.dlg.inputK)
 
     def clickr(self):
-        selectfile(self.dlg.inputR)
+        if self.dlg.checkerR.isChecked():
+            selectfile(self.dlg.inputR)
+        else:
+            selectdirectory(self.dlg.inputR)
 
     def clickp(self):
-        selectfile(self.dlg.inputP)
+        if self.dlg.checkerP.isChecked():
+            selectfile(self.dlg.inputP)
+        else:
+            selectdirectory(self.dlg.inputP)
 
     def clickls(self):
-        selectfile(self.dlg.inputLS)
+        if self.dlg.checkerLS.isChecked():
+            selectfile(self.dlg.inputLS)
+        else:
+            selectdirectory(self.dlg.inputLS)
 
     def clickc(self):
-        selectfile(self.dlg.inputC)
+        if self.dlg.checkerC.isChecked():
+            selectfile(self.dlg.inputC)
+        else:
+            selectdirectory(self.dlg.inputC)
 
     def clickoutput(self):
         outputfunction(self.dlg)

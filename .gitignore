@@ -1,3 +1,4 @@
+/raster_type_parser/*.txt
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
@@ -150,3 +151,4 @@ DatiDev/*.asc.aux.xml
 *.pyc
 
 Layer input RUSLE/*.tif.aux.xml
+raster_type_parser

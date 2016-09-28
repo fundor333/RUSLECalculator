@@ -19,14 +19,31 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
-
-from osgeo.gdalconst import GA_ReadOnly
-
-from osgeo.gdalnumeric import BandWriteArray, BandReadAsArray, numpy, gdal
+import os
 
 from PyQt4.QtCore import QFileInfo
-from RUSLECalculator_error import LOG
+from osgeo.gdalconst import GA_ReadOnly
+from osgeo.gdalnumeric import gdal
+from qgis.core import QgsRasterLayer, QgsMapLayerRegistry
+
+from RUSLECalculator_error import LOG, DriverError
+from RUSLECalculator_resurce import AEZ100, AEZ200, AEZ300
+
+
+def aez_calc(aez):
+    i = 0
+    for row in aez:
+        y = 0
+        for element in row:
+            ele = element.get(3)
+            if ele == 1:
+                aez[i][y] = AEZ100
+            elif ele == 2:
+                aez[i][y] = AEZ200
+            elif ele == 3:
+                aez[i][y] = AEZ300
+            y += 1
+        i += 1
 
 
 def open_raster(filename):
@@ -42,13 +59,11 @@ def open_raster(filename):
     return basename, r_layer
 
 
-def real_math(k, r, ls, c, p, outputfile):
-    LOG.i("Start calc the raster")
+def iterable_function(k, r, ls, c, p, pixel_value):
     open_k = gdal.Open(k)
     open_r = gdal.Open(r)
     open_ls = gdal.Open(ls)
     open_c = gdal.Open(c)
-
     src_k = open_k.ReadAsArray()
     src_r = open_r.ReadAsArray()
     src_ls = open_ls.ReadAsArray()
@@ -59,29 +74,88 @@ def real_math(k, r, ls, c, p, outputfile):
         src_p = open_p.ReadAsArray()
         final_data = src_c * src_k * src_r * src_ls * src_p
 
-    except:
+    except Exception:
         final_data = src_c * src_k * src_r * src_ls
 
-    final_data = final_data * 29.0142 / 100
+    return final_data * pixel_value / 100
 
+
+def get_pixel_size(dem):
+    dataset = gdal.Open(dem, GA_ReadOnly)
+    geotransform = dataset.GetGeoTransform()
+    return geotransform[1]
+
+
+def elaborate_document(document_file, num):
+    output = []
+    if document_file[0] == num:
+        output = document_file[1]
+    else:
+        if document_file[0] == 0:
+            for i in range(0, num):
+                output[i] = document_file[0]
+        else:
+            for i in range(0, num):
+                output[i] = document_file[0][i % document_file[0].size]
+    return output
+
+
+def writer_dataset(open_dem, driver_name, final_data, outputfile):
     # get parameters
-    geotransform = open_k.GetGeoTransform()
-    spatialreference = open_k.GetProjection()
-    data_type = open_k.GetRasterBand(1).DataType
-    ncol = open_k.RasterXSize
-    nrow = open_k.RasterYSize
+    geotransform = open_dem.GetGeoTransform()
+    spatialreference = open_dem.GetProjection()
+    data_type = open_dem.GetRasterBand(1).DataType
+    ncol = open_dem.RasterXSize
+    nrow = open_dem.RasterYSize
     nband = 1
 
     # create dataset for output
-    fmt = 'GTiff'
-    driver = gdal.GetDriverByName(fmt)
-    dst_dataset = driver.Create(outputfile,
-                                ncol,
-                                nrow,
-                                nband,
-                                data_type)
-    dst_dataset.SetGeoTransform(geotransform)
-    dst_dataset.SetProjection(spatialreference)
-    dst_dataset.GetRasterBand(1).WriteArray(final_data)
-    dst_dataset = None
-    open_raster(outputfile)
+    driver = gdal.GetDriverByName(driver_name)
+    LOG.d(driver)
+    if driver != None:
+        dst_dataset = driver.Create(outputfile, ncol, nrow, nband, data_type)
+        dst_dataset.SetGeoTransform(geotransform)
+        dst_dataset.SetProjection(spatialreference)
+        dst_dataset.GetRasterBand(1).WriteArray(final_data)
+        dst_dataset = None
+        open_raster(outputfile)
+    else:
+        raise DriverError()
+
+
+def get_soil_loss(k, r, ls, c, p, dem, outputfile, driver_name, years=1):
+    LOG.i("Start calc the raster")
+    LOG.i("The driver use is " + driver_name)
+    open_dem = gdal.Open(dem)
+    pixel_size = get_pixel_size(dem)
+    final_data = None
+
+    k_file = getlistfile(k[0], k[1], years)
+    r_file = getlistfile(r[0], r[1], years)
+    ls_file = getlistfile(ls[0], ls[1], years)
+    c_file = getlistfile(c[0], c[1], years)
+    p_file = getlistfile(p[0], p[1], years)
+    # dem_file = getlistfile(dem[0], dem[1], years)
+
+    for i in range(0, years):
+        if (final_data == None):
+            final_data = iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
+        else:
+            final_data += iterable_function(k_file, r_file, ls_file, c_file, p_file, pixel_size)
+
+    writer_dataset(open_dem, driver_name, final_data, outputfile)
+
+
+def getlistfile(checker_boolean, input_position, years):
+    list_out = []
+    if checker_boolean:
+        for _ in range(0, years):
+            list_out.append(input_position)
+    else:
+        dir_root = os.listdir(input_position)
+        dir_root.sort()
+        for file_name in dir_root:
+            list_out.append(file_name)
+
+        list_out.sort()
+    return list_out
